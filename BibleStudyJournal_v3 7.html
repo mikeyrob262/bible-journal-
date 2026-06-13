@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="apple-touch-icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxODAiIGhlaWdodD0iMTgwIiB2aWV3Qm94PSIwIDAgMTgwIDE4MCI+CiAgPHJlY3Qgd2lkdGg9IjE4MCIgaGVpZ2h0PSIxODAiIHJ4PSI0MCIgZmlsbD0iIzIzMjUyZSIvPgogIDxyZWN0IHg9IjM0IiB5PSIyOCIgd2lkdGg9IjcyIiBoZWlnaHQ9IjkwIiByeD0iNiIgZmlsbD0iI2Y4ZjVmMCIvPgogIDxyZWN0IHg9IjM0IiB5PSIyOCIgd2lkdGg9IjcyIiBoZWlnaHQ9IjkwIiByeD0iNiIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjYzhjYWQ0IiBzdHJva2Utd2lkdGg9IjEuNSIvPgogIDxyZWN0IHg9IjQ2IiB5PSI0MiIgd2lkdGg9IjQ4IiBoZWlnaHQ9IjMiIHJ4PSIxLjUiIGZpbGw9IiMyMzI1MmUiIG9wYWNpdHk9IjAuMjUiLz4KICA8cmVjdCB4PSI0NiIgeT0iNTIiIHdpZHRoPSI0MCIgaGVpZ2h0PSIzIiByeD0iMS41IiBmaWxsPSIjMjMyNTJlIiBvcGFjaXR5PSIwLjI1Ii8+CiAgPHJlY3QgeD0iNDYiIHk9IjYyIiB3aWR0aD0iNDQiIGhlaWdodD0iMyIgcng9IjEuNSIgZmlsbD0iIzIzMjUyZSIgb3BhY2l0eT0iMC4yNSIvPgogIDxyZWN0IHg9IjQ2IiB5PSI3MiIgd2lkdGg9IjM2IiBoZWlnaHQ9IjMiIHJ4PSIxLjUiIGZpbGw9IiMyMzI1MmUiIG9wYWNpdHk9IjAuMjUiLz4KICA8cmVjdCB4PSI0NiIgeT0iODIiIHdpZHRoPSI0MiIgaGVpZ2h0PSIzIiByeD0iMS41IiBmaWxsPSIjMjMyNTJlIiBvcGFjaXR5PSIwLjI1Ii8+CiAgPHJlY3QgeD0iNDYiIHk9IjkyIiB3aWR0aD0iMzAiIGhlaWdodD0iMyIgcng9IjEuNSIgZmlsbD0iIzIzMjUyZSIgb3BhY2l0eT0iMC4yNSIvPgogIDxyZWN0IHg9IjUwIiB5PSIxMDgiIHdpZHRoPSI4NCIgaGVpZ2h0PSI0OCIgcng9IjYiIGZpbGw9IiNiODk2M2UiLz4KICA8dGV4dCB4PSI5MiIgeT0iMTQwIiBmb250LWZhbWlseT0iR2VvcmdpYSwgc2VyaWYiIGZvbnQtc2l6ZT0iMjgiIGZvbnQtd2VpZ2h0PSI3MDAiIGZpbGw9IndoaXRlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj4mI3gyNzFEOzwvdGV4dD4KPC9zdmc+">
+<meta name="theme-color" content="#23252e">
+<meta name="apple-mobile-web-app-title" content="Bible Study">
+<title>Bible Study Journal</title>
+<style>
+:root {
+  --forest:#23252e;--sage:#e8eaf0;--gold:#b8963e;--gold-light:#f5e9c8;
+  --cream:#f8f5f0;--ink:#1c1c1e;--ink-soft:#3a3a3c;--muted:#6e6e73;
+  --line:#d1cec8;--white:#ffffff;--teal:#c8cad4;--teal-light:#f0f1f5;
+  --purple:#7c5cbf;--purple-light:#ede8f8;--blue:#2471a3;--blue-light:#eaf3fb;
+  --nav-h:52px;--toolbar-h:44px;
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
+html,body{height:100%;width:100%;font-family:-apple-system,'SF Pro Text',sans-serif;background:var(--cream);overflow:hidden;color:var(--ink);}
+
+#nav{position:fixed;top:0;left:0;right:0;height:var(--nav-h);background:var(--forest);display:flex;align-items:center;z-index:100;padding:0 4px;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;}
+#nav::-webkit-scrollbar{display:none;}
+.nav-btn{flex-shrink:0;padding:6px 12px;border-radius:8px;border:none;background:transparent;color:rgba(255,255,255,.65);font-size:13px;font-weight:500;cursor:pointer;white-space:nowrap;transition:background .15s,color .15s;}
+.nav-btn.active{background:rgba(255,255,255,.18);color:#fff;}
+.nav-btn:active{background:rgba(255,255,255,.25);}
+
+#toolbar{position:fixed;top:var(--nav-h);left:0;right:0;height:var(--toolbar-h);background:var(--white);border-bottom:.5px solid var(--line);display:flex;align-items:center;padding:0 12px;gap:6px;z-index:99;transition:transform .25s ease,opacity .25s ease;}
+#toolbar.hidden{transform:translateY(-100%);opacity:0;pointer-events:none;}
+.tool-btn{width:34px;height:34px;border-radius:7px;border:.5px solid var(--line);background:var(--white);display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:15px;color:var(--ink-soft);transition:background .1s;}
+.tool-btn:active,.tool-btn.active{background:var(--sage);color:var(--forest);}
+.tool-sep{width:.5px;height:22px;background:var(--line);margin:0 4px;}
+#color-picker-wrap{display:flex;gap:5px;align-items:center;}
+.color-dot{width:20px;height:20px;border-radius:50%;border:2px solid transparent;cursor:pointer;}
+.color-dot.sel{border-color:var(--ink);}
+#stroke-size{width:60px;height:28px;accent-color:var(--forest);}
+.tool-spacer{flex:1;}
+#toggle-toolbar-btn{position:fixed;top:calc(var(--nav-h) + 8px);right:12px;z-index:101;width:28px;height:28px;border-radius:7px;background:var(--forest);border:none;color:white;font-size:13px;display:flex;align-items:center;justify-content:center;cursor:pointer;}
+
+#main{position:fixed;top:calc(var(--nav-h) + var(--toolbar-h));left:0;right:0;bottom:0;overflow-y:auto;-webkit-overflow-scrolling:touch;transition:top .25s ease;}
+#main.toolbar-hidden{top:var(--nav-h);}
+.section{display:none;padding:20px 16px 100px;min-height:100%;}
+.section.active{display:block;}
+
+.sec-header{background:var(--forest);color:white;border-radius:12px;padding:16px 18px;margin-bottom:20px;}
+.sec-header.gold-head{background:var(--gold);}
+.sec-header.purple-head{background:var(--purple);}
+.sec-header.blue-head{background:var(--blue);}
+.sec-eyebrow{font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.65);margin-bottom:4px;}
+.sec-title{font-size:26px;font-weight:700;letter-spacing:-.5px;}
+.sec-sub{font-size:13px;color:rgba(255,255,255,.65);margin-top:4px;font-style:italic;}
+
+.card{background:var(--white);border-radius:10px;border:.5px solid var(--line);margin-bottom:14px;overflow:hidden;}
+.card-row{display:grid;grid-template-columns:1fr 1fr;gap:0;}
+.card-row .card-field{border-right:.5px solid var(--line);}
+.card-row .card-field:last-child{border-right:none;}
+.card-field{padding:8px 14px 10px;}
+.card-field label{display:block;font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:3px;}
+
+input[type="text"],input[type="date"],input[type="number"],textarea,select{width:100%;border:none;background:transparent;font-family:-apple-system,'SF Pro Text',sans-serif;font-size:15px;color:var(--ink);outline:none;resize:none;-webkit-appearance:none;padding:0;}
+textarea{line-height:1.6;}
+.field-full{border-top:.5px solid var(--line);padding:10px 14px;}
+.field-full label{font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:4px;}
+.scripture-field{background:#f0f1f5;border-left:3px solid #c8cad4;padding:10px 14px;}
+.scripture-field input{font-style:italic;color:#23252e;}
+
+.lined-area{background-image:repeating-linear-gradient(to bottom,transparent 0px,transparent 27px,var(--line) 27px,var(--line) 28px);background-size:100% 28px;min-height:224px;padding:6px 14px;font-size:15px;line-height:28px;width:100%;border:none;background-color:transparent;outline:none;resize:none;font-family:-apple-system,'SF Pro Text',sans-serif;display:block;}
+
+.canvas-wrap{position:relative;background:var(--white);overflow:hidden;touch-action:none;}
+.canvas-wrap canvas{display:block;width:100%;cursor:crosshair;touch-action:none;}
+.canvas-label{font-size:10px;color:var(--muted);padding:6px 14px;background:var(--sage);display:flex;align-items:center;gap:6px;font-weight:500;}
+.canvas-label span{flex:1;}
+.canvas-clear{font-size:11px;color:var(--muted);border:none;background:none;cursor:pointer;padding:2px 6px;border-radius:4px;}
+.canvas-clear:active{background:var(--line);}
+
+.home-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:20px;}
+.home-card{background:#ffffff;border:0.5px solid #d1cec8;border-left:4px solid #23252e;border-radius:12px;padding:16px 14px;cursor:pointer;transition:background .1s;min-height:68px;}
+.home-card::before{display:none;}
+.home-card.gold-card{border-left-color:var(--gold);}
+.home-card.purple-card{border-left-color:var(--purple);}
+.home-card.blue-card{border-left-color:var(--blue);}
+.home-card:active{background:var(--sage);}
+.home-card-title{font-size:15px;font-weight:600;color:#1c1c1e;margin-bottom:2px;padding-left:10px;position:relative;z-index:1;}
+.home-card-sub{font-size:11px;color:#6e6e73;padding-left:10px;position:relative;z-index:1;}
+.home-verse{background:var(--forest);border-radius:12px;padding:20px 18px;color:white;text-align:center;margin-bottom:20px;}
+.home-verse p{font-size:15px;line-height:1.6;font-style:italic;color:rgba(255,255,255,.9);}
+.home-verse cite{font-size:12px;color:#8a8d9a;font-weight:600;display:block;margin-top:8px;font-style:normal;}
+
+.rp-progress-wrap{background:var(--white);border-radius:12px;border:.5px solid var(--line);padding:16px;margin-bottom:16px;}
+.rp-ring-row{display:flex;align-items:center;gap:16px;margin-bottom:12px;}
+.rp-ring{position:relative;width:80px;height:80px;flex-shrink:0;}
+.rp-ring svg{transform:rotate(-90deg);}
+.rp-ring-track{fill:none;stroke:var(--sage);stroke-width:7;}
+.rp-ring-fill{fill:none;stroke:#c8cad4;stroke-width:7;stroke-linecap:round;transition:stroke-dashoffset .4s ease;}
+.rp-ring-text{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;}
+.rp-ring-pct{font-size:18px;font-weight:700;color:var(--forest);line-height:1;}
+.rp-ring-lbl{font-size:9px;color:var(--muted);font-weight:600;}
+.rp-stats{flex:1;display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+.rp-stat{background:var(--cream);border-radius:8px;padding:8px 10px;}
+.rp-stat-val{font-size:18px;font-weight:700;color:var(--forest);}
+.rp-stat-lbl{font-size:10px;color:var(--muted);}
+.rp-controls{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;}
+.rp-control label{font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:3px;}
+.rp-control input{background:var(--cream);border:.5px solid var(--line);border-radius:6px;padding:6px 8px;font-size:13px;width:100%;}
+.rp-book-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;}
+.rp-book-row{display:flex;align-items:center;gap:8px;padding:9px 12px;border-bottom:.5px solid var(--line);background:var(--white);cursor:pointer;}
+.rp-book-row:nth-child(even){border-left:.5px solid var(--line);}
+.rp-book-row:active{background:var(--sage);}
+.rp-book-check{width:18px;height:18px;border-radius:4px;border:1.5px solid var(--line);background:white;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:11px;}
+.rp-book-check.done{background:var(--teal);border-color:#8a8d9a;color:white;}
+.rp-book-name{font-size:13px;flex:1;}
+.rp-book-ch{font-size:10px;color:var(--muted);}
+.rp-section-head{background:var(--forest);color:white;font-size:11px;font-weight:700;padding:6px 12px;letter-spacing:.06em;text-transform:uppercase;grid-column:1 / -1;}
+
+.ws-card{background:var(--white);border-radius:10px;border:.5px solid var(--line);margin-bottom:14px;overflow:hidden;}
+.ws-header{background:var(--purple);color:white;padding:10px 14px;display:flex;align-items:center;gap:10px;}
+.ws-word{font-size:20px;font-weight:700;flex:1;border:none;background:transparent;color:white;outline:none;font-family:inherit;}
+.ws-word::placeholder{color:rgba(255,255,255,.5);}
+.ws-lang-badge{font-size:10px;font-weight:700;padding:3px 8px;border-radius:10px;border:none;cursor:pointer;}
+.ws-lang-off{background:rgba(255,255,255,.2);color:rgba(255,255,255,.8);}
+.ws-lang-badge.active-lang{background:white;color:var(--purple);}
+
+.series-card{background:var(--white);border-radius:10px;border:.5px solid var(--line);margin-bottom:14px;overflow:hidden;}
+.series-header-bar{background:var(--blue);color:white;padding:10px 14px;}
+.series-title-input{font-size:17px;font-weight:700;border:none;background:transparent;color:white;outline:none;font-family:inherit;width:100%;}
+.series-title-input::placeholder{color:rgba(255,255,255,.5);}
+.series-week{border-top:.5px solid var(--line);padding:10px 14px;display:flex;align-items:flex-start;gap:10px;}
+.series-week-num{width:26px;height:26px;border-radius:50%;background:var(--blue-light);color:var(--blue);font-weight:700;font-size:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;}
+.series-week-done{width:22px;height:22px;border-radius:50%;border:1.5px solid var(--blue);background:white;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:11px;flex-shrink:0;margin-top:4px;}
+.series-week-done.done{background:#23252e;color:white;border-color:#23252e;}
+
+.quote-card{background:var(--white);border-left:4px solid var(--gold);border-radius:0 10px 10px 0;padding:12px 14px;margin-bottom:10px;border-top:.5px solid var(--line);border-right:.5px solid var(--line);border-bottom:.5px solid var(--line);}
+.quote-meta{display:flex;gap:8px;margin-top:6px;}
+.quote-meta input{font-size:12px;color:var(--muted);background:transparent;border:none;outline:none;font-family:inherit;}
+
+.book-sum-card{background:var(--white);border-radius:10px;border:.5px solid var(--line);margin-bottom:14px;overflow:hidden;}
+.book-sum-header{background:var(--gold);color:white;padding:10px 14px;}
+.book-sum-name{font-size:18px;font-weight:700;border:none;background:transparent;color:white;outline:none;font-family:inherit;width:100%;}
+.book-sum-name::placeholder{color:rgba(255,255,255,.5);}
+.book-sum-meta{display:flex;gap:0;border-top:.5px solid var(--line);}
+.book-sum-meta-field{flex:1;padding:8px 12px;border-right:.5px solid var(--line);}
+.book-sum-meta-field:last-child{border-right:none;}
+.book-sum-meta-field label{font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:2px;}
+.book-sum-meta-field input{font-size:13px;}
+.key-ch-grid{display:flex;gap:6px;flex-wrap:wrap;padding:8px 12px;border-top:.5px solid var(--line);}
+.key-ch-chip{background:var(--gold-light);color:var(--gold);border:.5px solid var(--gold);border-radius:6px;padding:3px 8px;font-size:12px;font-weight:600;}
+.xref-input{background:var(--cream);border:.5px solid var(--line);border-radius:6px;padding:5px 8px;font-size:13px;font-family:inherit;outline:none;color:var(--ink);flex:1;}
+.xref-add-btn{background:var(--forest);color:white;border:none;border-radius:6px;padding:5px 10px;font-size:12px;font-weight:600;cursor:pointer;}
+.xref-chip-row{display:flex;flex-wrap:wrap;gap:6px;padding:10px 14px;border-top:.5px solid var(--line);}
+.xref-chip{background:#f0f1f5;color:#23252e;border:.5px solid #c8cad4;border-radius:6px;padding:4px 10px;font-size:12px;font-weight:600;cursor:pointer;font-style:italic;}
+
+.acts-tab{display:flex;border-bottom:.5px solid var(--line);background:var(--cream);overflow-x:auto;}
+.acts-tab-btn{flex-shrink:0;padding:10px 10px;font-size:11px;font-weight:600;text-align:center;border:none;background:transparent;cursor:pointer;color:var(--muted);border-bottom:2px solid transparent;white-space:nowrap;}
+.acts-tab-btn.active{color:var(--forest);border-bottom-color:#8a8d9a;}
+.acts-panel{display:none;padding:12px 14px;}
+.acts-panel.active{display:block;}
+
+.resource-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:16px;}
+.resource-btn{background:var(--white);border:.5px solid var(--line);border-radius:10px;padding:14px 12px;text-align:center;font-size:13px;font-weight:600;color:var(--forest);text-decoration:none;display:block;transition:background .1s;cursor:pointer;}
+.resource-btn:active{background:var(--sage);}
+
+.bible-category{background:var(--sage);border-left:3px solid var(--forest);padding:8px 14px;margin:16px 0 6px;border-radius:0 6px 6px 0;}
+.bible-cat-title{font-size:13px;font-weight:700;color:var(--forest);}
+.bible-cat-sub{font-size:11px;color:var(--muted);}
+.bible-books{display:grid;grid-template-columns:1fr 1fr;gap:0;}
+.bible-book{padding:10px 14px;border-bottom:.5px solid var(--line);display:flex;justify-content:space-between;align-items:center;background:var(--white);cursor:pointer;font-size:14px;}
+.bible-book:active{background:var(--sage);}
+.bible-book-ch{font-size:11px;font-weight:700;color:#8a8d9a;}
+.bible-book:nth-child(even){border-left:.5px solid var(--line);}
+
+.soap-step{display:flex;align-items:flex-start;gap:10px;margin-bottom:14px;}
+.soap-letter{width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;flex-shrink:0;margin-top:2px;}
+.soap-s{background:var(--forest);color:white;}
+.soap-o{background:var(--ink-soft);color:white;}
+.soap-a{background:var(--teal);color:white;}
+.soap-p{background:var(--gold);color:white;}
+.soap-label{font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:4px;}
+.soap-body{flex:1;}
+
+.prayer-entry{background:var(--white);border:.5px solid var(--line);border-radius:10px;margin-bottom:12px;overflow:hidden;}
+.prayer-answered{background:var(--teal-light);border-top:.5px solid var(--line);padding:8px 14px;display:flex;align-items:center;gap:10px;font-size:12px;}
+.answered-check{width:18px;height:18px;border-radius:4px;border:1.5px solid var(--teal);display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;font-size:12px;background:white;}
+.answered-check.checked{background:var(--teal);color:white;border-color:#8a8d9a;}
+
+.memory-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.memory-card{background:var(--gold-light);border:.5px solid var(--gold);border-radius:10px;padding:12px;overflow:hidden;}
+.memory-ref{font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);border-bottom:.5px solid rgba(184,150,62,.3);padding-bottom:6px;margin-bottom:8px;}
+.memory-ref input{color:var(--gold);font-weight:700;font-size:12px;}
+.memory-status{display:flex;gap:6px;margin-top:8px;}
+.mem-badge{font-size:10px;padding:3px 8px;border-radius:20px;border:.5px solid var(--line);background:var(--white);cursor:pointer;font-weight:500;color:var(--muted);}
+.mem-badge.active-badge{background:var(--teal);color:white;border-color:#8a8d9a;}
+
+.point-row{display:flex;align-items:flex-start;gap:10px;padding:10px 14px;border-bottom:.5px solid var(--line);}
+.point-num{width:24px;height:24px;border-radius:5px;background:var(--teal-light);color:var(--forest);font-weight:700;font-size:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;}
+.point-row input{flex:1;}
+
+.topics-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;}
+.topic-btn{background:var(--white);border:.5px solid var(--line);border-left:3px solid var(--forest);border-radius:0 8px 8px 0;padding:12px 8px;text-align:center;font-size:12px;font-weight:500;color:var(--ink-soft);cursor:pointer;transition:background .1s;}
+.topic-btn:active{background:var(--sage);}
+
+.vault-table{width:100%;border-collapse:collapse;font-size:13px;}
+.vault-table th{text-align:left;padding:8px 10px;font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;background:var(--forest);color:white;}
+.vault-table td{padding:10px;border-bottom:.5px solid var(--line);background:var(--white);color:var(--ink);}
+.vault-table tr:nth-child(even) td{background:var(--cream);}
+.vault-table input{font-size:13px;}
+
+.notes-cols{display:grid;grid-template-columns:1fr 1fr;gap:0;border-top:.5px solid var(--line);}
+.notes-cols .note-col{padding:10px 12px;border-right:.5px solid var(--line);}
+.notes-cols .note-col:last-child{border-right:none;}
+
+.add-btn{display:flex;align-items:center;gap:8px;background:var(--sage);border:.5px dashed var(--forest);border-radius:10px;padding:12px 16px;font-size:14px;color:var(--forest);font-weight:500;cursor:pointer;width:100%;margin-top:10px;justify-content:center;}
+.add-btn:active{background:var(--teal-light);}
+
+#save-dot{position:fixed;bottom:16px;right:16px;background:var(--forest);color:white;font-size:11px;font-weight:600;padding:6px 12px;border-radius:20px;opacity:0;transition:opacity .3s;z-index:200;}
+#save-dot.show{opacity:1;}
+#export-btn{position:fixed;bottom:16px;left:16px;background:var(--gold);color:white;border:none;font-size:12px;font-weight:600;padding:8px 14px;border-radius:20px;cursor:pointer;z-index:200;}
+#export-btn:active{opacity:.8;}
+
+@media print{
+  #nav,#toolbar,#toggle-toolbar-btn,#save-dot,#export-btn{display:none !important;}
+  #main{position:static;overflow:visible;top:0;}
+  .section{display:block !important;page-break-after:always;}
+  body{overflow:auto;}
+}
+</style>
+
+<script>
+(function(){
+  var c=document.createElement('canvas');
+  c.width=180;c.height=180;
+  var ctx=c.getContext('2d');
+  ctx.fillStyle='#000000';
+  ctx.fillRect(0,0,180,180);
+  ctx.fillStyle='#ffffff';
+  ctx.font='bold 120px -apple-system,Helvetica,sans-serif';
+  ctx.textAlign='center';
+  ctx.textBaseline='middle';
+  ctx.fillText('J',90,95);
+  var link=document.createElement('link');
+  link.rel='apple-touch-icon';
+  link.href=c.toDataURL('image/png');
+  document.head.appendChild(link);
+})();
+</script>
+</head>
+<body>
+
+<nav id="nav">
+  <button class="nav-btn active" onclick="showSection('home')">Home</button>
+  <button class="nav-btn" onclick="showSection('reading')">Reading</button>
+  <button class="nav-btn" onclick="showSection('journal')">Journal</button>
+  <button class="nav-btn" onclick="showSection('sermon')">Sermon</button>
+  <button class="nav-btn" onclick="showSection('series')">Series</button>
+  <button class="nav-btn" onclick="showSection('study')">Study</button>
+  <button class="nav-btn" onclick="showSection('words')">Words</button>
+  <button class="nav-btn" onclick="showSection('prayer')">Prayer</button>
+  <button class="nav-btn" onclick="showSection('memory')">Memory</button>
+  <button class="nav-btn" onclick="showSection('quotes')">Quotes</button>
+  <button class="nav-btn" onclick="showSection('books')">Books</button>
+  <button class="nav-btn" onclick="showSection('topics')">Topics</button>
+  <button class="nav-btn" onclick="showSection('lookup')">Lookup</button>
+  <button class="nav-btn" onclick="showSection('ot')">OT</button>
+  <button class="nav-btn" onclick="showSection('nt')">NT</button>
+  <button class="nav-btn" onclick="showSection('vault')">Vault</button>
+</nav>
+
+<div id="toolbar">
+  <button class="tool-btn active" id="tool-pen" onclick="setTool('pen')">&#9999;</button>
+  <button class="tool-btn" id="tool-eraser" onclick="setTool('eraser')">&#x1F9F9;</button>
+  <div class="tool-sep"></div>
+  <div id="color-picker-wrap">
+    <div class="color-dot sel" style="background:#1c1c1e" data-color="#1c1c1e" onclick="setColor(this)"></div>
+    <div class="color-dot" style="background:#23252e" data-color="#23252e" onclick="setColor(this)"></div>
+    <div class="color-dot" style="background:#b8963e" data-color="#b8963e" onclick="setColor(this)"></div>
+    <div class="color-dot" style="background:#c0392b" data-color="#c0392b" onclick="setColor(this)"></div>
+    <div class="color-dot" style="background:#2471a3" data-color="#2471a3" onclick="setColor(this)"></div>
+    <div class="color-dot" style="background:#7c5cbf" data-color="#7c5cbf" onclick="setColor(this)"></div>
+  </div>
+  <div class="tool-sep"></div>
+  <input type="range" id="stroke-size" min="1" max="12" value="2">
+  <div class="tool-spacer"></div>
+  <button class="tool-btn" onclick="clearActiveCanvas()">&#128465;</button>
+</div>
+<button id="toggle-toolbar-btn" onclick="toggleToolbar()">&#x2303;</button>
+
+<div id="main">
+
+<!-- HOME -->
+<div class="section active" id="sec-home">
+  <div class="home-verse">
+    <p>"Thy word is a lamp unto my feet, and a light unto my path."</p>
+    <cite>Psalm 119:105 &middot; NKJV</cite>
+  </div>
+  <div id="home-rp-summary" style="background:var(--white);border-radius:12px;border:.5px solid var(--line);padding:14px 16px;margin-bottom:16px;cursor:pointer;" onclick="showSection('reading')">
+    <div style="font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:8px;">Reading Plan Progress</div>
+    <div style="height:8px;background:var(--sage);border-radius:4px;overflow:hidden;"><div id="home-rp-bar" style="height:100%;background:var(--teal);border-radius:4px;width:0%;transition:width .5s ease;"></div></div>
+    <div style="display:flex;justify-content:space-between;margin-top:6px;">
+      <span id="home-rp-pct" style="font-size:13px;font-weight:700;color:var(--forest);">0% complete</span>
+      <span id="home-rp-days" style="font-size:12px;color:var(--muted);">Tap to view plan</span>
+    </div>
+  </div>
+  <div class="home-grid">
+    <div class="home-card" onclick="showSection('journal')"><div class="home-card-title">Daily Journal</div><div class="home-card-sub">Reflection + notes</div></div>
+    <div class="home-card gold-card" onclick="showSection('sermon')"><div class="home-card-title">Sermon Notes</div><div class="home-card-sub">Sunday worship</div></div>
+    <div class="home-card blue-card" onclick="showSection('series')"><div class="home-card-title">Sermon Series</div><div class="home-card-sub">Multi-week tracker</div></div>
+    <div class="home-card" onclick="showSection('study')"><div class="home-card-title">Bible Study</div><div class="home-card-sub">S.O.A.P. method</div></div>
+    <div class="home-card purple-card" onclick="showSection('words')"><div class="home-card-title">Word Study</div><div class="home-card-sub">Greek &amp; Hebrew</div></div>
+    <div class="home-card gold-card" onclick="showSection('prayer')"><div class="home-card-title">Prayer Journal</div><div class="home-card-sub">ACTS + answered prayer</div></div>
+    <div class="home-card" onclick="showSection('memory')"><div class="home-card-title">Scripture Memory</div><div class="home-card-sub">Hide it in your heart</div></div>
+    <div class="home-card gold-card" onclick="showSection('quotes')"><div class="home-card-title">Quotes &amp; Insights</div><div class="home-card-sub">Capture what strikes you</div></div>
+    <div class="home-card gold-card" onclick="showSection('books')"><div class="home-card-title">Book Summaries</div><div class="home-card-sub">Per-book notes</div></div>
+    <div class="home-card" onclick="showSection('topics')"><div class="home-card-title">Topical Study</div><div class="home-card-sub">Deep dive topics</div></div>
+  </div>
+</div>
+
+<!-- READING PLAN -->
+<div class="section" id="sec-reading">
+  <div class="sec-header"><div class="sec-eyebrow">Reading Plan</div><div class="sec-title">Bible Progress</div><div class="sec-sub">Check off every book as you complete it</div></div>
+  <div class="rp-progress-wrap">
+    <div class="rp-ring-row">
+      <div class="rp-ring">
+        <svg width="80" height="80" viewBox="0 0 80 80">
+          <circle class="rp-ring-track" cx="40" cy="40" r="33"/>
+          <circle class="rp-ring-fill" id="rp-ring-circle" cx="40" cy="40" r="33" stroke-dasharray="207.3" stroke-dashoffset="207.3"/>
+        </svg>
+        <div class="rp-ring-text"><span class="rp-ring-pct" id="rp-pct-text">0%</span><span class="rp-ring-lbl">done</span></div>
+      </div>
+      <div class="rp-stats">
+        <div class="rp-stat"><div class="rp-stat-val" id="rp-books-done">0</div><div class="rp-stat-lbl">books done</div></div>
+        <div class="rp-stat"><div class="rp-stat-val" id="rp-books-left">66</div><div class="rp-stat-lbl">remaining</div></div>
+        <div class="rp-stat"><div class="rp-stat-val" id="rp-days-left">--</div><div class="rp-stat-lbl">days to target</div></div>
+        <div class="rp-stat"><div class="rp-stat-val" id="rp-ch-day">6</div><div class="rp-stat-lbl">ch/day goal</div></div>
+      </div>
+    </div>
+    <div class="rp-controls">
+      <div class="rp-control"><label>Target date</label><input type="date" id="rp-target-date" oninput="updateRPStats()"></div>
+      <div class="rp-control"><label>Ch/day goal</label><input type="number" id="rp-ch-goal" value="6" min="1" max="30" oninput="updateRPStats()"></div>
+      <div class="rp-control"><label>Start date</label><input type="date" id="rp-start-date" oninput="updateRPStats()"></div>
+    </div>
+  </div>
+  <div id="rp-book-list"></div>
+</div>
+
+<!-- JOURNAL -->
+<div class="section" id="sec-journal">
+  <div class="sec-header"><div class="sec-eyebrow">Daily Journal</div><div class="sec-title">Reflection</div></div>
+  <div id="journal-entries"></div>
+  <button class="add-btn" onclick="addJournalEntry()">+ Add entry</button>
+</div>
+
+<!-- SERMON -->
+<div class="section" id="sec-sermon">
+  <div class="sec-header gold-head"><div class="sec-eyebrow">Sermon Notes</div><div class="sec-title">Sunday Worship</div></div>
+  <div id="sermon-entries"></div>
+  <button class="add-btn" onclick="addSermonEntry()">+ Add sermon</button>
+</div>
+
+<!-- SERIES -->
+<div class="section" id="sec-series">
+  <div class="sec-header blue-head"><div class="sec-eyebrow">Sermon Series</div><div class="sec-title">Series Tracker</div><div class="sec-sub">Follow a multi-week series with a running thread of notes</div></div>
+  <div id="series-entries"></div>
+  <button class="add-btn" onclick="addSeriesEntry()">+ Add series</button>
+</div>
+
+<!-- STUDY -->
+<div class="section" id="sec-study">
+  <div class="sec-header"><div class="sec-eyebrow">Bible Study &middot; S.O.A.P.</div><div class="sec-title">Study Notes</div><div class="sec-sub">Scripture &middot; Observe &middot; Apply &middot; Pray</div></div>
+  <div id="study-entries"></div>
+  <button class="add-btn" onclick="addStudyEntry()">+ Add study</button>
+</div>
+
+<!-- WORD STUDY -->
+<div class="section" id="sec-words">
+  <div class="sec-header purple-head"><div class="sec-eyebrow">Word Study</div><div class="sec-title">Greek &amp; Hebrew</div><div class="sec-sub">Strong's numbers &middot; definitions &middot; usage in Scripture</div></div>
+  <div id="word-entries"></div>
+  <button class="add-btn" onclick="addWordEntry()">+ Add word</button>
+</div>
+
+<!-- PRAYER -->
+<div class="section" id="sec-prayer">
+  <div class="sec-header gold-head"><div class="sec-eyebrow">Prayer Journal</div><div class="sec-title">Prayer &amp; Answered Prayer</div><div class="sec-sub">"The effectual fervent prayer of a righteous man availeth much." &mdash; James 5:16</div></div>
+  <div class="card" style="margin-bottom:16px;">
+    <div style="padding:10px 14px;border-bottom:.5px solid var(--line);"><div style="font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);">A.C.T.S. Prayer</div></div>
+    <div class="acts-tab" id="acts-tabs">
+      <button class="acts-tab-btn active" onclick="setACTS('A',this)">A &middot; Adoration</button>
+      <button class="acts-tab-btn" onclick="setACTS('C',this)">C &middot; Confession</button>
+      <button class="acts-tab-btn" onclick="setACTS('T',this)">T &middot; Thanksgiving</button>
+      <button class="acts-tab-btn" onclick="setACTS('S',this)">S &middot; Supplication</button>
+    </div>
+    <div class="acts-panel active" id="acts-A"><textarea class="lined-area" data-field="acts_A" placeholder="Adoration &mdash; praise who God is..." style="min-height:140px;"></textarea></div>
+    <div class="acts-panel" id="acts-C"><textarea class="lined-area" data-field="acts_C" placeholder="Confession &mdash; confess and repent..." style="min-height:140px;"></textarea></div>
+    <div class="acts-panel" id="acts-T"><textarea class="lined-area" data-field="acts_T" placeholder="Thanksgiving &mdash; specific things to thank God for..." style="min-height:140px;"></textarea></div>
+    <div class="acts-panel" id="acts-S"><textarea class="lined-area" data-field="acts_S" placeholder="Supplication &mdash; specific requests and intercession..." style="min-height:140px;"></textarea></div>
+  </div>
+  <div style="font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:10px;">Prayer Requests</div>
+  <div id="prayer-entries"></div>
+  <button class="add-btn" onclick="addPrayerEntry()">+ Add prayer request</button>
+</div>
+
+<!-- MEMORY -->
+<div class="section" id="sec-memory">
+  <div class="sec-header"><div class="sec-eyebrow">Scripture Memory</div><div class="sec-title">Hide it in your heart</div><div class="sec-sub">"Thy word have I hid in mine heart, that I might not sin against thee." &mdash; Psalm 119:11</div></div>
+  <div class="memory-grid" id="memory-cards"></div>
+  <button class="add-btn" onclick="addMemoryCard()" style="margin-top:12px;">+ Add verse</button>
+</div>
+
+<!-- QUOTES -->
+<div class="section" id="sec-quotes">
+  <div class="sec-header gold-head"><div class="sec-eyebrow">Quotes &amp; Insights</div><div class="sec-title">Things that struck me</div><div class="sec-sub">Capture what catches your attention mid-read or mid-sermon</div></div>
+  <div id="quote-entries"></div>
+  <button class="add-btn" onclick="addQuoteEntry()">+ Add quote or insight</button>
+</div>
+
+<!-- BOOK SUMMARIES -->
+<div class="section" id="sec-books">
+  <div class="sec-header gold-head"><div class="sec-eyebrow">Book Summaries</div><div class="sec-title">Per-Book Notes</div><div class="sec-sub">Author &middot; date &middot; theme &middot; key chapters &middot; your takeaways</div></div>
+  <div id="book-sum-entries"></div>
+  <button class="add-btn" onclick="addBookSummary()">+ Add book</button>
+</div>
+
+<!-- TOPICS -->
+<div class="section" id="sec-topics">
+  <div class="sec-header gold-head"><div class="sec-eyebrow">Topical Study</div><div class="sec-title">Topical Index</div></div>
+  <div id="topics-list"></div>
+  <button class="add-btn" onclick="addTopic()">+ Add topic</button>
+</div>
+
+<!-- LOOKUP -->
+<div class="section" id="sec-lookup">
+  <div class="sec-header"><div class="sec-eyebrow">Scripture Lookup</div><div class="sec-title">Find a Reference</div></div>
+  <div class="card">
+    <div class="card-field" style="padding:12px 14px;">
+      <label>Reference (e.g. Romans 8:1 or Hebrews 4:12)</label>
+      <div style="display:flex;gap:8px;margin-top:6px;">
+        <input type="text" id="lookup-ref" placeholder="Enter reference..." style="flex:1;font-size:16px;border:.5px solid var(--line);border-radius:8px;padding:8px 10px;background:var(--cream);">
+        <button onclick="openRef()" style="background:var(--forest);color:white;border:none;border-radius:8px;padding:8px 16px;font-weight:600;font-size:14px;cursor:pointer;">Open</button>
+      </div>
+    </div>
+  </div>
+  <div style="font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin:16px 0 8px;">Bible Resources</div>
+  <div class="resource-grid">
+    <a class="resource-btn" href="https://www.biblegateway.com/passage/?search=&version=NKJV" target="_blank">Bible Gateway NKJV</a>
+    <a class="resource-btn" href="https://www.biblegateway.com/passage/?search=&version=KJV" target="_blank">Bible Gateway KJV</a>
+    <a class="resource-btn" href="https://www.blueletterbible.org" target="_blank">Blue Letter Bible</a>
+    <a class="resource-btn" href="https://biblehub.com/interlinear/" target="_blank">Interlinear Greek/Hebrew</a>
+    <a class="resource-btn" href="https://www.esv.org" target="_blank">ESV Online</a>
+    <a class="resource-btn" href="https://www.biblestudytools.com/commentaries/" target="_blank">Commentaries</a>
+    <a class="resource-btn" href="https://www.blueletterbible.org/lang/lexicon/lexicon.cfm" target="_blank">Strong's Concordance</a>
+    <a class="resource-btn" href="https://app.logos.com" target="_blank">Logos</a>
+  </div>
+</div>
+
+<!-- OT -->
+<div class="section" id="sec-ot">
+  <div class="sec-header"><div class="sec-eyebrow">Old Testament</div><div class="sec-title">39 Books</div><div class="sec-sub">Law &middot; History &middot; Poetry &middot; Prophets</div></div>
+  <div id="ot-books"></div>
+</div>
+
+<!-- NT -->
+<div class="section" id="sec-nt">
+  <div class="sec-header"><div class="sec-eyebrow">New Testament</div><div class="sec-title">27 Books</div><div class="sec-sub">Gospels &middot; Acts &middot; Epistles &middot; Revelation</div></div>
+  <div id="nt-books"></div>
+</div>
+
+<!-- VAULT -->
+<div class="section" id="sec-vault">
+  <div class="sec-header gold-head"><div class="sec-eyebrow">Sermon Vault</div><div class="sec-title">Archive</div></div>
+  <div class="card" style="overflow-x:auto;">
+    <table class="vault-table">
+      <thead><tr><th style="width:76px">Date</th><th>Title / Series</th><th style="width:90px">Speaker</th><th style="width:80px">Scripture</th><th style="width:36px">Pg</th></tr></thead>
+      <tbody id="vault-body"></tbody>
+    </table>
+  </div>
+  <button class="add-btn" onclick="addVaultRow()">+ Add entry</button>
+</div>
+
+</div><!-- /main -->
+
+<div id="save-dot">Saved &#10003;</div>
+<button id="export-btn" onclick="exportPDF()">&#8659; Export PDF</button>
+
+<script>
+var toolbarVisible=true,activeTool='pen',activeColor='#1c1c1e',strokeSize=2;
+var activeCanvas=null,canvasDrawing=false,lastX=0,lastY=0;
+var canvasData={},saveTimeout;
+var jCount=0,sCount=0,stCount=0,wCount=0,srCount=0,qCount=0,bsCount=0,prCount=0,memCount=0;
+var rpCheckedBooks={};
+
+function showSection(id){
+  document.querySelectorAll('.section').forEach(function(s){s.classList.remove('active');});
+  document.querySelectorAll('.nav-btn').forEach(function(b){b.classList.remove('active');});
+  var sec=document.getElementById('sec-'+id);
+  if(sec) sec.classList.add('active');
+  document.querySelectorAll('.nav-btn').forEach(function(b){
+    if(b.getAttribute('onclick')==="showSection('"+id+"')") b.classList.add('active');
+  });
+  activeCanvas=null;
+  document.getElementById('main').scrollTop=0;
+  if(id==='reading') updateRPStats();
+  if(id==='home') updateHomeRP();
+}
+
+function toggleToolbar(){
+  toolbarVisible=!toolbarVisible;
+  document.getElementById('toolbar').classList.toggle('hidden',!toolbarVisible);
+  document.getElementById('main').classList.toggle('toolbar-hidden',!toolbarVisible);
+  document.getElementById('toggle-toolbar-btn').innerHTML=toolbarVisible?'&#x2303;':'&#x2304;';
+}
+function setTool(t){
+  activeTool=t;
+  document.getElementById('tool-pen').classList.toggle('active',t==='pen');
+  document.getElementById('tool-eraser').classList.toggle('active',t==='eraser');
+}
+function setColor(el){
+  activeColor=el.dataset.color;
+  document.querySelectorAll('.color-dot').forEach(function(d){d.classList.remove('sel');});
+  el.classList.add('sel');
+  if(activeTool==='eraser') setTool('pen');
+}
+document.getElementById('stroke-size').addEventListener('input',function(){strokeSize=parseInt(this.value);});
+function clearActiveCanvas(){
+  if(!activeCanvas){var sec=document.querySelector('.section.active');if(sec) activeCanvas=sec.querySelector('canvas');}
+  if(activeCanvas){var ctx=activeCanvas.getContext('2d');ctx.clearRect(0,0,activeCanvas.width,activeCanvas.height);saveCanvasData(activeCanvas);scheduleSave();}
+}
+
+function initCanvas(canvas){
+  var dpr=window.devicePixelRatio||2;
+  var w=canvas.parentElement.offsetWidth||340;
+  var h=parseInt(canvas.dataset.height)||200;
+  canvas.width=w*dpr;canvas.height=h*dpr;
+  canvas.style.width=w+'px';canvas.style.height=h+'px';
+  var ctx=canvas.getContext('2d');ctx.scale(dpr,dpr);
+  var key=canvas.dataset.key;
+  if(key&&canvasData[key]){var img=new Image();img.onload=function(){ctx.drawImage(img,0,0,w,h);};img.src=canvasData[key];}
+  canvas.addEventListener('pointerdown',cpDown);
+  canvas.addEventListener('pointermove',cpMove);
+  canvas.addEventListener('pointerup',cpUp);
+  canvas.addEventListener('pointercancel',cpUp);
+  canvas.addEventListener('touchstart',function(e){e.preventDefault();},{passive:false});
+}
+function getPos(canvas,e){var r=canvas.getBoundingClientRect();return[e.clientX-r.left,e.clientY-r.top];}
+function cpDown(e){e.preventDefault();activeCanvas=e.target;canvasDrawing=true;var p=getPos(activeCanvas,e);lastX=p[0];lastY=p[1];activeCanvas.setPointerCapture(e.pointerId);drawDot(activeCanvas.getContext('2d'),lastX,lastY);}
+function cpMove(e){
+  if(!canvasDrawing||!activeCanvas) return;e.preventDefault();
+  var p=getPos(activeCanvas,e);var x=p[0],y=p[1];var ctx=activeCanvas.getContext('2d');
+  ctx.beginPath();ctx.moveTo(lastX,lastY);ctx.lineTo(x,y);
+  if(activeTool==='eraser'){ctx.globalCompositeOperation='destination-out';ctx.lineWidth=strokeSize*5;ctx.strokeStyle='rgba(0,0,0,1)';}
+  else{ctx.globalCompositeOperation='source-over';ctx.globalAlpha=e.pressure>0?Math.min(1,e.pressure*2+0.3):0.9;ctx.strokeStyle=activeColor;ctx.lineWidth=e.pressure>0?strokeSize*(0.5+e.pressure):strokeSize;}
+  ctx.lineCap='round';ctx.lineJoin='round';ctx.stroke();ctx.globalAlpha=1;ctx.globalCompositeOperation='source-over';lastX=x;lastY=y;
+}
+function cpUp(e){if(!canvasDrawing)return;canvasDrawing=false;if(activeCanvas){saveCanvasData(activeCanvas);scheduleSave();}}
+function drawDot(ctx,x,y){
+  ctx.beginPath();
+  if(activeTool==='eraser'){ctx.globalCompositeOperation='destination-out';ctx.arc(x,y,strokeSize*2.5,0,Math.PI*2);ctx.fillStyle='rgba(0,0,0,1)';}
+  else{ctx.globalCompositeOperation='source-over';ctx.arc(x,y,strokeSize/2,0,Math.PI*2);ctx.fillStyle=activeColor;}
+  ctx.fill();ctx.globalCompositeOperation='source-over';
+}
+function saveCanvasData(canvas){var key=canvas.dataset.key;if(key)canvasData[key]=canvas.toDataURL();}
+function makeCanvas(key,height){
+  return '<div class="canvas-label"><span>&#9999; Handwriting</span><button class="canvas-clear" onclick="clearCanvas(\''+key+'\')">Clear</button></div><div class="canvas-wrap"><canvas data-key="'+key+'" data-height="'+(height||200)+'"></canvas></div>';
+}
+function clearCanvas(key){var c=document.querySelector('canvas[data-key="'+key+'"]');if(c){var ctx=c.getContext('2d');ctx.clearRect(0,0,c.width,c.height);delete canvasData[key];scheduleSave();}}
+
+function scheduleSave(){clearTimeout(saveTimeout);saveTimeout=setTimeout(saveAll,900);}
+function saveAll(){
+  var data={canvasData:canvasData};
+  document.querySelectorAll('[data-field]').forEach(function(el){data[el.dataset.field]=el.value;});
+  data.prayer=collectPrayer();data.memory=collectMemory();data.topics=collectTopics();data.vault=collectVault();
+  data.rpChecked=collectRP();data.rpSettings=collectRPSettings();
+  try{localStorage.setItem('bsj2_data',JSON.stringify(data));showSaveDot();}
+  catch(e){var d2=Object.assign({},data,{canvasData:{}});localStorage.setItem('bsj2_data',JSON.stringify(d2));showSaveDot();}
+}
+function showSaveDot(){var dot=document.getElementById('save-dot');dot.classList.add('show');setTimeout(function(){dot.classList.remove('show');},1500);}
+
+function collectPrayer(){return Array.from(document.querySelectorAll('#prayer-entries .prayer-entry')).map(function(el){return{text:(el.querySelector('[data-ptext]')||{}).value||'',date:(el.querySelector('[data-pdate]')||{}).value||'',answered:!!(el.querySelector('.answered-check')||{}).classList&&el.querySelector('.answered-check').classList.contains('checked'),ansDate:(el.querySelector('[data-ans-date]')||{}).value||'',ansHow:(el.querySelector('[data-ans-how]')||{}).value||''};});}
+function collectMemory(){return Array.from(document.querySelectorAll('#memory-cards .memory-card')).map(function(el){return{ref:(el.querySelector('[data-mref]')||{}).value||'',text:(el.querySelector('[data-mtext]')||{}).value||'',status:(el.querySelector('.mem-badge.active-badge')||{dataset:{status:''}}).dataset.status};});}
+function collectTopics(){return Array.from(document.querySelectorAll('#topics-list .topic-btn')).map(function(b){return b.dataset.topic;});}
+function collectVault(){return Array.from(document.querySelectorAll('#vault-body tr')).map(function(tr){return Array.from(tr.querySelectorAll('input')).map(function(c){return c.value;});});}
+function collectRP(){return Array.from(document.querySelectorAll('.rp-book-row')).map(function(r){return r.dataset.book+':'+r.classList.contains('rp-done');});}
+function collectRPSettings(){return{target:(document.getElementById('rp-target-date')||{}).value||'',goal:(document.getElementById('rp-ch-goal')||{}).value||'6',start:(document.getElementById('rp-start-date')||{}).value||''};}
+
+document.addEventListener('input',function(e){if(e.target.tagName==='INPUT'||e.target.tagName==='TEXTAREA')scheduleSave();});
+
+function addJournalEntry(d){
+  jCount++;var id='j'+jCount;d=d||{};
+  var div=document.createElement('div');div.className='card';
+  div.innerHTML='<div class="card-row"><div class="card-field"><label>Date</label><input type="date" data-field="'+id+'_date" value="'+(d.date||'')+'"></div><div class="card-field"><label>Day</label><input type="text" data-field="'+id+'_day" placeholder="Monday..." value="'+(d.day||'')+'"></div></div><div class="scripture-field"><label style="font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#8a8d9a;display:block;margin-bottom:2px;">Scripture today</label><input type="text" data-field="'+id+'_scripture" placeholder="What did you read?" value="'+(d.scripture||'')+'"></div><div class="field-full"><label>Reflection</label><textarea class="lined-area" data-field="'+id+'_reflection" rows="8">'+(d.reflection||'')+'</textarea></div>'+makeCanvas(id+'_c',200);
+  document.getElementById('journal-entries').appendChild(div);
+  setTimeout(function(){var c=div.querySelector('canvas');if(c)initCanvas(c);},60);
+}
+
+function addSermonEntry(d){
+  sCount++;var id='s'+sCount;d=d||{};
+  var div=document.createElement('div');div.className='card';
+  var pts=[1,2,3,4].map(function(n){return'<div class="point-row"><div class="point-num">'+n+'</div><input type="text" data-field="'+id+'_pt'+n+'" placeholder="Point '+n+'..." value="'+(d['pt'+n]||'')+'"></div>';}).join('');
+  div.innerHTML='<div class="card-row"><div class="card-field"><label>Date</label><input type="date" data-field="'+id+'_date" value="'+(d.date||'')+'"></div><div class="card-field"><label>Speaker</label><input type="text" data-field="'+id+'_speaker" placeholder="Pastor..." value="'+(d.speaker||'')+'"></div></div><div class="card-row"><div class="card-field"><label>Series</label><input type="text" data-field="'+id+'_series" placeholder="Series name..." value="'+(d.series||'')+'"></div><div class="card-field"><label>Church</label><input type="text" data-field="'+id+'_church" placeholder="ResLife..." value="'+(d.church||'')+'"></div></div><div class="scripture-field"><label style="font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#8a8d9a;display:block;margin-bottom:2px;">Scripture</label><input type="text" data-field="'+id+'_scripture" placeholder="Main passage..." value="'+(d.scripture||'')+'"></div><div class="field-full"><div style="font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);text-align:center;padding-bottom:6px;">Main Points</div>'+pts+'</div><div class="notes-cols"><div class="note-col"><div style="font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:6px;">Notes</div><textarea data-field="'+id+'_n1" rows="8" style="width:100%;font-size:13px;line-height:1.6;border:none;outline:none;resize:none;background:transparent;font-family:inherit;">'+(d.n1||'')+'</textarea></div><div class="note-col"><div style="font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:6px;">Notes</div><textarea data-field="'+id+'_n2" rows="8" style="width:100%;font-size:13px;line-height:1.6;border:none;outline:none;resize:none;background:transparent;font-family:inherit;">'+(d.n2||'')+'</textarea></div></div><div class="field-full"><label style="text-align:center;display:block;padding-bottom:6px;">Application</label><textarea data-field="'+id+'_app" class="lined-area" rows="4">'+(d.app||'')+'</textarea></div>'+makeCanvas(id+'_c',180);
+  document.getElementById('sermon-entries').appendChild(div);
+  setTimeout(function(){var c=div.querySelector('canvas');if(c)initCanvas(c);},60);
+}
+
+function addSeriesEntry(d){
+  srCount++;var id='sr'+srCount;d=d||{};
+  var div=document.createElement('div');div.className='series-card';
+  var weeksHtml=[1,2,3,4,5,6,7,8].map(function(w){
+    return'<div class="series-week"><div class="series-week-num">W'+w+'</div><div style="flex:1;"><input type="text" data-field="'+id+'_w'+w+'_title" placeholder="Week '+w+' title / passage..." value="'+(d['w'+w+'_title']||'')+'" style="width:100%;font-size:14px;margin-bottom:4px;"><textarea data-field="'+id+'_w'+w+'_notes" rows="2" placeholder="Notes..." style="width:100%;font-size:12px;line-height:1.5;border:none;outline:none;resize:none;background:transparent;font-family:inherit;color:var(--ink-soft);">'+(d['w'+w+'_notes']||'')+'</textarea></div><div class="series-week-done '+(d['w'+w+'_done']?'done':'')+'" onclick="toggleWeekDone(this)">'+(d['w'+w+'_done']?'&#10003;':'')+'</div></div>';
+  }).join('');
+  div.innerHTML='<div class="series-header-bar"><input class="series-title-input" type="text" data-field="'+id+'_title" placeholder="Series title..." value="'+(d.title||'')+'"><div style="display:flex;gap:12px;margin-top:4px;"><span style="font-size:11px;color:rgba(255,255,255,.7);">Pastor: <input type="text" data-field="'+id+'_pastor" placeholder="&mdash;" value="'+(d.pastor||'')+'" style="border:none;background:transparent;color:rgba(255,255,255,.9);font-size:11px;outline:none;font-family:inherit;width:100px;"></span><span style="font-size:11px;color:rgba(255,255,255,.7);">Church: <input type="text" data-field="'+id+'_church" placeholder="&mdash;" value="'+(d.church||'')+'" style="border:none;background:transparent;color:rgba(255,255,255,.9);font-size:11px;outline:none;font-family:inherit;width:100px;"></span></div></div>'+weeksHtml+makeCanvas(id+'_c',160);
+  document.getElementById('series-entries').appendChild(div);
+  setTimeout(function(){var c=div.querySelector('canvas');if(c)initCanvas(c);},60);
+}
+function toggleWeekDone(el){el.classList.toggle('done');el.innerHTML=el.classList.contains('done')?'&#10003;':'';scheduleSave();}
+
+function addStudyEntry(d){
+  stCount++;var id='st'+stCount;d=d||{};
+  var div=document.createElement('div');div.className='card';
+  var soaps=[['soap-s','S','Scripture','Write out the passage',id+'_s',d.s||''],['soap-o','O','Observation','What does it say?',id+'_o',d.o||''],['soap-a','A','Application','What does it mean for me?',id+'_a',d.a||''],['soap-p','P','Prayer','Respond to God',id+'_p',d.p||'']];
+  var soapHtml=soaps.map(function(r){return'<div class="field-full"><div class="soap-step"><div class="soap-letter '+r[0]+'">'+r[1]+'</div><div class="soap-body"><div class="soap-label">'+r[2]+' &mdash; '+r[3]+'</div><textarea data-field="'+r[4]+'" rows="5" style="width:100%;font-size:14px;line-height:1.7;border:none;outline:none;resize:none;background:transparent;font-family:inherit;">'+r[5]+'</textarea></div></div></div>';}).join('');
+  div.innerHTML='<div class="card-row"><div class="card-field"><label>Book</label><input type="text" data-field="'+id+'_book" placeholder="Romans..." value="'+(d.book||'')+'"></div><div class="card-field"><label>Chapter / Passage</label><input type="text" data-field="'+id+'_ch" placeholder="8:1-17..." value="'+(d.ch||'')+'"></div></div><div class="card-row"><div class="card-field"><label>Date</label><input type="date" data-field="'+id+'_date" value="'+(d.date||'')+'"></div><div class="card-field"><label>Key Verse</label><input type="text" data-field="'+id+'_kv" placeholder="v. 1..." value="'+(d.kv||'')+'"></div></div>'+soapHtml+'<div class="xref-chip-row" id="'+id+'_xrefs"></div><div style="display:flex;gap:6px;padding:0 14px 10px;"><input class="xref-input" type="text" id="'+id+'_xref_in" placeholder="Add cross-reference (e.g. John 1:1)..."><button class="xref-add-btn" onclick="addXRef(\''+id+'\')">Add</button></div>'+makeCanvas(id+'_c',180);
+  document.getElementById('study-entries').appendChild(div);
+  if(d.xrefs) d.xrefs.forEach(function(r){addXRefChip(id,r);});
+  setTimeout(function(){var c=div.querySelector('canvas');if(c)initCanvas(c);},60);
+}
+function addXRef(id){var inp=document.getElementById(id+'_xref_in');var val=inp.value.trim();if(!val)return;addXRefChip(id,val);inp.value='';scheduleSave();}
+function addXRefChip(id,ref){var row=document.getElementById(id+'_xrefs');if(!row)return;var chip=document.createElement('div');chip.className='xref-chip';chip.textContent=ref;chip.onclick=function(){window.open('https://www.biblegateway.com/passage/?search='+encodeURIComponent(ref)+'&version=NKJV','_blank');};row.appendChild(chip);}
+
+function addWordEntry(d){
+  wCount++;var id='w'+wCount;d=d||{};
+  var div=document.createElement('div');div.className='ws-card';
+  div.innerHTML='<div class="ws-header"><input class="ws-word" type="text" data-field="'+id+'_word" placeholder="Word..." value="'+(d.word||'')+'"><button class="ws-lang-badge '+(d.lang!=='hebrew'?'active-lang':'ws-lang-off')+'" data-lang="greek" onclick="setWSLang(this)">Greek</button><button class="ws-lang-badge '+(d.lang==='hebrew'?'active-lang':'ws-lang-off')+'" data-lang="hebrew" onclick="setWSLang(this)">Hebrew</button></div><div class="card-row"><div class="card-field"><label>Strong\'s #</label><input type="text" data-field="'+id+'_strongs" placeholder="G1234..." value="'+(d.strongs||'')+'"></div><div class="card-field"><label>Transliteration</label><input type="text" data-field="'+id+'_translit" placeholder="logos..." value="'+(d.translit||'')+'"></div></div><div class="field-full"><label>Definition</label><textarea data-field="'+id+'_def" rows="3" style="width:100%;font-size:14px;line-height:1.6;border:none;outline:none;resize:none;background:transparent;font-family:inherit;">'+(d.def||'')+'</textarea></div><div class="field-full"><label>Passage context</label><input type="text" data-field="'+id+'_passage" placeholder="Romans 1:16..." value="'+(d.passage||'')+'"></div><div class="field-full"><label>Other occurrences in Scripture</label><textarea data-field="'+id+'_usage" rows="3" style="width:100%;font-size:13px;line-height:1.6;border:none;outline:none;resize:none;background:transparent;font-family:inherit;color:var(--ink-soft);">'+(d.usage||'')+'</textarea></div><div class="field-full"><label>Personal notes</label><textarea data-field="'+id+'_notes" rows="3" style="width:100%;font-size:14px;line-height:1.6;border:none;outline:none;resize:none;background:transparent;font-family:inherit;">'+(d.notes||'')+'</textarea></div><div style="padding:8px 14px;border-top:.5px solid var(--line);"><a href="https://www.blueletterbible.org/lang/lexicon/lexicon.cfm?t=NKJV" target="_blank" style="font-size:12px;color:var(--purple);font-weight:600;text-decoration:none;">Open in Blue Letter Bible &#8594;</a></div>';
+  document.getElementById('word-entries').appendChild(div);
+}
+function setWSLang(btn){var h=btn.closest('.ws-header');h.querySelectorAll('.ws-lang-badge').forEach(function(b){b.classList.remove('active-lang');b.classList.add('ws-lang-off');});btn.classList.add('active-lang');btn.classList.remove('ws-lang-off');scheduleSave();}
+
+function setACTS(tab,btn){
+  document.querySelectorAll('.acts-tab-btn').forEach(function(b){b.classList.remove('active');});
+  document.querySelectorAll('.acts-panel').forEach(function(p){p.classList.remove('active');});
+  btn.classList.add('active');document.getElementById('acts-'+tab).classList.add('active');
+}
+
+function addPrayerEntry(d){
+  prCount++;var id='pr'+prCount;d=d||{};
+  var div=document.createElement('div');div.className='prayer-entry';
+  div.innerHTML='<div class="card-row" style="background:var(--white);"><div class="card-field" style="padding:12px 14px;flex:2;border-right:.5px solid var(--line);"><label>Person / Situation</label><textarea data-ptext="'+id+'" rows="3" style="width:100%;font-size:14px;line-height:1.6;border:none;outline:none;resize:none;background:transparent;font-family:inherit;">'+(d.text||'')+'</textarea></div><div class="card-field" style="padding:12px 14px;"><label>Date</label><input type="date" data-pdate="'+id+'" value="'+(d.date||'')+'"></div></div><div class="prayer-answered"><div class="answered-check '+(d.answered?'checked':'')+'" onclick="toggleAnswered(this)">'+(d.answered?'&#10003;':'')+'</div><span style="font-weight:700;color:#8a8d9a;font-size:9px;letter-spacing:.05em;text-transform:uppercase;margin-right:4px;">Answered</span><input type="date" data-ans-date="'+id+'" value="'+(d.ansDate||'')+'" style="font-size:12px;border:none;background:transparent;outline:none;flex:1;"><span style="color:var(--muted);font-size:11px;margin:0 4px;">How:</span><input type="text" data-ans-how="'+id+'" placeholder="How God answered..." value="'+(d.ansHow||'')+'" style="font-size:12px;border:none;background:transparent;outline:none;flex:2;"></div>';
+  document.getElementById('prayer-entries').appendChild(div);
+}
+function toggleAnswered(el){el.classList.toggle('checked');el.innerHTML=el.classList.contains('checked')?'&#10003;':'';scheduleSave();}
+
+function addMemoryCard(d){
+  memCount++;var id='mem'+memCount;d=d||{};
+  var div=document.createElement('div');div.className='memory-card';
+  div.innerHTML='<div class="memory-ref"><input data-mref="'+id+'" type="text" placeholder="Reference..." value="'+(d.ref||'')+'" style="color:var(--gold);font-weight:700;font-size:12px;"></div><textarea data-mtext="'+id+'" rows="3" placeholder="Write the verse here..." style="width:100%;font-size:12px;line-height:1.5;border:none;outline:none;resize:none;background:transparent;font-family:inherit;color:var(--ink-soft);">'+(d.text||'')+'</textarea><div class="memory-status"><div class="mem-badge '+(d.status==='progress'?'active-badge':'')+'" data-status="progress" onclick="setMemStatus(this)">In Progress</div><div class="mem-badge '+(d.status==='learned'?'active-badge':'')+'" data-status="learned" onclick="setMemStatus(this)">Learned &#10003;</div></div>';
+  document.getElementById('memory-cards').appendChild(div);
+}
+function setMemStatus(el){el.closest('.memory-status').querySelectorAll('.mem-badge').forEach(function(b){b.classList.remove('active-badge');});el.classList.add('active-badge');scheduleSave();}
+
+function addQuoteEntry(d){
+  qCount++;d=d||{};
+  var div=document.createElement('div');div.className='quote-card';
+  div.innerHTML='<textarea data-field="q'+qCount+'_text" rows="3" placeholder="Quote or insight that struck you..." style="width:100%;font-size:15px;font-style:italic;line-height:1.6;border:none;outline:none;resize:none;background:transparent;font-family:inherit;color:var(--ink);">'+(d.text||'')+'</textarea><div class="quote-meta"><input type="text" data-field="q'+qCount+'_source" placeholder="Source / speaker..." value="'+(d.source||'')+'" style="flex:1;"><input type="text" data-field="q'+qCount+'_ref" placeholder="Scripture ref..." value="'+(d.ref||'')+'" style="width:120px;"><input type="date" data-field="q'+qCount+'_date" value="'+(d.date||'')+'" style="width:130px;"></div>';
+  document.getElementById('quote-entries').appendChild(div);
+}
+
+function addBookSummary(d){
+  bsCount++;var id='bs'+bsCount;d=d||{};
+  var div=document.createElement('div');div.className='book-sum-card';
+  div.innerHTML='<div class="book-sum-header"><input class="book-sum-name" type="text" data-field="'+id+'_name" placeholder="Book of the Bible..." value="'+(d.name||'')+'"></div><div class="book-sum-meta"><div class="book-sum-meta-field"><label>Author</label><input type="text" data-field="'+id+'_author" placeholder="Paul..." value="'+(d.author||'')+'"></div><div class="book-sum-meta-field"><label>Date written</label><input type="text" data-field="'+id+'_date" placeholder="~AD 57..." value="'+(d.date||'')+'"></div><div class="book-sum-meta-field"><label>Genre</label><input type="text" data-field="'+id+'_genre" placeholder="Epistle..." value="'+(d.genre||'')+'"></div></div><div class="field-full"><label>Theme / Central message</label><textarea data-field="'+id+'_theme" rows="2" style="width:100%;font-size:14px;line-height:1.6;border:none;outline:none;resize:none;background:transparent;font-family:inherit;">'+(d.theme||'')+'</textarea></div><div class="field-full"><label>Key chapters / verses</label><div class="key-ch-grid" id="'+id+'_chips"></div><div style="display:flex;gap:6px;margin-top:6px;"><input class="xref-input" type="text" id="'+id+'_chip_in" placeholder="e.g. ch. 8, Rom 12:1-2..."><button class="xref-add-btn" style="background:var(--gold);" onclick="addKeyChip(\''+id+'\')">Add</button></div></div><div class="field-full"><label>Structure / Outline</label><textarea data-field="'+id+'_outline" rows="4" style="width:100%;font-size:13px;line-height:1.6;border:none;outline:none;resize:none;background:transparent;font-family:inherit;color:var(--ink-soft);">'+(d.outline||'')+'</textarea></div><div class="field-full"><label>My takeaways</label><textarea data-field="'+id+'_takeaway" class="lined-area" rows="6">'+(d.takeaway||'')+'</textarea></div>'+makeCanvas(id+'_c',160);
+  document.getElementById('book-sum-entries').appendChild(div);
+  if(d.chips) d.chips.forEach(function(c){addKeyChipEl(id,c);});
+  setTimeout(function(){var c=div.querySelector('canvas');if(c)initCanvas(c);},60);
+}
+function addKeyChip(id){var inp=document.getElementById(id+'_chip_in');var val=inp.value.trim();if(!val)return;addKeyChipEl(id,val);inp.value='';scheduleSave();}
+function addKeyChipEl(id,text){var row=document.getElementById(id+'_chips');if(!row)return;var chip=document.createElement('div');chip.className='key-ch-chip';chip.textContent=text;row.appendChild(chip);}
+
+var DEFAULT_TOPICS=['Grace','Faith','Prayer','Holy Spirit','Covenant','Leadership','End Times','Suffering','High Priest','Salvation','Sanctification','Resurrection','Atonement','Justification','Healing','Love','Worship','Forgiveness','Hope','The Cross','Prophecy'];
+function buildTopics(list){
+  var c=document.getElementById('topics-list');c.innerHTML='';
+  var g=document.createElement('div');g.className='topics-grid';
+  list.forEach(function(t){var btn=document.createElement('button');btn.className='topic-btn';btn.textContent=t;btn.dataset.topic=t;btn.onclick=function(){openTopic(t);};g.appendChild(btn);});
+  c.appendChild(g);
+}
+function addTopic(){var name=prompt('New topic:');if(!name)return;var g=document.querySelector('#topics-list .topics-grid');if(!g)return;var btn=document.createElement('button');btn.className='topic-btn';btn.textContent=name;btn.dataset.topic=name;btn.onclick=function(){openTopic(name);};g.appendChild(btn);scheduleSave();}
+function openTopic(name){showSection('study');addStudyEntry({book:name,ch:'Topical Study'});setTimeout(function(){document.getElementById('main').scrollTo(0,999999);},100);}
+
+function addVaultRow(d){
+  d=d||['','','','',''];
+  var tr=document.createElement('tr');
+  tr.innerHTML='<td><input type="text" value="'+(d[0]||'')+'" placeholder="6/15/25" style="width:100%;font-size:12px;"></td><td><input type="text" value="'+(d[1]||'')+'" placeholder="Series / Title" style="width:100%;font-size:13px;"></td><td><input type="text" value="'+(d[2]||'')+'" placeholder="Speaker" style="width:100%;font-size:12px;"></td><td><input type="text" value="'+(d[3]||'')+'" placeholder="John 3" style="width:100%;font-size:12px;"></td><td><input type="text" value="'+(d[4]||'')+'" placeholder="&mdash;" style="width:100%;font-size:12px;text-align:center;"></td>';
+  document.getElementById('vault-body').appendChild(tr);
+}
+
+var ALL_BOOKS=[
+  {s:'The Law',books:[['Genesis',50],['Exodus',40],['Leviticus',27],['Numbers',36],['Deuteronomy',34]]},
+  {s:'History',books:[['Joshua',24],['Judges',21],['Ruth',4],['1 Samuel',31],['2 Samuel',24],['1 Kings',22],['2 Kings',25],['1 Chronicles',29],['2 Chronicles',36],['Ezra',10],['Nehemiah',13],['Esther',10]]},
+  {s:'Poetry & Wisdom',books:[['Job',42],['Psalms',150],['Proverbs',31],['Ecclesiastes',12],['Song of Solomon',8]]},
+  {s:'Major Prophets',books:[['Isaiah',66],['Jeremiah',52],['Lamentations',5],['Ezekiel',48],['Daniel',12]]},
+  {s:'Minor Prophets',books:[['Hosea',14],['Joel',3],['Amos',9],['Obadiah',1],['Jonah',4],['Micah',7],['Nahum',3],['Habakkuk',3],['Zephaniah',3],['Haggai',2],['Zechariah',14],['Malachi',4]]},
+  {s:'The Gospels',books:[['Matthew',28],['Mark',16],['Luke',24],['John',21]]},
+  {s:'Acts',books:[['Acts',28]]},
+  {s:'Paul - Major Letters',books:[['Romans',16],['1 Corinthians',16],['2 Corinthians',13],['Galatians',6]]},
+  {s:'Paul - Prison Epistles',books:[['Ephesians',6],['Philippians',4],['Colossians',4],['Philemon',1]]},
+  {s:'Paul - Pastoral Epistles',books:[['1 Timothy',6],['2 Timothy',4],['Titus',3]]},
+  {s:'Paul - Early Letters',books:[['1 Thessalonians',5],['2 Thessalonians',3]]},
+  {s:'General Epistles',books:[['Hebrews',13],['James',5],['1 Peter',5],['2 Peter',3],['1 John',5],['2 John',1],['3 John',1],['Jude',1]]},
+  {s:'Prophecy',books:[['Revelation',22]]}
+];
+
+function buildRPList(){
+  var container=document.getElementById('rp-book-list');container.innerHTML='';
+  ALL_BOOKS.forEach(function(sec){
+    var grid=document.createElement('div');grid.className='rp-book-grid';
+    var head=document.createElement('div');head.className='rp-section-head';head.textContent=sec.s;grid.appendChild(head);
+    sec.books.forEach(function(bk){
+      var name=bk[0],ch=bk[1];
+      var row=document.createElement('div');row.className='rp-book-row';row.dataset.book=name;
+      if(rpCheckedBooks[name]) row.classList.add('rp-done');
+      row.innerHTML='<div class="rp-book-check '+(rpCheckedBooks[name]?'done':'')+'">'+(rpCheckedBooks[name]?'&#10003;':'')+'</div><span class="rp-book-name">'+name+'</span><span class="rp-book-ch">'+ch+' ch</span>';
+      row.onclick=function(){toggleRPBook(row,name);};
+      grid.appendChild(row);
+    });
+    container.appendChild(grid);
+  });
+  updateRPStats();
+}
+
+function toggleRPBook(row,name){
+  var check=row.querySelector('.rp-book-check');
+  var done=row.classList.toggle('rp-done');
+  rpCheckedBooks[name]=done;
+  check.classList.toggle('done',done);check.innerHTML=done?'&#10003;':'';
+  updateRPStats();scheduleSave();
+}
+
+function updateRPStats(){
+  var total=66;var done=Object.keys(rpCheckedBooks).filter(function(k){return rpCheckedBooks[k];}).length;
+  var pct=Math.round((done/total)*100);
+  var ptEl=document.getElementById('rp-pct-text');if(ptEl) ptEl.textContent=pct+'%';
+  var bdEl=document.getElementById('rp-books-done');if(bdEl) bdEl.textContent=done;
+  var blEl=document.getElementById('rp-books-left');if(blEl) blEl.textContent=total-done;
+  var circ=207.3;var offset=circ-(circ*(pct/100));
+  var circle=document.getElementById('rp-ring-circle');if(circle) circle.style.strokeDashoffset=offset;
+  var targetEl=document.getElementById('rp-target-date');
+  if(targetEl&&targetEl.value){
+    var today=new Date();var target=new Date(targetEl.value);
+    var daysLeft=Math.ceil((target-today)/(1000*60*60*24));
+    var dlEl=document.getElementById('rp-days-left');if(dlEl) dlEl.textContent=daysLeft>0?daysLeft:'0';
+  }
+  var goalEl=document.getElementById('rp-ch-goal');
+  var cdEl=document.getElementById('rp-ch-day');if(cdEl&&goalEl) cdEl.textContent=goalEl.value||'6';
+  updateHomeRP();
+}
+
+function updateHomeRP(){
+  var total=66;var done=Object.keys(rpCheckedBooks).filter(function(k){return rpCheckedBooks[k];}).length;
+  var pct=Math.round((done/total)*100);
+  var bar=document.getElementById('home-rp-bar');if(bar) bar.style.width=pct+'%';
+  var pctEl=document.getElementById('home-rp-pct');if(pctEl) pctEl.textContent=pct+'% complete';
+  var targetEl=document.getElementById('rp-target-date');
+  var daysEl=document.getElementById('home-rp-days');
+  if(daysEl&&targetEl&&targetEl.value){var today=new Date();var target=new Date(targetEl.value);var dl=Math.ceil((target-today)/(1000*60*60*24));daysEl.textContent=dl>0?dl+' days left':'Due!';}
+}
+
+var OT=[{cat:'The Law - Torah',sub:'Five books of Moses',books:[['Genesis',50],['Exodus',40],['Leviticus',27],['Numbers',36],['Deuteronomy',34]]},{cat:'History',sub:"Israel's story from conquest to exile",books:[['Joshua',24],['Judges',21],['Ruth',4],['1 Samuel',31],['2 Samuel',24],['1 Kings',22],['2 Kings',25],['1 Chronicles',29],['2 Chronicles',36],['Ezra',10],['Nehemiah',13],['Esther',10]]},{cat:'Poetry & Wisdom',sub:"Israel's heart - lament, praise, wisdom",books:[['Job',42],['Psalms',150],['Proverbs',31],['Ecclesiastes',12],['Song of Solomon',8]]},{cat:'Major Prophets',sub:'Isaiah - Jeremiah - Ezekiel - Daniel',books:[['Isaiah',66],['Jeremiah',52],['Lamentations',5],['Ezekiel',48],['Daniel',12]]},{cat:'Minor Prophets',sub:'The Twelve',books:[['Hosea',14],['Joel',3],['Amos',9],['Obadiah',1],['Jonah',4],['Micah',7],['Nahum',3],['Habakkuk',3],['Zephaniah',3],['Haggai',2],['Zechariah',14],['Malachi',4]]}];
+var NT=[{cat:'The Gospels',sub:'Four witnesses to the life, death & resurrection of Jesus',books:[['Matthew',28],['Mark',16],['Luke',24],['John',21]]},{cat:'Acts',sub:'The birth and expansion of the church',books:[['Acts',28]]},{cat:'Paul - Major Letters',sub:'The theological cornerstones',books:[['Romans',16],['1 Corinthians',16],['2 Corinthians',13],['Galatians',6]]},{cat:'Paul - Prison Epistles',sub:'Written from Roman imprisonment',books:[['Ephesians',6],['Philippians',4],['Colossians',4],['Philemon',1]]},{cat:'Paul - Pastoral Epistles',sub:'Church leadership',books:[['1 Timothy',6],['2 Timothy',4],['Titus',3]]},{cat:'Paul - Early Letters',sub:'Eschatology and the Day of the Lord',books:[['1 Thessalonians',5],['2 Thessalonians',3]]},{cat:'General Epistles',sub:'Faith, suffering, wisdom, love',books:[['Hebrews',13],['James',5],['1 Peter',5],['2 Peter',3],['1 John',5],['2 John',1],['3 John',1],['Jude',1]]},{cat:'Prophecy',sub:'The Revelation of Jesus Christ',books:[['Revelation',22]]}];
+
+function buildBibleSection(cid,data){
+  var c=document.getElementById(cid);c.innerHTML='';
+  data.forEach(function(sec){
+    var cat=document.createElement('div');cat.className='bible-category';
+    cat.innerHTML='<div class="bible-cat-title">'+sec.cat+'</div><div class="bible-cat-sub">'+sec.sub+'</div>';c.appendChild(cat);
+    var grid=document.createElement('div');grid.className='bible-books';
+    sec.books.forEach(function(bk){
+      var div=document.createElement('div');div.className='bible-book';
+      div.innerHTML='<span>'+bk[0]+'</span><span class="bible-book-ch">'+bk[1]+' CH.</span>';
+      div.onclick=function(){showSection('study');addStudyEntry({book:bk[0]});setTimeout(function(){document.getElementById('main').scrollTo(0,999999);},100);};
+      grid.appendChild(div);
+    });c.appendChild(grid);
+  });
+}
+
+function openRef(){var ref=document.getElementById('lookup-ref').value.trim();if(!ref)return;window.open('https://www.biblegateway.com/passage/?search='+encodeURIComponent(ref)+'&version=NKJV','_blank');}
+document.getElementById('lookup-ref').addEventListener('keydown',function(e){if(e.key==='Enter')openRef();});
+function exportPDF(){saveAll();window.print();}
+
+function loadData(){try{var r=localStorage.getItem('bsj2_data');if(!r)return false;var d=JSON.parse(r);if(d.canvasData)canvasData=d.canvasData;return d;}catch(e){return false;}}
+
+function init(){
+  buildBibleSection('ot-books',OT);
+  buildBibleSection('nt-books',NT);
+  buildTopics(DEFAULT_TOPICS);
+  var data=loadData();
+
+  if(data&&data.rpChecked){data.rpChecked.forEach(function(s){var parts=s.split(':');if(parts[1]==='true')rpCheckedBooks[parts[0]]=true;});}
+  buildRPList();
+  if(data&&data.rpSettings){
+    var s=data.rpSettings;
+    var te=document.getElementById('rp-target-date');if(te&&s.target)te.value=s.target;
+    var ge=document.getElementById('rp-ch-goal');if(ge&&s.goal)ge.value=s.goal;
+    var se=document.getElementById('rp-start-date');if(se&&s.start)se.value=s.start;
+  } else {
+    var te=document.getElementById('rp-target-date');if(te&&!te.value)te.value='2025-07-01';
+  }
+
+  if(data&&data.vault&&data.vault.length)data.vault.forEach(function(r){addVaultRow(r);});
+  else{addVaultRow();addVaultRow();addVaultRow();}
+
+  if(data&&data.memory&&data.memory.length)data.memory.forEach(function(m){addMemoryCard(m);});
+  else{for(var i=0;i<6;i++)addMemoryCard();}
+
+  if(data&&data.prayer&&data.prayer.length)data.prayer.forEach(function(p){addPrayerEntry(p);});
+  else{addPrayerEntry();addPrayerEntry();}
+
+  addJournalEntry();addSermonEntry();addStudyEntry();addSeriesEntry();addQuoteEntry();addBookSummary();addWordEntry();
+
+  if(data){
+    Object.keys(data).forEach(function(k){
+      var el=document.querySelector('[data-field="'+k+'"]');
+      if(el&&typeof data[k]==='string')el.value=data[k];
+    });
+  }
+
+  if(data&&data.topics&&data.topics.length)buildTopics(data.topics);
+
+  setTimeout(function(){
+    document.querySelectorAll('canvas').forEach(function(c){initCanvas(c);});
+    updateRPStats();updateHomeRP();
+  },250);
+}
+
+init();
+</script>
+</body>
+</html>
