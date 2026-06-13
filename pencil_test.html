@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title>Pencil Test</title>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { background:#f5f5f5; font-family:-apple-system,sans-serif; overflow:hidden; height:100vh; }
+#info { position:fixed; top:0; left:0; right:0; background:#1a1a2e; color:white; padding:10px 16px; font-size:13px; z-index:10; display:flex; gap:12px; align-items:center; }
+#status { flex:1; }
+#clear-btn { background:white; color:#1a1a2e; border:none; padding:6px 14px; font-weight:700; font-size:12px; cursor:pointer; }
+#undo-btn { background:rgba(255,255,255,0.2); color:white; border:none; padding:6px 14px; font-weight:700; font-size:12px; cursor:pointer; }
+svg { position:fixed; top:44px; left:0; width:100%; height:calc(100vh - 44px); background:white; touch-action:none; display:block; cursor:crosshair; }
+</style>
+</head>
+<body>
+<div id="info">
+  <span id="status">Draw with Apple Pencil anywhere</span>
+  <button id="undo-btn" onclick="undo()">Undo</button>
+  <button id="clear-btn" onclick="clearAll()">Clear</button>
+</div>
+<svg id="draw" xmlns="http://www.w3.org/2000/svg">
+  <rect width="100%" height="100%" fill="white"/>
+</svg>
+<script>
+var svg = document.getElementById('draw');
+var status = document.getElementById('status');
+var drawing = false;
+var currentPath = null;
+var pathData = '';
+var strokeColor = '#1a1a2e';
+var strokeWidth = 2;
+
+function getPos(e) {
+  var r = svg.getBoundingClientRect();
+  return [e.clientX - r.left, e.clientY - r.top];
+}
+
+svg.addEventListener('pointerdown', function(e) {
+  e.preventDefault();
+  drawing = true;
+  svg.setPointerCapture(e.pointerId);
+  var p = getPos(e);
+  currentPath = document.createElementNS('http://www.w3.org/2000/svg','path');
+  currentPath.setAttribute('stroke', strokeColor);
+  currentPath.setAttribute('stroke-width', strokeWidth);
+  currentPath.setAttribute('stroke-linecap','round');
+  currentPath.setAttribute('stroke-linejoin','round');
+  currentPath.setAttribute('fill','none');
+  pathData = 'M ' + p[0].toFixed(1) + ' ' + p[1].toFixed(1);
+  currentPath.setAttribute('d', pathData);
+  svg.appendChild(currentPath);
+  status.textContent = 'type=' + e.pointerType + ' pressure=' + e.pressure.toFixed(2);
+}, {passive:false});
+
+svg.addEventListener('pointermove', function(e) {
+  if(!drawing || !currentPath) return;
+  e.preventDefault();
+  var p = getPos(e);
+  var pressure = e.pressure > 0 ? e.pressure : 0.5;
+  var w = strokeWidth * (0.5 + pressure * 1.5);
+  currentPath.setAttribute('stroke-width', w.toFixed(1));
+  pathData += ' L ' + p[0].toFixed(1) + ' ' + p[1].toFixed(1);
+  currentPath.setAttribute('d', pathData);
+  status.textContent = 'type=' + e.pointerType + ' p=' + pressure.toFixed(2) + ' xy=' + p[0].toFixed(0) + ',' + p[1].toFixed(0);
+}, {passive:false});
+
+svg.addEventListener('pointerup', function(e) {
+  drawing = false;
+  currentPath = null;
+  pathData = '';
+}, {passive:false});
+
+svg.addEventListener('pointercancel', function(e) {
+  drawing = false;
+  currentPath = null;
+  pathData = '';
+}, {passive:false});
+
+function undo() {
+  var paths = svg.querySelectorAll('path:not(:first-child)');
+  if(paths.length > 0) svg.removeChild(paths[paths.length-1]);
+}
+
+function clearAll() {
+  var paths = svg.querySelectorAll('path:not(:first-child)');
+  paths.forEach(function(p){ svg.removeChild(p); });
+}
+</script>
+</body>
+</html>
