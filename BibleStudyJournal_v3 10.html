@@ -1,0 +1,1608 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="apple-touch-icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxODAiIGhlaWdodD0iMTgwIiB2aWV3Qm94PSIwIDAgMTgwIDE4MCI+CiAgPHJlY3Qgd2lkdGg9IjE4MCIgaGVpZ2h0PSIxODAiIHJ4PSI0MCIgZmlsbD0iIzIzMjUyZSIvPgogIDxyZWN0IHg9IjM0IiB5PSIyOCIgd2lkdGg9IjcyIiBoZWlnaHQ9IjkwIiByeD0iNiIgZmlsbD0iI2Y4ZjVmMCIvPgogIDxyZWN0IHg9IjM0IiB5PSIyOCIgd2lkdGg9IjcyIiBoZWlnaHQ9IjkwIiByeD0iNiIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjYzhjYWQ0IiBzdHJva2Utd2lkdGg9IjEuNSIvPgogIDxyZWN0IHg9IjQ2IiB5PSI0MiIgd2lkdGg9IjQ4IiBoZWlnaHQ9IjMiIHJ4PSIxLjUiIGZpbGw9IiMyMzI1MmUiIG9wYWNpdHk9IjAuMjUiLz4KICA8cmVjdCB4PSI0NiIgeT0iNTIiIHdpZHRoPSI0MCIgaGVpZ2h0PSIzIiByeD0iMS41IiBmaWxsPSIjMjMyNTJlIiBvcGFjaXR5PSIwLjI1Ii8+CiAgPHJlY3QgeD0iNDYiIHk9IjYyIiB3aWR0aD0iNDQiIGhlaWdodD0iMyIgcng9IjEuNSIgZmlsbD0iIzIzMjUyZSIgb3BhY2l0eT0iMC4yNSIvPgogIDxyZWN0IHg9IjQ2IiB5PSI3MiIgd2lkdGg9IjM2IiBoZWlnaHQ9IjMiIHJ4PSIxLjUiIGZpbGw9IiMyMzI1MmUiIG9wYWNpdHk9IjAuMjUiLz4KICA8cmVjdCB4PSI0NiIgeT0iODIiIHdpZHRoPSI0MiIgaGVpZ2h0PSIzIiByeD0iMS41IiBmaWxsPSIjMjMyNTJlIiBvcGFjaXR5PSIwLjI1Ii8+CiAgPHJlY3QgeD0iNDYiIHk9IjkyIiB3aWR0aD0iMzAiIGhlaWdodD0iMyIgcng9IjEuNSIgZmlsbD0iIzIzMjUyZSIgb3BhY2l0eT0iMC4yNSIvPgogIDxyZWN0IHg9IjUwIiB5PSIxMDgiIHdpZHRoPSI4NCIgaGVpZ2h0PSI0OCIgcng9IjYiIGZpbGw9IiNiODk2M2UiLz4KICA8dGV4dCB4PSI5MiIgeT0iMTQwIiBmb250LWZhbWlseT0iR2VvcmdpYSwgc2VyaWYiIGZvbnQtc2l6ZT0iMjgiIGZvbnQtd2VpZ2h0PSI3MDAiIGZpbGw9IndoaXRlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj4mI3gyNzFEOzwvdGV4dD4KPC9zdmc+">
+<meta name="theme-color" content="#23252e">
+<meta name="apple-mobile-web-app-title" content="Bible Study">
+<title>Bible Study Journal</title>
+<style>
+:root {
+  --forest:#23252e;--sage:#e8eaf0;--gold:#b8963e;--gold-light:#f5e9c8;
+  --cream:#f8f5f0;--ink:#1c1c1e;--ink-soft:#3a3a3c;--muted:#6e6e73;
+  --line:#d1cec8;--white:#ffffff;--teal:#c8cad4;--teal-light:#f0f1f5;
+  --purple:#7c5cbf;--purple-light:#ede8f8;--blue:#2471a3;--blue-light:#eaf3fb;
+  --nav-h:52px;--toolbar-h:44px;
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
+html,body{height:100%;width:100%;font-family:-apple-system,'SF Pro Text',sans-serif;background:var(--cream);overflow:hidden;color:var(--ink);}
+
+#nav{position:fixed;top:0;left:0;right:0;height:var(--nav-h);background:var(--forest);display:flex;align-items:center;z-index:100;padding:0 4px;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;}
+#nav::-webkit-scrollbar{display:none;}
+.nav-btn{flex-shrink:0;padding:6px 12px;border-radius:0;border:none;background:transparent;color:rgba(255,255,255,.65);font-size:13px;font-weight:500;cursor:pointer;white-space:nowrap;transition:background .15s,color .15s;}
+.nav-btn.active{background:rgba(255,255,255,.18);color:#fff;}
+.nav-btn:active{background:rgba(255,255,255,.25);}
+
+#toolbar{position:fixed;top:var(--nav-h);left:0;right:0;height:var(--toolbar-h);background:var(--white);border-bottom:.5px solid var(--line);display:flex;align-items:center;padding:0 12px;gap:6px;z-index:99;transition:transform .25s ease,opacity .25s ease;}
+#toolbar.hidden{transform:translateY(-100%);opacity:0;pointer-events:none;}
+.tool-btn{width:34px;height:34px;border-radius:0;border:.5px solid var(--line);background:var(--white);display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:15px;color:var(--ink-soft);transition:background .1s;}
+.tool-btn:active,.tool-btn.active{background:var(--sage);color:var(--forest);}
+.tool-sep{width:.5px;height:22px;background:var(--line);margin:0 4px;}
+#color-picker-wrap{display:flex;gap:5px;align-items:center;}
+.color-dot{width:20px;height:20px;border-radius:50%;border:2px solid transparent;cursor:pointer;}
+.color-dot.sel{border-color:var(--ink);}
+#stroke-size{width:60px;height:28px;accent-color:var(--forest);}
+.tool-spacer{flex:1;}
+#toggle-toolbar-btn{position:fixed;top:calc(var(--nav-h) + 8px);right:12px;z-index:101;width:28px;height:28px;border-radius:0;background:var(--forest);border:none;color:white;font-size:13px;display:flex;align-items:center;justify-content:center;cursor:pointer;}
+
+#main{position:fixed;top:calc(var(--nav-h) + var(--toolbar-h));left:0;right:0;bottom:0;overflow-y:auto;-webkit-overflow-scrolling:touch;transition:top .25s ease;}
+#main.toolbar-hidden{top:var(--nav-h);}
+.section{display:none;padding:20px 16px 100px;min-height:100%;}
+.section.active{display:block;}
+
+.sec-header{background:var(--forest);color:white;border-radius:0;padding:16px 18px;margin-bottom:20px;}
+.sec-header.gold-head{background:var(--gold);}
+.sec-header.purple-head{background:var(--purple);}
+.sec-header.blue-head{background:var(--blue);}
+.sec-eyebrow{font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.65);margin-bottom:4px;}
+.sec-title{font-size:26px;font-weight:700;letter-spacing:-.5px;}
+.sec-sub{font-size:13px;color:rgba(255,255,255,.65);margin-top:4px;font-style:italic;}
+
+.card{background:var(--white);border-radius:0;border:.5px solid var(--line);margin-bottom:14px;overflow:hidden;}
+.card-row{display:grid;grid-template-columns:1fr 1fr;gap:0;}
+.card-row .card-field{border-right:.5px solid var(--line);}
+.card-row .card-field:last-child{border-right:none;}
+.card-field{padding:8px 14px 10px;}
+.card-field label{display:block;font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:3px;}
+
+input[type="text"],input[type="date"],input[type="number"],textarea,select{width:100%;border:none;background:transparent;font-family:-apple-system,'SF Pro Text',sans-serif;font-size:15px;color:var(--ink);outline:none;resize:none;-webkit-appearance:none;padding:0;}
+textarea{line-height:1.6;}
+.field-full{border-top:.5px solid var(--line);padding:10px 14px;}
+.field-full label{font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:4px;}
+.scripture-field{background:#f0f1f5;border-left:3px solid #c8cad4;padding:10px 14px;}
+.scripture-field input{font-style:italic;color:#23252e;}
+
+.lined-area{background-image:repeating-linear-gradient(to bottom,transparent 0px,transparent 27px,var(--line) 27px,var(--line) 28px);background-size:100% 28px;min-height:224px;padding:6px 14px;font-size:15px;line-height:28px;width:100%;border:none;background-color:transparent;outline:none;resize:none;font-family:-apple-system,'SF Pro Text',sans-serif;display:block;}
+
+.canvas-wrap{position:relative;background:var(--white);overflow:hidden;touch-action:none;}
+.canvas-wrap canvas{display:block;width:100%;cursor:crosshair;touch-action:none;}
+.canvas-label{font-size:10px;color:var(--muted);padding:6px 14px;background:var(--sage);display:flex;align-items:center;gap:6px;font-weight:500;}
+.canvas-label span{flex:1;}
+.canvas-clear{font-size:11px;color:var(--muted);border:none;background:none;cursor:pointer;padding:2px 6px;border-radius:0;}
+.canvas-clear:active{background:var(--line);}
+
+.home-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:20px;}
+.home-card{background:#ffffff;border:0.5px solid #d1cec8;border-left:4px solid #23252e;border-radius:0;padding:16px 14px;cursor:pointer;transition:background .1s;min-height:68px;}
+.home-card::before{display:none;}
+.home-card.gold-card{border-left-color:var(--gold);}
+.home-card.purple-card{border-left-color:var(--purple);}
+.home-card.blue-card{border-left-color:var(--blue);}
+.home-card:active{background:var(--sage);}
+.home-card-title{font-size:15px;font-weight:600;color:#1c1c1e;margin-bottom:2px;padding-left:10px;position:relative;z-index:1;}
+.home-card-sub{font-size:11px;color:#6e6e73;padding-left:10px;position:relative;z-index:1;}
+.home-verse{background:var(--forest);border-radius:0;padding:20px 18px;color:white;text-align:center;margin-bottom:20px;}
+.home-verse p{font-size:15px;line-height:1.6;font-style:italic;color:rgba(255,255,255,.9);}
+.home-verse cite{font-size:12px;color:#8a8d9a;font-weight:600;display:block;margin-top:8px;font-style:normal;}
+
+.rp-progress-wrap{background:var(--white);border-radius:0;border:.5px solid var(--line);padding:16px;margin-bottom:16px;}
+.rp-ring-row{display:flex;align-items:center;gap:16px;margin-bottom:12px;}
+.rp-ring{position:relative;width:80px;height:80px;flex-shrink:0;}
+.rp-ring svg{transform:rotate(-90deg);}
+.rp-ring-track{fill:none;stroke:var(--sage);stroke-width:7;}
+.rp-ring-fill{fill:none;stroke:#c8cad4;stroke-width:7;stroke-linecap:round;transition:stroke-dashoffset .4s ease;}
+.rp-ring-text{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;}
+.rp-ring-pct{font-size:18px;font-weight:700;color:var(--forest);line-height:1;}
+.rp-ring-lbl{font-size:9px;color:var(--muted);font-weight:600;}
+.rp-stats{flex:1;display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+.rp-stat{background:var(--cream);border-radius:0;padding:8px 10px;}
+.rp-stat-val{font-size:18px;font-weight:700;color:var(--forest);}
+.rp-stat-lbl{font-size:10px;color:var(--muted);}
+.rp-controls{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;}
+.rp-control label{font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:3px;}
+.rp-control input{background:var(--cream);border:.5px solid var(--line);border-radius:0;padding:6px 8px;font-size:13px;width:100%;}
+.rp-book-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;}
+.rp-book-row{display:flex;align-items:center;gap:8px;padding:9px 12px;border-bottom:.5px solid var(--line);background:var(--white);cursor:pointer;}
+.rp-book-row:nth-child(even){border-left:.5px solid var(--line);}
+.rp-book-row:active{background:var(--sage);}
+.rp-book-check{width:18px;height:18px;border-radius:0;border:1.5px solid var(--line);background:white;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:11px;}
+.rp-book-check.done{background:var(--teal);border-color:#8a8d9a;color:white;}
+.rp-book-name{font-size:13px;flex:1;}
+.rp-book-ch{font-size:10px;color:var(--muted);}
+.rp-section-head{background:var(--forest);color:white;font-size:11px;font-weight:700;padding:6px 12px;letter-spacing:.06em;text-transform:uppercase;grid-column:1 / -1;}
+
+.ws-card{background:var(--white);border-radius:0;border:.5px solid var(--line);margin-bottom:14px;overflow:hidden;}
+.ws-header{background:var(--purple);color:white;padding:10px 14px;display:flex;align-items:center;gap:10px;}
+.ws-word{font-size:20px;font-weight:700;flex:1;border:none;background:transparent;color:white;outline:none;font-family:inherit;}
+.ws-word::placeholder{color:rgba(255,255,255,.5);}
+.ws-lang-badge{font-size:10px;font-weight:700;padding:3px 8px;border-radius:0;border:none;cursor:pointer;}
+.ws-lang-off{background:rgba(255,255,255,.2);color:rgba(255,255,255,.8);}
+.ws-lang-badge.active-lang{background:white;color:var(--purple);}
+
+.series-card{background:var(--white);border-radius:0;border:.5px solid var(--line);margin-bottom:14px;overflow:hidden;}
+.series-header-bar{background:var(--blue);color:white;padding:10px 14px;}
+.series-title-input{font-size:17px;font-weight:700;border:none;background:transparent;color:white;outline:none;font-family:inherit;width:100%;}
+.series-title-input::placeholder{color:rgba(255,255,255,.5);}
+.series-week{border-top:.5px solid var(--line);padding:10px 14px;display:flex;align-items:flex-start;gap:10px;}
+.series-week-num{width:26px;height:26px;border-radius:50%;background:var(--blue-light);color:var(--blue);font-weight:700;font-size:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;}
+.series-week-done{width:22px;height:22px;border-radius:50%;border:1.5px solid var(--blue);background:white;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:11px;flex-shrink:0;margin-top:4px;}
+.series-week-done.done{background:#23252e;color:white;border-color:#23252e;}
+
+.quote-card{background:var(--white);border-left:4px solid var(--gold);border-radius:0 10px 10px 0;padding:12px 14px;margin-bottom:10px;border-top:.5px solid var(--line);border-right:.5px solid var(--line);border-bottom:.5px solid var(--line);}
+.quote-meta{display:flex;gap:8px;margin-top:6px;}
+.quote-meta input{font-size:12px;color:var(--muted);background:transparent;border:none;outline:none;font-family:inherit;}
+
+.book-sum-card{background:var(--white);border-radius:0;border:.5px solid var(--line);margin-bottom:14px;overflow:hidden;}
+.book-sum-header{background:var(--gold);color:white;padding:10px 14px;}
+.book-sum-name{font-size:18px;font-weight:700;border:none;background:transparent;color:white;outline:none;font-family:inherit;width:100%;}
+.book-sum-name::placeholder{color:rgba(255,255,255,.5);}
+.book-sum-meta{display:flex;gap:0;border-top:.5px solid var(--line);}
+.book-sum-meta-field{flex:1;padding:8px 12px;border-right:.5px solid var(--line);}
+.book-sum-meta-field:last-child{border-right:none;}
+.book-sum-meta-field label{font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:2px;}
+.book-sum-meta-field input{font-size:13px;}
+.key-ch-grid{display:flex;gap:6px;flex-wrap:wrap;padding:8px 12px;border-top:.5px solid var(--line);}
+.key-ch-chip{background:var(--gold-light);color:var(--gold);border:.5px solid var(--gold);border-radius:0;padding:3px 8px;font-size:12px;font-weight:600;}
+.xref-input{background:var(--cream);border:.5px solid var(--line);border-radius:0;padding:5px 8px;font-size:13px;font-family:inherit;outline:none;color:var(--ink);flex:1;}
+.xref-add-btn{background:var(--forest);color:white;border:none;border-radius:0;padding:5px 10px;font-size:12px;font-weight:600;cursor:pointer;}
+.xref-chip-row{display:flex;flex-wrap:wrap;gap:6px;padding:10px 14px;border-top:.5px solid var(--line);}
+.xref-chip{background:#f0f1f5;color:#23252e;border:.5px solid #c8cad4;border-radius:0;padding:4px 10px;font-size:12px;font-weight:600;cursor:pointer;font-style:italic;}
+
+.acts-tab{display:flex;border-bottom:.5px solid var(--line);background:var(--cream);overflow-x:auto;}
+.acts-tab-btn{flex-shrink:0;padding:10px 10px;font-size:11px;font-weight:600;text-align:center;border:none;background:transparent;cursor:pointer;color:var(--muted);border-bottom:2px solid transparent;white-space:nowrap;}
+.acts-tab-btn.active{color:var(--forest);border-bottom-color:#8a8d9a;}
+.acts-panel{display:none;padding:12px 14px;}
+.acts-panel.active{display:block;}
+
+.resource-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:16px;}
+.resource-btn{background:var(--white);border:.5px solid var(--line);border-radius:0;padding:14px 12px;text-align:center;font-size:13px;font-weight:600;color:var(--forest);text-decoration:none;display:block;transition:background .1s;cursor:pointer;}
+.resource-btn:active{background:var(--sage);}
+
+.bible-category{background:var(--sage);border-left:3px solid var(--forest);padding:8px 14px;margin:16px 0 6px;border-radius:0 6px 6px 0;}
+.bible-cat-title{font-size:13px;font-weight:700;color:var(--forest);}
+.bible-cat-sub{font-size:11px;color:var(--muted);}
+.bible-books{display:grid;grid-template-columns:1fr 1fr;gap:0;}
+.bible-book{padding:10px 14px;border-bottom:.5px solid var(--line);display:flex;justify-content:space-between;align-items:center;background:var(--white);cursor:pointer;font-size:14px;}
+.bible-book:active{background:var(--sage);}
+.bible-book-ch{font-size:11px;font-weight:700;color:#8a8d9a;}
+.bible-book:nth-child(even){border-left:.5px solid var(--line);}
+
+.soap-step{display:flex;align-items:flex-start;gap:10px;margin-bottom:14px;}
+.soap-letter{width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;flex-shrink:0;margin-top:2px;}
+.soap-s{background:var(--forest);color:white;}
+.soap-o{background:var(--ink-soft);color:white;}
+.soap-a{background:var(--teal);color:white;}
+.soap-p{background:var(--gold);color:white;}
+.soap-label{font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:4px;}
+.soap-body{flex:1;}
+
+.prayer-entry{background:var(--white);border:.5px solid var(--line);border-radius:0;margin-bottom:12px;overflow:hidden;}
+.prayer-answered{background:var(--teal-light);border-top:.5px solid var(--line);padding:8px 14px;display:flex;align-items:center;gap:10px;font-size:12px;}
+.answered-check{width:18px;height:18px;border-radius:0;border:1.5px solid var(--teal);display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;font-size:12px;background:white;}
+.answered-check.checked{background:var(--teal);color:white;border-color:#8a8d9a;}
+
+.memory-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.memory-card{background:var(--gold-light);border:.5px solid var(--gold);border-radius:0;padding:12px;overflow:hidden;}
+.memory-ref{font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);border-bottom:.5px solid rgba(184,150,62,.3);padding-bottom:6px;margin-bottom:8px;}
+.memory-ref input{color:var(--gold);font-weight:700;font-size:12px;}
+.memory-status{display:flex;gap:6px;margin-top:8px;}
+.mem-badge{font-size:10px;padding:3px 8px;border-radius:0;border:.5px solid var(--line);background:var(--white);cursor:pointer;font-weight:500;color:var(--muted);}
+.mem-badge.active-badge{background:var(--teal);color:white;border-color:#8a8d9a;}
+
+.point-row{display:flex;align-items:flex-start;gap:10px;padding:10px 14px;border-bottom:.5px solid var(--line);}
+.point-num{width:24px;height:24px;border-radius:0;background:var(--teal-light);color:var(--forest);font-weight:700;font-size:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;}
+.point-row input{flex:1;}
+
+.topics-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;}
+.topic-btn{background:var(--white);border:.5px solid var(--line);border-left:3px solid var(--forest);border-radius:0 8px 8px 0;padding:12px 8px;text-align:center;font-size:12px;font-weight:500;color:var(--ink-soft);cursor:pointer;transition:background .1s;}
+.topic-btn:active{background:var(--sage);}
+
+.vault-table{width:100%;border-collapse:collapse;font-size:13px;}
+.vault-table th{text-align:left;padding:8px 10px;font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;background:var(--forest);color:white;}
+.vault-table td{padding:10px;border-bottom:.5px solid var(--line);background:var(--white);color:var(--ink);}
+.vault-table tr:nth-child(even) td{background:var(--cream);}
+.vault-table input{font-size:13px;}
+
+.notes-cols{display:grid;grid-template-columns:1fr 1fr;gap:0;border-top:.5px solid var(--line);}
+.notes-cols .note-col{padding:10px 12px;border-right:.5px solid var(--line);}
+.notes-cols .note-col:last-child{border-right:none;}
+
+.add-btn{display:flex;align-items:center;gap:8px;background:var(--sage);border:.5px dashed var(--forest);border-radius:0;padding:12px 16px;font-size:14px;color:var(--forest);font-weight:500;cursor:pointer;width:100%;margin-top:10px;justify-content:center;}
+.add-btn:active{background:var(--teal-light);}
+
+#save-dot{position:fixed;bottom:16px;right:16px;background:var(--forest);color:white;font-size:11px;font-weight:600;padding:6px 12px;border-radius:0;opacity:0;transition:opacity .3s;z-index:200;}
+#save-dot.show{opacity:1;}
+#export-btn{position:fixed;bottom:16px;left:16px;background:var(--gold);color:white;border:none;font-size:12px;font-weight:600;padding:8px 14px;border-radius:0;cursor:pointer;z-index:200;}
+#export-btn:active{opacity:.8;}
+
+
+.dev-card{background:var(--forest);color:white;border-radius:0;padding:22px 18px;margin-bottom:16px;text-align:center;}
+.dev-date{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.6);margin-bottom:8px;}
+.dev-ref{font-size:13px;font-weight:700;color:var(--gold);margin-bottom:10px;letter-spacing:.04em;}
+.dev-text{font-size:16px;line-height:1.7;font-style:italic;color:rgba(255,255,255,.92);}
+.dev-nav{display:flex;gap:10px;margin-bottom:16px;}
+.dev-nav-btn{flex:1;padding:10px;border-radius:0;border:.5px solid var(--line);background:var(--white);font-size:13px;font-weight:600;color:var(--ink);cursor:pointer;text-align:center;}
+.dev-nav-btn:active{background:var(--sage);}
+.dev-today-btn{background:var(--forest);color:white;border-color:var(--forest);}
+
+.cal-wrap{background:var(--white);border-radius:0;border:.5px solid var(--line);overflow:hidden;margin-bottom:14px;}
+.cal-header{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;border-bottom:.5px solid var(--line);}
+.cal-month{font-size:15px;font-weight:700;color:var(--ink);}
+.cal-arrow{width:30px;height:30px;border-radius:0;border:.5px solid var(--line);background:var(--white);display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:14px;}
+.cal-arrow:active{background:var(--sage);}
+.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);}
+.cal-dow{padding:6px 2px;text-align:center;font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);background:var(--cream);}
+.cal-day{padding:8px 2px;text-align:center;font-size:13px;cursor:pointer;border-top:.5px solid var(--line);position:relative;min-height:36px;display:flex;align-items:center;justify-content:center;}
+.cal-day:active{background:var(--sage);}
+.cal-day.today{font-weight:700;color:var(--white);background:var(--forest);border-radius:50%;width:30px;height:30px;margin:auto;}
+.cal-day.has-verse::after{content:'';position:absolute;bottom:3px;left:50%;transform:translateX(-50%);width:4px;height:4px;border-radius:50%;background:var(--gold);}
+.cal-day.empty{cursor:default;}
+
+
+#verse-modal{position:fixed;inset:0;background:rgba(0,0,0,0.7);z-index:500;display:flex;align-items:center;justify-content:center;padding:24px;}
+#verse-modal.hidden{display:none;}
+.verse-modal-box{background:var(--white);width:100%;max-width:500px;overflow:hidden;}
+.verse-modal-header{background:#23252e;padding:18px 20px;}
+.verse-modal-eyebrow{font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:4px;}
+.verse-modal-date{font-size:15px;font-weight:700;color:white;}
+.verse-modal-body{padding:22px 20px;}
+.verse-modal-ref{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;}
+.verse-modal-text{font-size:17px;line-height:1.7;font-style:italic;color:var(--ink);margin-bottom:20px;}
+.verse-modal-footer{display:flex;gap:0;border-top:.5px solid var(--line);}
+.verse-modal-btn{flex:1;padding:14px;text-align:center;font-size:13px;font-weight:700;cursor:pointer;border:none;background:transparent;color:var(--muted);}
+.verse-modal-btn.primary{background:#23252e;color:white;}
+.verse-modal-btn:active{opacity:.8;}
+
+
+#book-modal{position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:500;display:flex;align-items:flex-end;justify-content:center;}
+#book-modal.hidden{display:none;}
+.book-modal-box{background:var(--white);width:100%;max-width:600px;}
+.book-modal-head{background:#23252e;padding:16px 18px;display:flex;justify-content:space-between;align-items:flex-start;}
+.book-modal-name{font-size:20px;font-weight:700;color:white;}
+.book-modal-meta{font-size:11px;color:rgba(255,255,255,.6);margin-top:3px;}
+.book-modal-close{color:rgba(255,255,255,.6);font-size:20px;background:none;border:none;cursor:pointer;padding:0 0 0 12px;}
+.book-modal-body{padding:16px 18px;}
+.book-modal-theme{font-size:15px;line-height:1.6;color:var(--ink);font-style:italic;border-left:3px solid var(--gold);padding-left:12px;margin-bottom:16px;}
+.book-modal-actions{display:flex;gap:0;border-top:.5px solid var(--line);}
+.book-modal-action{flex:1;padding:13px;text-align:center;font-size:12px;font-weight:700;cursor:pointer;border:none;background:transparent;color:var(--muted);border-right:.5px solid var(--line);}
+.book-modal-action:last-child{border-right:none;}
+.book-modal-action.dark{background:#23252e;color:white;}
+.book-modal-action:active{opacity:.8;}
+
+@media print{
+  #nav,#toolbar,#toggle-toolbar-btn,#save-dot,#export-btn{display:none !important;}
+  #main{position:static;overflow:visible;top:0;}
+  .section{display:block !important;page-break-after:always;}
+  body{overflow:auto;}
+}
+</style>
+
+<script>
+(function(){
+  var c=document.createElement('canvas');
+  c.width=180;c.height=180;
+  var ctx=c.getContext('2d');
+  ctx.fillStyle='#000000';
+  ctx.fillRect(0,0,180,180);
+  ctx.fillStyle='#ffffff';
+  ctx.font='bold 120px -apple-system,Helvetica,sans-serif';
+  ctx.textAlign='center';
+  ctx.textBaseline='middle';
+  ctx.fillText('J',90,95);
+  var link=document.createElement('link');
+  link.rel='apple-touch-icon';
+  link.href=c.toDataURL('image/png');
+  document.head.appendChild(link);
+})();
+</script>
+</head>
+<body>
+
+
+
+<div id="book-modal" class="hidden">
+  <div class="book-modal-box">
+    <div class="book-modal-head">
+      <div>
+        <div class="book-modal-name" id="bm-name"></div>
+        <div class="book-modal-meta" id="bm-meta"></div>
+      </div>
+      <button class="book-modal-close" onclick="document.getElementById('book-modal').classList.add('hidden')">&#x2715;</button>
+    </div>
+    <div class="book-modal-body">
+      <div class="book-modal-theme" id="bm-theme"></div>
+    </div>
+    <div class="book-modal-actions">
+      <div class="book-modal-action" onclick="bookModalStudy()">Open Study</div>
+      <div class="book-modal-action" onclick="bookModalLifeBible()">&#128214; Life Bible</div>
+      <div class="book-modal-action dark" onclick="bookModalYV()">&#9654; Listen</div>
+    </div>
+  </div>
+</div>
+
+<div id="verse-modal" class="hidden">
+  <div class="verse-modal-box">
+    <div class="verse-modal-header">
+      <div class="verse-modal-eyebrow">Daily Scripture &middot; NKJV</div>
+      <div class="verse-modal-date" id="modal-date"></div>
+    </div>
+    <div class="verse-modal-body">
+      <div class="verse-modal-ref" id="modal-ref"></div>
+      <div class="verse-modal-text" id="modal-text"></div>
+    </div>
+    <div class="verse-modal-footer">
+      <button class="verse-modal-btn" onclick="dismissModal(true)">Skip today</button>
+      <button class="verse-modal-btn primary" onclick="dismissModal(false)">Begin &rarr;</button>
+    </div>
+  </div>
+</div>
+
+<nav id="nav">
+  <button class="nav-btn active" onclick="showSection('home')">Home</button>
+  <button class="nav-btn" onclick="showSection('devotion')">Daily</button>
+  <button class="nav-btn" onclick="showSection('reading')">Reading</button>
+  <button class="nav-btn" onclick="showSection('journal')">Journal</button>
+  <button class="nav-btn" onclick="showSection('sermon')">Sermon</button>
+  <button class="nav-btn" onclick="showSection('series')">Series</button>
+  <button class="nav-btn" onclick="showSection('study')">Study</button>
+  <button class="nav-btn" onclick="showSection('words')">Words</button>
+  <button class="nav-btn" onclick="showSection('prayer')">Prayer</button>
+  <button class="nav-btn" onclick="showSection('memory')">Memory</button>
+  <button class="nav-btn" onclick="showSection('quotes')">Quotes</button>
+  <button class="nav-btn" onclick="showSection('books')">Books</button>
+  <button class="nav-btn" onclick="showSection('topics')">Topics</button>
+  <button class="nav-btn" onclick="showSection('lookup')">Lookup</button>
+  <button class="nav-btn" onclick="showSection('ot')">OT</button>
+  <button class="nav-btn" onclick="showSection('nt')">NT</button>
+  <button class="nav-btn" onclick="showSection('vault')">Vault</button>
+</nav>
+
+<div id="toolbar">
+  <button class="tool-btn active" id="tool-pen" onclick="setTool('pen')">&#9999;</button>
+  <button class="tool-btn" id="tool-eraser" onclick="setTool('eraser')">&#x1F9F9;</button>
+  <div class="tool-sep"></div>
+  <div id="color-picker-wrap">
+    <div class="color-dot sel" style="background:#1c1c1e" data-color="#1c1c1e" onclick="setColor(this)"></div>
+    <div class="color-dot" style="background:#23252e" data-color="#23252e" onclick="setColor(this)"></div>
+    <div class="color-dot" style="background:#b8963e" data-color="#b8963e" onclick="setColor(this)"></div>
+    <div class="color-dot" style="background:#c0392b" data-color="#c0392b" onclick="setColor(this)"></div>
+    <div class="color-dot" style="background:#2471a3" data-color="#2471a3" onclick="setColor(this)"></div>
+    <div class="color-dot" style="background:#7c5cbf" data-color="#7c5cbf" onclick="setColor(this)"></div>
+  </div>
+  <div class="tool-sep"></div>
+  <input type="range" id="stroke-size" min="1" max="12" value="2">
+  <div class="tool-spacer"></div>
+  <button class="tool-btn" onclick="clearActiveCanvas()">&#128465;</button>
+</div>
+<button id="toggle-toolbar-btn" onclick="toggleToolbar()">&#x2303;</button>
+
+<div id="main">
+
+<!-- HOME -->
+<div class="section active" id="sec-home">
+  <div class="home-verse">
+    <p>"Thy word is a lamp unto my feet, and a light unto my path."</p>
+    <cite>Psalm 119:105 &middot; NKJV</cite>
+  </div>
+  <div id="home-rp-summary" style="background:var(--white);border-radius:0;border:.5px solid var(--line);padding:14px 16px;margin-bottom:16px;cursor:pointer;" onclick="showSection('reading')">
+    <div style="font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:8px;">Reading Plan Progress</div>
+    <div style="height:8px;background:var(--sage);border-radius:0;overflow:hidden;"><div id="home-rp-bar" style="height:100%;background:var(--teal);border-radius:0;width:0%;transition:width .5s ease;"></div></div>
+    <div style="display:flex;justify-content:space-between;margin-top:6px;">
+      <span id="home-rp-pct" style="font-size:13px;font-weight:700;color:var(--forest);">0% complete</span>
+      <span id="home-rp-days" style="font-size:12px;color:var(--muted);">Tap to view plan</span>
+    </div>
+  </div>
+  <div class="home-grid">
+    <div class="home-card" onclick="showSection('journal')"><div class="home-card-title">Daily Journal</div><div class="home-card-sub">Reflection + notes</div></div>
+    <div class="home-card gold-card" onclick="showSection('sermon')"><div class="home-card-title">Sermon Notes</div><div class="home-card-sub">Sunday worship</div></div>
+    <div class="home-card blue-card" onclick="showSection('series')"><div class="home-card-title">Sermon Series</div><div class="home-card-sub">Multi-week tracker</div></div>
+    <div class="home-card" onclick="showSection('study')"><div class="home-card-title">Bible Study</div><div class="home-card-sub">S.O.A.P. method</div></div>
+    <div class="home-card purple-card" onclick="showSection('words')"><div class="home-card-title">Word Study</div><div class="home-card-sub">Greek &amp; Hebrew</div></div>
+    <div class="home-card gold-card" onclick="showSection('prayer')"><div class="home-card-title">Prayer Journal</div><div class="home-card-sub">ACTS + answered prayer</div></div>
+    <div class="home-card" onclick="showSection('memory')"><div class="home-card-title">Scripture Memory</div><div class="home-card-sub">Hide it in your heart</div></div>
+    <div class="home-card gold-card" onclick="showSection('quotes')"><div class="home-card-title">Quotes &amp; Insights</div><div class="home-card-sub">Capture what strikes you</div></div>
+    <div class="home-card gold-card" onclick="showSection('books')"><div class="home-card-title">Book Summaries</div><div class="home-card-sub">Per-book notes</div></div>
+    <div class="home-card" onclick="showSection('topics')"><div class="home-card-title">Topical Study</div><div class="home-card-sub">Deep dive topics</div></div>
+  </div>
+</div>
+
+
+<!-- DAILY SCRIPTURE -->
+<div class="section" id="sec-devotion">
+  <div class="sec-header">
+    <div class="sec-eyebrow">Daily Scripture</div>
+    <div class="sec-title">365 Verses</div>
+    <div class="sec-sub">One verse for every day of the year &middot; NKJV</div>
+  </div>
+  <div class="dev-card" id="dev-card">
+    <div class="dev-date" id="dev-date">Today</div>
+    <div class="dev-ref" id="dev-ref">Loading...</div>
+    <div class="dev-text" id="dev-text"></div>
+  </div>
+  <div style="text-align:center;margin-bottom:12px;">
+  <a id="dev-audio-link" href="https://www.bible.com/audio-bible/114/GEN.1.NKJV" target="_blank" style="display:inline-block;background:#23252e;color:white;font-size:13px;font-weight:700;padding:10px 24px;text-decoration:none;letter-spacing:.04em;">&#9654; Listen in YouVersion</a>
+</div>
+<div class="dev-nav">
+    <div class="dev-nav-btn" onclick="devPrev()">&#8592; Previous</div>
+    <div class="dev-nav-btn dev-today-btn" onclick="devToday()">Today</div>
+    <div class="dev-nav-btn" onclick="devNext()">Next &#8594;</div>
+  </div>
+  <div class="field-full" style="background:var(--white);border-radius:0;border:.5px solid var(--line);margin-bottom:14px;padding:12px 14px;">
+    <label>My reflection on today's verse</label>
+    <textarea id="dev-reflection" rows="5" style="width:100%;font-size:14px;line-height:1.7;border:none;outline:none;resize:none;background:transparent;font-family:inherit;" placeholder="Write your thoughts..."></textarea>
+  </div>
+  <div class="cal-wrap">
+    <div class="cal-header">
+      <div class="cal-arrow" onclick="calPrev()">&#8592;</div>
+      <div class="cal-month" id="cal-month-label">June 2025</div>
+      <div class="cal-arrow" onclick="calNext()">&#8594;</div>
+    </div>
+    <div class="cal-grid" id="cal-grid"></div>
+  </div>
+</div>
+
+<!-- READING PLAN -->
+<div class="section" id="sec-reading">
+  <div class="sec-header"><div class="sec-eyebrow">Reading Plan</div><div class="sec-title">Bible Progress</div><div class="sec-sub">Check off every book as you complete it</div></div>
+  <div class="rp-progress-wrap">
+    <div class="rp-ring-row">
+      <div class="rp-ring">
+        <svg width="80" height="80" viewBox="0 0 80 80">
+          <circle class="rp-ring-track" cx="40" cy="40" r="33"/>
+          <circle class="rp-ring-fill" id="rp-ring-circle" cx="40" cy="40" r="33" stroke-dasharray="207.3" stroke-dashoffset="207.3"/>
+        </svg>
+        <div class="rp-ring-text"><span class="rp-ring-pct" id="rp-pct-text">0%</span><span class="rp-ring-lbl">done</span></div>
+      </div>
+      <div class="rp-stats">
+        <div class="rp-stat"><div class="rp-stat-val" id="rp-books-done">0</div><div class="rp-stat-lbl">books done</div></div>
+        <div class="rp-stat"><div class="rp-stat-val" id="rp-books-left">66</div><div class="rp-stat-lbl">remaining</div></div>
+        <div class="rp-stat"><div class="rp-stat-val" id="rp-days-left">--</div><div class="rp-stat-lbl">days to target</div></div>
+        <div class="rp-stat"><div class="rp-stat-val" id="rp-ch-day">6</div><div class="rp-stat-lbl">ch/day goal</div></div>
+      </div>
+    </div>
+    <div class="rp-controls">
+      <div class="rp-control"><label>Target date</label><input type="date" id="rp-target-date" oninput="updateRPStats()"></div>
+      <div class="rp-control"><label>Ch/day goal</label><input type="number" id="rp-ch-goal" value="6" min="1" max="30" oninput="updateRPStats()"></div>
+      <div class="rp-control"><label>Start date</label><input type="date" id="rp-start-date" oninput="updateRPStats()"></div>
+    </div>
+  </div>
+  <div id="rp-book-list"></div>
+</div>
+
+<!-- JOURNAL -->
+<div class="section" id="sec-journal">
+  <div class="sec-header"><div class="sec-eyebrow">Daily Journal</div><div class="sec-title">Reflection</div></div>
+  <div id="journal-entries"></div>
+  <button class="add-btn" onclick="addJournalEntry()">+ Add entry</button>
+</div>
+
+<!-- SERMON -->
+<div class="section" id="sec-sermon">
+  <div class="sec-header gold-head"><div class="sec-eyebrow">Sermon Notes</div><div class="sec-title">Sunday Worship</div></div>
+  <div id="sermon-entries"></div>
+  <button class="add-btn" onclick="addSermonEntry()">+ Add sermon</button>
+</div>
+
+<!-- SERIES -->
+<div class="section" id="sec-series">
+  <div class="sec-header blue-head"><div class="sec-eyebrow">Sermon Series</div><div class="sec-title">Series Tracker</div><div class="sec-sub">Follow a multi-week series with a running thread of notes</div></div>
+  <div id="series-entries"></div>
+  <button class="add-btn" onclick="addSeriesEntry()">+ Add series</button>
+</div>
+
+<!-- STUDY -->
+<div class="section" id="sec-study">
+  <div class="sec-header"><div class="sec-eyebrow">Bible Study &middot; S.O.A.P.</div><div class="sec-title">Study Notes</div><div class="sec-sub">Scripture &middot; Observe &middot; Apply &middot; Pray</div></div>
+  <div id="study-entries"></div>
+  <button class="add-btn" onclick="addStudyEntry()">+ Add study</button>
+</div>
+
+<!-- WORD STUDY -->
+<div class="section" id="sec-words">
+  <div class="sec-header purple-head"><div class="sec-eyebrow">Word Study</div><div class="sec-title">Greek &amp; Hebrew</div><div class="sec-sub">Strong's numbers &middot; definitions &middot; usage in Scripture</div></div>
+  <div id="word-entries"></div>
+  <button class="add-btn" onclick="addWordEntry()">+ Add word</button>
+</div>
+
+<!-- PRAYER -->
+<div class="section" id="sec-prayer">
+  <div class="sec-header gold-head"><div class="sec-eyebrow">Prayer Journal</div><div class="sec-title">Prayer &amp; Answered Prayer</div><div class="sec-sub">"The effectual fervent prayer of a righteous man availeth much." &mdash; James 5:16</div></div>
+  <div class="card" style="margin-bottom:16px;">
+    <div style="padding:10px 14px;border-bottom:.5px solid var(--line);"><div style="font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);">A.C.T.S. Prayer</div></div>
+    <div class="acts-tab" id="acts-tabs">
+      <button class="acts-tab-btn active" onclick="setACTS('A',this)">A &middot; Adoration</button>
+      <button class="acts-tab-btn" onclick="setACTS('C',this)">C &middot; Confession</button>
+      <button class="acts-tab-btn" onclick="setACTS('T',this)">T &middot; Thanksgiving</button>
+      <button class="acts-tab-btn" onclick="setACTS('S',this)">S &middot; Supplication</button>
+    </div>
+    <div class="acts-panel active" id="acts-A"><textarea class="lined-area" data-field="acts_A" placeholder="Adoration &mdash; praise who God is..." style="min-height:140px;"></textarea></div>
+    <div class="acts-panel" id="acts-C"><textarea class="lined-area" data-field="acts_C" placeholder="Confession &mdash; confess and repent..." style="min-height:140px;"></textarea></div>
+    <div class="acts-panel" id="acts-T"><textarea class="lined-area" data-field="acts_T" placeholder="Thanksgiving &mdash; specific things to thank God for..." style="min-height:140px;"></textarea></div>
+    <div class="acts-panel" id="acts-S"><textarea class="lined-area" data-field="acts_S" placeholder="Supplication &mdash; specific requests and intercession..." style="min-height:140px;"></textarea></div>
+  </div>
+  <div style="font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:10px;">Prayer Requests</div>
+  <div id="prayer-entries"></div>
+  <button class="add-btn" onclick="addPrayerEntry()">+ Add prayer request</button>
+</div>
+
+<!-- MEMORY -->
+<div class="section" id="sec-memory">
+  <div class="sec-header"><div class="sec-eyebrow">Scripture Memory</div><div class="sec-title">Hide it in your heart</div><div class="sec-sub">"Thy word have I hid in mine heart, that I might not sin against thee." &mdash; Psalm 119:11</div></div>
+  <div class="memory-grid" id="memory-cards"></div>
+  <button class="add-btn" onclick="addMemoryCard()" style="margin-top:12px;">+ Add verse</button>
+</div>
+
+<!-- QUOTES -->
+<div class="section" id="sec-quotes">
+  <div class="sec-header gold-head"><div class="sec-eyebrow">Quotes &amp; Insights</div><div class="sec-title">Things that struck me</div><div class="sec-sub">Capture what catches your attention mid-read or mid-sermon</div></div>
+  <div id="quote-entries"></div>
+  <button class="add-btn" onclick="addQuoteEntry()">+ Add quote or insight</button>
+</div>
+
+<!-- BOOK SUMMARIES -->
+<div class="section" id="sec-books">
+  <div class="sec-header gold-head"><div class="sec-eyebrow">Book Summaries</div><div class="sec-title">Per-Book Notes</div><div class="sec-sub">Author &middot; date &middot; theme &middot; key chapters &middot; your takeaways</div></div>
+  <div id="book-sum-entries"></div>
+  <button class="add-btn" onclick="addBookSummary()">+ Add book</button>
+</div>
+
+<!-- TOPICS -->
+<div class="section" id="sec-topics">
+  <div class="sec-header gold-head"><div class="sec-eyebrow">Topical Study</div><div class="sec-title">Topical Index</div></div>
+  <div id="topics-list"></div>
+  <button class="add-btn" onclick="addTopic()">+ Add topic</button>
+</div>
+
+<!-- LOOKUP -->
+<div class="section" id="sec-lookup">
+  <div class="sec-header"><div class="sec-eyebrow">Scripture Lookup</div><div class="sec-title">Find a Reference</div></div>
+  <div class="card">
+    <div class="card-field" style="padding:12px 14px;">
+      <label>Reference (e.g. Romans 8:1 or Hebrews 4:12)</label>
+      <div style="display:flex;gap:8px;margin-top:6px;">
+        <input type="text" id="lookup-ref" placeholder="Enter reference..." style="flex:1;font-size:16px;border:.5px solid var(--line);border-radius:0;padding:8px 10px;background:var(--cream);">
+        <button onclick="openRef()" style="background:var(--forest);color:white;border:none;border-radius:0;padding:8px 16px;font-weight:600;font-size:14px;cursor:pointer;">Open</button>
+      </div>
+    </div>
+  </div>
+  <div style="font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin:16px 0 8px;">Bible Resources</div>
+  <div class="resource-grid">
+    <a class="resource-btn" href="https://www.biblegateway.com/passage/?search=&version=NKJV" target="_blank">Bible Gateway NKJV</a>
+    <a class="resource-btn" href="https://www.biblegateway.com/passage/?search=&version=KJV" target="_blank">Bible Gateway KJV</a>
+    <a class="resource-btn" href="https://www.blueletterbible.org" target="_blank">Blue Letter Bible</a>
+    <a class="resource-btn" href="https://biblehub.com/interlinear/" target="_blank">Interlinear Greek/Hebrew</a>
+    <a class="resource-btn" href="https://www.esv.org" target="_blank">ESV Online</a>
+    <a class="resource-btn" href="https://www.biblestudytools.com/commentaries/" target="_blank">Commentaries</a>
+    <a class="resource-btn" href="https://www.blueletterbible.org/lang/lexicon/lexicon.cfm" target="_blank">Strong's Concordance</a>
+    <a class="resource-btn" href="https://app.logos.com" target="_blank">Logos</a>
+    <a class="resource-btn" href="https://www.bible.com/audio-bible/114/GEN.1.NKJV" target="_blank" style="background:#23252e;color:white;border-color:#23252e;">&#9654; YouVersion Audio</a>
+  </div>
+</div>
+
+<!-- OT -->
+<div class="section" id="sec-ot">
+  <div class="sec-header"><div class="sec-eyebrow">Old Testament</div><div class="sec-title">39 Books</div><div class="sec-sub">Law &middot; History &middot; Poetry &middot; Prophets</div></div>
+  <div id="ot-books"></div>
+</div>
+
+<!-- NT -->
+<div class="section" id="sec-nt">
+  <div class="sec-header"><div class="sec-eyebrow">New Testament</div><div class="sec-title">27 Books</div><div class="sec-sub">Gospels &middot; Acts &middot; Epistles &middot; Revelation</div></div>
+  <div id="nt-books"></div>
+</div>
+
+<!-- VAULT -->
+<div class="section" id="sec-vault">
+  <div class="sec-header gold-head"><div class="sec-eyebrow">Sermon Vault</div><div class="sec-title">Archive</div></div>
+  <div class="card" style="overflow-x:auto;">
+    <table class="vault-table">
+      <thead><tr><th style="width:76px">Date</th><th>Title / Series</th><th style="width:90px">Speaker</th><th style="width:80px">Scripture</th><th style="width:36px">Pg</th></tr></thead>
+      <tbody id="vault-body"></tbody>
+    </table>
+  </div>
+  <button class="add-btn" onclick="addVaultRow()">+ Add entry</button>
+</div>
+
+</div><!-- /main -->
+
+<button id="lifebible-btn" onclick="openLifeBible()" title="Open in Life Bible" style="position:fixed;bottom:16px;right:140px;background:#1a1a2e;color:white;border:none;font-size:11px;font-weight:700;padding:8px 12px;cursor:pointer;z-index:200;letter-spacing:.04em;">&#128214; Life Bible</button>
+<button id="verse-trigger-btn" onclick="reopenModal()" title="Today's verse" style="position:fixed;bottom:16px;right:60px;background:var(--gold);color:white;border:none;font-size:11px;font-weight:700;padding:8px 12px;cursor:pointer;z-index:200;letter-spacing:.04em;">&#9654; Verse</button>
+<div id="save-dot">Saved &#10003;</div>
+<button id="export-btn" onclick="exportPDF()">&#8659; Export PDF</button>
+
+<script>
+var toolbarVisible=true,activeTool='pen',activeColor='#1c1c1e',strokeSize=2;
+var activeCanvas=null,canvasDrawing=false,lastX=0,lastY=0;
+var canvasData={},saveTimeout;
+var jCount=0,sCount=0,stCount=0,wCount=0,srCount=0,qCount=0,bsCount=0,prCount=0,memCount=0;
+var rpCheckedBooks={};
+
+var BOOK_INFO = {
+  'Genesis':{author:'Moses',date:'~1446–1406 BC',theme:'God creates and calls — origins of the world, sin, and the covenant people'},
+  'Exodus':{author:'Moses',date:'~1446–1406 BC',theme:'God redeems — the exodus from Egypt and the giving of the Law at Sinai'},
+  'Leviticus':{author:'Moses',date:'~1446 BC',theme:'God is holy — laws for worship, sacrifice, and priestly service'},
+  'Numbers':{author:'Moses',date:'~1446–1406 BC',theme:'God is faithful — Israel's wilderness wanderings and rebellion'},
+  'Deuteronomy':{author:'Moses',date:'~1406 BC',theme:'Covenant renewal — Moses' farewell sermons before entering the Promised Land'},
+  'Joshua':{author:'Joshua',date:'~1400–1370 BC',theme:'God keeps His promises — conquest and settling of Canaan'},
+  'Judges':{author:'Samuel (tradition)',date:'~1050–1000 BC',theme:'Cycles of sin, oppression, and deliverance through judges'},
+  'Ruth':{author:'Unknown',date:'~1000 BC',theme:'Loyalty and redemption — a portrait of faithful love (hesed)'},
+  '1 Samuel':{author:'Samuel/Nathan/Gad',date:'~930 BC',theme:'The rise of the monarchy — Samuel, Saul, and David'},
+  '2 Samuel':{author:'Nathan/Gad',date:'~930 BC',theme:'David's kingdom — triumphs, failures, and the Davidic covenant'},
+  '1 Kings':{author:'Unknown',date:'~560–540 BC',theme:'Solomon's glory and the kingdom's division'},
+  '2 Kings':{author:'Unknown',date:'~560–540 BC',theme:'The fall of Israel and Judah — exile as covenant consequence'},
+  '1 Chronicles':{author:'Ezra (tradition)',date:'~450–430 BC',theme:'David's legacy — temple preparation and worship'},
+  '2 Chronicles':{author:'Ezra (tradition)',date:'~450–430 BC',theme:'Temple worship and the kings of Judah'},
+  'Ezra':{author:'Ezra',date:'~457–444 BC',theme:'Return from exile — rebuilding the temple and the community'},
+  'Nehemiah':{author:'Nehemiah',date:'~445–420 BC',theme:'Rebuilding Jerusalem's walls and renewing the covenant'},
+  'Esther':{author:'Unknown',date:'~483–473 BC',theme:'God's hidden providence — preserving His people in exile'},
+  'Job':{author:'Unknown',date:'Unknown',theme:'Suffering and sovereignty — why do the righteous suffer?'},
+  'Psalms':{author:'David and others',date:'~1000–400 BC',theme:'The prayer book of Israel — lament, praise, wisdom, and worship'},
+  'Proverbs':{author:'Solomon and others',date:'~950–700 BC',theme:'Wisdom for daily life — fear of the Lord as the foundation'},
+  'Ecclesiastes':{author:'Qoheleth (Solomon tradition)',date:'~935 BC',theme:'The vanity of life apart from God — seeking meaning under the sun'},
+  'Song of Solomon':{author:'Solomon',date:'~965 BC',theme:'The beauty of love — human intimacy as a picture of divine love'},
+  'Isaiah':{author:'Isaiah',date:'~740–681 BC',theme:'Judgment and salvation — the suffering servant and the coming kingdom'},
+  'Jeremiah':{author:'Jeremiah',date:'~627–586 BC',theme:'Judgment and hope — the new covenant promised amid exile'},
+  'Lamentations':{author:'Jeremiah (tradition)',date:'~586 BC',theme:'Grief over Jerusalem's fall — raw lament and hope in God's mercy'},
+  'Ezekiel':{author:'Ezekiel',date:'~593–571 BC',theme:'The glory of God — judgment, exile, and future restoration'},
+  'Daniel':{author:'Daniel',date:'~605–535 BC',theme:'God reigns over history — faithfulness under Gentile rule'},
+  'Hosea':{author:'Hosea',date:'~755–715 BC',theme:'God's unfailing love — Israel's unfaithfulness and God's pursuit'},
+  'Joel':{author:'Joel',date:'~835 or 400 BC',theme:'The Day of the Lord — judgment and the outpouring of the Spirit'},
+  'Amos':{author:'Amos',date:'~760–750 BC',theme:'Justice and righteousness — God's judgment on social injustice'},
+  'Obadiah':{author:'Obadiah',date:'~586 BC',theme:'Judgment on Edom — pride goes before a fall'},
+  'Jonah':{author:'Jonah',date:'~785–750 BC',theme:'God's mercy for all nations — even Nineveh'},
+  'Micah':{author:'Micah',date:'~735–700 BC',theme:'Justice, mercy, and humility — the coming ruler from Bethlehem'},
+  'Nahum':{author:'Nahum',date:'~663–612 BC',theme:'God's wrath on Nineveh — comfort for oppressed Israel'},
+  'Habakkuk':{author:'Habakkuk',date:'~609–598 BC',theme:'Faith in God's timing — the just shall live by faith'},
+  'Zephaniah':{author:'Zephaniah',date:'~640–621 BC',theme:'The Day of the Lord — judgment and restoration'},
+  'Haggai':{author:'Haggai',date:'~520 BC',theme:'Rebuilding the temple — putting God's house first'},
+  'Zechariah':{author:'Zechariah',date:'~520–480 BC',theme:'Messianic visions — the coming King and shepherd'},
+  'Malachi':{author:'Malachi',date:'~430 BC',theme:'Covenant faithfulness — correcting spiritual apathy before the messenger comes'},
+  'Matthew':{author:'Matthew',date:'~50–70 AD',theme:'Jesus as the promised Messiah — King of the Jews and fulfillment of the OT'},
+  'Mark':{author:'Mark (Peter's account)',date:'~55–65 AD',theme:'Jesus as servant — the urgency of the gospel in action'},
+  'Luke':{author:'Luke',date:'~60–62 AD',theme:'Jesus as Savior of all — compassion for the poor and outcast'},
+  'John':{author:'John',date:'~85–95 AD',theme:'Jesus as the eternal Son of God — believe and have life in His name'},
+  'Acts':{author:'Luke',date:'~62–64 AD',theme:'The church born and spread — the Holy Spirit's mission through the apostles'},
+  'Romans':{author:'Paul',date:'~57 AD',theme:'The gospel of God — righteousness by faith, from sin to sanctification'},
+  '1 Corinthians':{author:'Paul',date:'~55 AD',theme:'The church in a pagan city — unity, gifts, and the resurrection'},
+  '2 Corinthians':{author:'Paul',date:'~55–56 AD',theme:'Ministry and suffering — strength through weakness for Christ's sake'},
+  'Galatians':{author:'Paul',date:'~49 or 55 AD',theme:'Freedom in Christ — justification by faith alone, not the law'},
+  'Ephesians':{author:'Paul',date:'~60–62 AD',theme:'The church as Christ's body — unity, grace, and spiritual warfare'},
+  'Philippians':{author:'Paul',date:'~61 AD',theme:'Joy in Christ — contentment and pressing on in the faith'},
+  'Colossians':{author:'Paul',date:'~60–62 AD',theme:'The supremacy of Christ — all things held together in Him'},
+  'Philemon':{author:'Paul',date:'~61 AD',theme:'Forgiveness and reconciliation — a slave received as a brother'},
+  '1 Thessalonians':{author:'Paul',date:'~50–51 AD',theme:'Living in light of Christ's return — hope amid persecution'},
+  '2 Thessalonians':{author:'Paul',date:'~51 AD',theme:'Standing firm until the end — correction on the Day of the Lord'},
+  '1 Timothy':{author:'Paul',date:'~62–64 AD',theme:'Church order and leadership — sound doctrine and godly living'},
+  '2 Timothy':{author:'Paul',date:'~66–67 AD',theme:'Paul's final charge — preach the word, endure hardship'},
+  'Titus':{author:'Paul',date:'~63–65 AD',theme:'Sound doctrine and good works — ordering the church on Crete'},
+  'Hebrews':{author:'Unknown',date:'~64–69 AD',theme:'Jesus as the great High Priest — superior to all of the old covenant'},
+  'James':{author:'James',date:'~45–50 AD',theme:'Faith that works — practical wisdom for trials and holy living'},
+  '1 Peter':{author:'Peter',date:'~64–65 AD',theme:'Hope in suffering — living as elect strangers in a hostile world'},
+  '2 Peter':{author:'Peter',date:'~67–68 AD',theme:'Guard against false teaching — grow in grace and knowledge'},
+  '1 John':{author:'John',date:'~85–95 AD',theme:'Assurance of salvation — love, light, and life in Christ'},
+  '2 John':{author:'John',date:'~85–95 AD',theme:'Walk in truth and love — beware of deceivers'},
+  '3 John':{author:'John',date:'~85–95 AD',theme:'Hospitality and faithfulness — support for those who go out for the Name'},
+  'Jude':{author:'Jude',date:'~65–80 AD',theme:'Contend for the faith — warning against false teachers'},
+  'Revelation':{author:'John',date:'~94–96 AD',theme:'The victory of Christ — the Lamb conquers and reigns forever'}
+};
+
+
+var DAILY_SCRIPTURES=[
+  ['John 1:1','In the beginning was the Word, and the Word was with God, and the Word was God.'],
+  ['Genesis 1:1','In the beginning God created the heavens and the earth.'],
+  ['Psalm 23:1','The Lord is my shepherd; I shall not want.'],
+  ['Proverbs 3:5','Trust in the Lord with all your heart, and lean not on your own understanding.'],
+  ['Isaiah 40:31','But those who wait on the Lord shall renew their strength; they shall mount up with wings like eagles.'],
+  ['Romans 8:28','And we know that all things work together for good to those who love God.'],
+  ['Philippians 4:13','I can do all things through Christ who strengthens me.'],
+  ['Jeremiah 29:11','For I know the plans I have for you, declares the Lord, plans for welfare and not for evil, to give you a future and a hope.'],
+  ['Matthew 6:33','But seek first the kingdom of God and His righteousness, and all these things shall be added to you.'],
+  ['Psalm 119:105','Your word is a lamp to my feet and a light to my path.'],
+  ['2 Timothy 3:16','All Scripture is given by inspiration of God, and is profitable for doctrine, for reproof, for correction, for instruction in righteousness.'],
+  ['Hebrews 11:1','Now faith is the substance of things hoped for, the evidence of things not seen.'],
+  ['Romans 5:8','But God demonstrates His own love toward us, in that while we were still sinners, Christ died for us.'],
+  ['John 3:16','For God so loved the world that He gave His only begotten Son, that whoever believes in Him should not perish but have everlasting life.'],
+  ['Galatians 2:20','I have been crucified with Christ; it is no longer I who live, but Christ lives in me.'],
+  ['Ephesians 2:8','For by grace you have been saved through faith, and that not of yourselves; it is the gift of God.'],
+  ['Romans 12:2','And do not be conformed to this world, but be transformed by the renewing of your mind.'],
+  ['Psalm 46:10','Be still, and know that I am God.'],
+  ['Matthew 11:28','Come to Me, all you who labor and are heavy laden, and I will give you rest.'],
+  ['1 Corinthians 13:4','Love suffers long and is kind; love does not envy; love does not parade itself, is not puffed up.'],
+  ['Joshua 1:9','Be strong and courageous. Do not be frightened, and do not be dismayed, for the Lord your God is with you wherever you go.'],
+  ['Psalm 27:1','The Lord is my light and my salvation; whom shall I fear?'],
+  ['Isaiah 41:10','Fear not, for I am with you; be not dismayed, for I am your God. I will strengthen you, yes, I will help you.'],
+  ['Romans 8:1','There is therefore now no condemnation to those who are in Christ Jesus.'],
+  ['Philippians 4:6','Be anxious for nothing, but in everything by prayer and supplication, with thanksgiving, let your requests be made known to God.'],
+  ['Psalm 37:4','Delight yourself also in the Lord, and He shall give you the desires of your heart.'],
+  ['Proverbs 4:23','Keep your heart with all diligence, for out of it spring the issues of life.'],
+  ['Matthew 5:16','Let your light so shine before men, that they may see your good works and glorify your Father in heaven.'],
+  ['2 Corinthians 5:17','Therefore, if anyone is in Christ, he is a new creation; old things have passed away; behold, all things have become new.'],
+  ['1 John 4:19','We love Him because He first loved us.'],
+  ['Psalm 1:1','Blessed is the man who walks not in the counsel of the ungodly.'],
+  ['Colossians 3:2','Set your mind on things above, not on things on the earth.'],
+  ['James 1:2','My brethren, count it all joy when you fall into various trials.'],
+  ['1 Peter 5:7','Casting all your care upon Him, for He cares for you.'],
+  ['Hebrews 4:12','For the word of God is living and powerful, and sharper than any two-edged sword.'],
+  ['Romans 1:16','For I am not ashamed of the gospel of Christ, for it is the power of God to salvation for everyone who believes.'],
+  ['Psalm 139:14','I will praise You, for I am fearfully and wonderfully made.'],
+  ['Matthew 28:19','Go therefore and make disciples of all the nations, baptizing them in the name of the Father and of the Son and of the Holy Spirit.'],
+  ['John 14:6','Jesus said to him, \'I am the way, the truth, and the life. No one comes to the Father except through Me.\''],
+  ['Proverbs 22:6','Train up a child in the way he should go, and when he is old he will not depart from it.'],
+  ['Isaiah 53:5','But He was wounded for our transgressions, He was bruised for our iniquities; the chastisement for our peace was upon Him.'],
+  ['Micah 6:8','He has shown you, O man, what is good; and what does the Lord require of you but to do justly, to love mercy, and to walk humbly with your God?'],
+  ['John 10:10','I have come that they may have life, and that they may have it more abundantly.'],
+  ['Romans 6:23','For the wages of sin is death, but the gift of God is eternal life in Christ Jesus our Lord.'],
+  ['Ephesians 6:10','Finally, my brethren, be strong in the Lord and in the power of His might.'],
+  ['Psalm 51:10','Create in me a clean heart, O God, and renew a steadfast spirit within me.'],
+  ['Colossians 1:17','And He is before all things, and in Him all things consist.'],
+  ['1 Thessalonians 5:16','Rejoice always, pray without ceasing, in everything give thanks.'],
+  ['James 4:7','Therefore submit to God. Resist the devil and he will flee from you.'],
+  ['Hebrews 12:1','Therefore we also, since we are surrounded by so great a cloud of witnesses, let us lay aside every weight.'],
+  ['Romans 8:38','For I am persuaded that neither death nor life, nor angels nor principalities, shall be able to separate us from the love of God.'],
+  ['Psalm 34:8','Oh, taste and see that the Lord is good; blessed is the man who trusts in Him!'],
+  ['Matthew 22:37','You shall love the Lord your God with all your heart, with all your soul, and with all your mind.'],
+  ['John 15:5','I am the vine, you are the branches. He who abides in Me, and I in him, bears much fruit.'],
+  ['Galatians 5:22','But the fruit of the Spirit is love, joy, peace, longsuffering, kindness, goodness, faithfulness.'],
+  ['Isaiah 26:3','You will keep him in perfect peace, whose mind is stayed on You, because he trusts in You.'],
+  ['Psalm 91:1','He who dwells in the secret place of the Most High shall abide under the shadow of the Almighty.'],
+  ['Proverbs 16:3','Commit your works to the Lord, and your thoughts will be established.'],
+  ['2 Chronicles 7:14','If My people who are called by My name will humble themselves, and pray and seek My face, and turn from their wicked ways, then I will hear from heaven.'],
+  ['Matthew 6:9','Our Father in heaven, hallowed be Your name. Your kingdom come. Your will be done on earth as it is in heaven.'],
+  ['John 11:25','Jesus said to her, \'I am the resurrection and the life. He who believes in Me, though he may die, he shall live.\''],
+  ['Romans 10:9','That if you confess with your mouth the Lord Jesus and believe in your heart that God has raised Him from the dead, you will be saved.'],
+  ['Psalm 16:11','You will show me the path of life; in Your presence is fullness of joy; at Your right hand are pleasures forevermore.'],
+  ['Hebrews 13:8','Jesus Christ is the same yesterday, today, and forever.'],
+  ['1 Corinthians 10:31','Therefore, whether you eat or drink, or whatever you do, do all to the glory of God.'],
+  ['Philippians 1:6','Being confident of this very thing, that He who has begun a good work in you will complete it until the day of Jesus Christ.'],
+  ['Isaiah 55:8','For My thoughts are not your thoughts, nor are your ways My ways, says the Lord.'],
+  ['Psalm 121:1','I will lift up my eyes to the hills—from whence comes my help? My help comes from the Lord.'],
+  ['John 8:32','And you shall know the truth, and the truth shall make you free.'],
+  ['Ephesians 4:32','And be kind to one another, tenderhearted, forgiving one another, even as God in Christ forgave you.'],
+  ['Romans 15:13','Now may the God of hope fill you with all joy and peace in believing, that you may abound in hope.'],
+  ['Proverbs 18:10','The name of the Lord is a strong tower; the righteous run to it and are safe.'],
+  ['Matthew 5:8','Blessed are the pure in heart, for they shall see God.'],
+  ['1 John 1:9','If we confess our sins, He is faithful and just to forgive us our sins and to cleanse us from all unrighteousness.'],
+  ['Psalm 19:14','Let the words of my mouth and the meditation of my heart be acceptable in Your sight, O Lord, my strength and my Redeemer.'],
+  ['Colossians 3:23','And whatever you do, do it heartily, as to the Lord and not to men.'],
+  ['2 Corinthians 12:9','And He said to me, \'My grace is sufficient for you, for My strength is made perfect in weakness.\''],
+  ['John 16:33','These things I have spoken to you, that in Me you may have peace. In the world you will have tribulation; but be of good cheer, I have overcome the world.'],
+  ['Psalm 103:12','As far as the east is from the west, so far has He removed our transgressions from us.'],
+  ['Romans 8:37','Yet in all these things we are more than conquerors through Him who loved us.'],
+  ['Hebrews 10:23','Let us hold fast the confession of our hope without wavering, for He who promised is faithful.'],
+  ['1 Corinthians 15:57','But thanks be to God, who gives us the victory through our Lord Jesus Christ.'],
+  ['Psalm 84:11','For the Lord God is a sun and shield; the Lord will give grace and glory; no good thing will He withhold from those who walk uprightly.'],
+  ['Matthew 7:7','Ask, and it will be given to you; seek, and you will find; knock, and it will be opened to you.'],
+  ['Isaiah 43:2','When you pass through the waters, I will be with you; and through the rivers, they shall not overflow you.'],
+  ['Ephesians 3:20','Now to Him who is able to do exceedingly abundantly above all that we ask or think, according to the power that works in us.'],
+  ['John 14:27','Peace I leave with you, My peace I give to you; not as the world gives do I give to you. Let not your heart be troubled.'],
+  ['Psalm 73:26','My flesh and my heart fail; but God is the strength of my heart and my portion forever.'],
+  ['Romans 12:12','Rejoicing in hope, patient in tribulation, continuing steadfastly in prayer.'],
+  ['Proverbs 3:6','In all your ways acknowledge Him, and He shall direct your paths.'],
+  ['1 Peter 2:9','But you are a chosen generation, a royal priesthood, a holy nation, His own special people.'],
+  ['Matthew 6:34','Therefore do not worry about tomorrow, for tomorrow will worry about its own things.'],
+  ['Psalm 32:8','I will instruct you and teach you in the way you should go; I will guide you with My eye.'],
+  ['Hebrews 11:6','But without faith it is impossible to please Him, for he who comes to God must believe that He is.'],
+  ['Isaiah 40:8','The grass withers, the flower fades, but the word of our God stands forever.'],
+  ['Colossians 2:6','As you therefore have received Christ Jesus the Lord, so walk in Him.'],
+  ['John 15:13','Greater love has no one than this, than to lay down one\'s life for his friends.'],
+  ['Psalm 56:3','Whenever I am afraid, I will trust in You.'],
+  ['Romans 5:1','Therefore, having been justified by faith, we have peace with God through our Lord Jesus Christ.'],
+  ['Philippians 2:3','Let nothing be done through selfish ambition or conceit, but in lowliness of mind let each esteem others better than himself.'],
+  ['Matthew 5:44','But I say to you, love your enemies, bless those who curse you, do good to those who hate you.'],
+  ['2 Timothy 1:7','For God has not given us a spirit of fear, but of power and of love and of a sound mind.'],
+  ['Psalm 145:18','The Lord is near to all who call upon Him, to all who call upon Him in truth.'],
+  ['1 Corinthians 6:19','Or do you not know that your body is the temple of the Holy Spirit who is in you?'],
+  ['Galatians 6:9','And let us not grow weary while doing good, for in due season we shall reap if we do not lose heart.'],
+  ['Isaiah 58:11','The Lord will guide you continually, and satisfy your soul in drought, and strengthen your bones.'],
+  ['John 6:35','And Jesus said to them, \'I am the bread of life. He who comes to Me shall never hunger.\''],
+  ['Romans 8:14','For as many as are led by the Spirit of God, these are sons of God.'],
+  ['Psalm 62:8','Trust in Him at all times, you people; pour out your heart before Him; God is a refuge for us.'],
+  ['Proverbs 11:14','Where there is no counsel, the people fall; but in the multitude of counselors there is safety.'],
+  ['Hebrews 4:16','Let us therefore come boldly to the throne of grace, that we may obtain mercy and find grace to help in time of need.'],
+  ['Matthew 5:6','Blessed are those who hunger and thirst for righteousness, for they shall be filled.'],
+  ['1 John 3:18','My little children, let us not love in word or in tongue, but in deed and in truth.'],
+  ['Ephesians 1:7','In Him we have redemption through His blood, the forgiveness of sins, according to the riches of His grace.'],
+  ['Psalm 40:1','I waited patiently for the Lord; and He inclined to me, and heard my cry.'],
+  ['Isaiah 30:21','Your ears shall hear a word behind you, saying, \'This is the way, walk in it.\''],
+  ['John 4:24','God is Spirit, and those who worship Him must worship in spirit and truth.'],
+  ['Romans 8:26','Likewise the Spirit also helps in our weaknesses. For we do not know what we should pray for as we ought.'],
+  ['Philippians 3:14','I press toward the goal for the prize of the upward call of God in Christ Jesus.'],
+  ['Psalm 119:11','Your word I have hidden in my heart, that I might not sin against You.'],
+  ['Colossians 3:16','Let the word of Christ dwell in you richly in all wisdom, teaching and admonishing one another.'],
+  ['Matthew 6:6','But you, when you pray, go into your room, and when you have shut your door, pray to your Father who is in the secret place.'],
+  ['1 Corinthians 1:18','For the message of the cross is foolishness to those who are perishing, but to us who are being saved it is the power of God.'],
+  ['Psalm 25:4','Show me Your ways, O Lord; teach me Your paths.'],
+  ['James 1:22','But be doers of the word, and not hearers only, deceiving yourselves.'],
+  ['Isaiah 40:29','He gives power to the weak, and to those who have no might He increases strength.'],
+  ['Romans 12:1','I beseech you therefore, brethren, by the mercies of God, that you present your bodies a living sacrifice, holy, acceptable to God.'],
+  ['John 17:17','Sanctify them by Your truth. Your word is truth.'],
+  ['Ephesians 5:15','See then that you walk circumspectly, not as fools but as wise.'],
+  ['Psalm 86:11','Teach me Your way, O Lord; I will walk in Your truth; unite my heart to fear Your name.'],
+  ['Proverbs 27:17','As iron sharpens iron, so a man sharpens the countenance of his friend.'],
+  ['Hebrews 6:19','This hope we have as an anchor of the soul, both sure and steadfast.'],
+  ['Matthew 5:3','Blessed are the poor in spirit, for theirs is the kingdom of heaven.'],
+  ['2 Corinthians 4:17','For our light and momentary troubles are achieving for us an eternal glory that far outweighs them all.'],
+  ['1 Peter 1:16','Because it is written, \'Be holy, for I am holy.\''],
+  ['Psalm 9:9','The Lord also will be a refuge for the oppressed, a refuge in times of trouble.'],
+  ['Romans 3:23','For all have sinned and fall short of the glory of God.'],
+  ['John 15:7','If you abide in Me, and My words abide in you, you will ask what you desire, and it shall be done for you.'],
+  ['Isaiah 43:18','Do not remember the former things, nor consider the things of old. Behold, I will do a new thing.'],
+  ['Philippians 4:7','And the peace of God, which surpasses all understanding, will guard your hearts and minds through Christ Jesus.'],
+  ['Psalm 145:9','The Lord is good to all, and His tender mercies are over all His works.'],
+  ['Colossians 4:2','Continue earnestly in prayer, being vigilant in it with thanksgiving.'],
+  ['Matthew 18:20','For where two or three are gathered together in My name, I am there in the midst of them.'],
+  ['Galatians 5:1','Stand fast therefore in the liberty by which Christ has made us free.'],
+  ['1 Corinthians 2:9','But as it is written: \'Eye has not seen, nor ear heard, nor have entered into the heart of man the things which God has prepared for those who love Him.\''],
+  ['Psalm 31:24','Be of good courage, and He shall strengthen your heart, all you who hope in the Lord.'],
+  ['Isaiah 54:17','No weapon formed against you shall prosper.'],
+  ['John 8:12','Then Jesus spoke to them again, saying, \'I am the light of the world. He who follows Me shall not walk in darkness.\''],
+  ['Romans 8:6','For to be carnally minded is death, but to be spiritually minded is life and peace.'],
+  ['Hebrews 2:18','For in that He Himself has suffered, being tempted, He is able to aid those who are tempted.'],
+  ['Psalm 55:22','Cast your burden on the Lord, and He shall sustain you; He shall never permit the righteous to be moved.'],
+  ['Proverbs 1:7','The fear of the Lord is the beginning of knowledge, but fools despise wisdom and instruction.'],
+  ['Matthew 5:9','Blessed are the peacemakers, for they shall be called sons of God.'],
+  ['1 John 5:14','Now this is the confidence that we have in Him, that if we ask anything according to His will, He hears us.'],
+  ['Ephesians 2:10','For we are His workmanship, created in Christ Jesus for good works, which God prepared beforehand that we should walk in them.'],
+  ['Psalm 119:130','The entrance of Your words gives light; it gives understanding to the simple.'],
+  ['Isaiah 26:4','Trust in the Lord forever, for in Yah, the Lord, is everlasting strength.'],
+  ['Romans 8:11','But if the Spirit of Him who raised Jesus from the dead dwells in you, He who raised Christ from the dead will also give life to your mortal bodies.'],
+  ['John 20:29','Jesus said to him, \'Thomas, because you have seen Me, you have believed. Blessed are those who have not seen and yet have believed.\''],
+  ['Colossians 1:16','For by Him all things were created that are in heaven and that are on earth, visible and invisible.'],
+  ['Psalm 107:1','Oh, give thanks to the Lord, for He is good! For His mercy endures forever.'],
+  ['James 5:16','Confess your trespasses to one another, and pray for one another, that you may be healed.'],
+  ['Matthew 24:35','Heaven and earth will pass away, but My words will by no means pass away.'],
+  ['2 Timothy 2:15','Be diligent to present yourself approved to God, a worker who does not need to be ashamed, rightly dividing the word of truth.'],
+  ['1 Corinthians 15:3','For I delivered to you first of all that which I also received: that Christ died for our sins according to the Scriptures.'],
+  ['Psalm 46:1','God is our refuge and strength, a very present help in trouble.'],
+  ['Isaiah 55:11','So shall My word be that goes forth from My mouth; it shall not return to Me void.'],
+  ['Romans 12:10','Be kindly affectionate to one another with brotherly love, in honor giving preference to one another.'],
+  ['Hebrews 11:3','By faith we understand that the worlds were framed by the word of God.'],
+  ['John 3:30','He must increase, but I must decrease.'],
+  ['Philippians 4:11','I have learned, in whatever state I am, to be content.'],
+  ['Psalm 119:18','Open my eyes, that I may see wondrous things from Your law.'],
+  ['Proverbs 15:1','A soft answer turns away wrath, but a harsh word stirs up anger.'],
+  ['Matthew 6:20','But lay up for yourselves treasures in heaven, where neither moth nor rust destroys.'],
+  ['Galatians 3:26','For you are all sons of God through faith in Christ Jesus.'],
+  ['1 Peter 3:15','But sanctify the Lord God in your hearts, and always be ready to give a defense to everyone who asks you a reason for the hope that is in you.'],
+  ['Psalm 18:2','The Lord is my rock and my fortress and my deliverer; my God, my strength, in whom I will trust.'],
+  ['Colossians 3:12','Therefore, as the elect of God, holy and beloved, put on tender mercies, kindness, humility, meekness, longsuffering.'],
+  ['Isaiah 40:1','Comfort, yes, comfort My people! says your God.'],
+  ['Romans 5:3','And not only that, but we also glory in tribulations, knowing that tribulation produces perseverance.'],
+  ['John 14:1','Let not your heart be troubled; you believe in God, believe also in Me.'],
+  ['Psalm 119:9','How can a young man cleanse his way? By taking heed according to Your word.'],
+  ['Matthew 5:4','Blessed are those who mourn, for they shall be comforted.'],
+  ['Ephesians 6:11','Put on the whole armor of God, that you may be able to stand against the wiles of the devil.'],
+  ['1 Corinthians 13:13','And now abide faith, hope, love, these three; but the greatest of these is love.'],
+  ['Isaiah 61:1','The Spirit of the Lord God is upon Me, because the Lord has anointed Me to preach good tidings to the poor.'],
+  ['Hebrews 9:22','And according to the law almost all things are purified with blood, and without shedding of blood there is no remission.'],
+  ['Romans 8:2','For the law of the Spirit of life in Christ Jesus has made me free from the law of sin and death.'],
+  ['Psalm 150:6','Let everything that has breath praise the Lord.'],
+  ['John 15:16','You did not choose Me, but I chose you and appointed you that you should go and bear fruit.'],
+  ['Proverbs 31:25','Strength and honor are her clothing; she shall rejoice in time to come.'],
+  ['2 Corinthians 1:3','Blessed be the God and Father of our Lord Jesus Christ, the Father of mercies and God of all comfort.'],
+  ['Matthew 10:39','He who finds his life will lose it, and he who loses his life for My sake will find it.'],
+  ['Galatians 6:2','Bear one another\'s burdens, and so fulfill the law of Christ.'],
+  ['Psalm 42:1','As the deer pants for the water brooks, so pants my soul for You, O God.'],
+  ['1 Timothy 6:6','Now godliness with contentment is great gain.'],
+  ['Isaiah 43:1','But now, thus says the Lord, who created you, O Jacob, and He who formed you, O Israel: \'Fear not, for I have redeemed you.\''],
+  ['Romans 12:9','Let love be without hypocrisy. Abhor what is evil. Cling to what is good.'],
+  ['Hebrews 12:2','Looking unto Jesus, the author and finisher of our faith.'],
+  ['John 6:47','Most assuredly, I say to you, he who believes in Me has everlasting life.'],
+  ['Philippians 4:19','And my God shall supply all your need according to His riches in glory by Christ Jesus.'],
+  ['Psalm 100:4','Enter into His gates with thanksgiving, and into His courts with praise. Be thankful to Him, and bless His name.'],
+  ['Colossians 1:10','That you may walk worthy of the Lord, fully pleasing Him, being fruitful in every good work and increasing in the knowledge of God.'],
+  ['Matthew 5:7','Blessed are the merciful, for they shall obtain mercy.'],
+  ['1 John 2:6','He who says he abides in Him ought himself also to walk just as He walked.'],
+  ['Romans 4:20','He did not waver at the promise of God through unbelief, but was strengthened in faith, giving glory to God.'],
+  ['Psalm 33:12','Blessed is the nation whose God is the Lord, the people He has chosen as His own inheritance.'],
+  ['Isaiah 48:17','I am the Lord your God, who teaches you to profit, who leads you by the way you should go.'],
+  ['Ephesians 4:2','With all lowliness and gentleness, with longsuffering, bearing with one another in love.'],
+  ['John 13:34','A new commandment I give to you, that you love one another; as I have loved you, that you also love one another.'],
+  ['James 1:5','If any of you lacks wisdom, let him ask of God, who gives to all liberally and without reproach, and it will be given to him.'],
+  ['Hebrews 13:5','I will never leave you nor forsake you.'],
+  ['Psalm 119:1','Blessed are the undefiled in the way, who walk in the law of the Lord!'],
+  ['Matthew 5:5','Blessed are the meek, for they shall inherit the earth.'],
+  ['Romans 6:4','Therefore we were buried with Him through baptism into death, that just as Christ was raised from the dead by the glory of the Father, even so we also should walk in newness of life.'],
+  ['1 Corinthians 3:16','Do you not know that you are the temple of God and that the Spirit of God dwells in you?'],
+  ['Isaiah 33:6','Wisdom and knowledge will be the stability of your times, and the strength of salvation; the fear of the Lord is His treasure.'],
+  ['Colossians 2:3','In whom are hidden all the treasures of wisdom and knowledge.'],
+  ['John 10:27','My sheep hear My voice, and I know them, and they follow Me.'],
+  ['Psalm 119:15','I will meditate on Your precepts, and contemplate Your ways.'],
+  ['Proverbs 2:6','For the Lord gives wisdom; from His mouth come knowledge and understanding.'],
+  ['Hebrews 11:8','By faith Abraham obeyed when he was called to go out to the place which he would receive as an inheritance.'],
+  ['Matthew 6:3','But when you do a charitable deed, do not let your left hand know what your right hand is doing.'],
+  ['Romans 10:17','So then faith comes by hearing, and hearing by the word of God.'],
+  ['Galatians 2:16','Knowing that a man is not justified by the works of the law but by faith in Jesus Christ.'],
+  ['Psalm 119:165','Great peace have those who love Your law, and nothing causes them to stumble.'],
+  ['1 Peter 4:8','And above all things have fervent love for one another, for love will cover a multitude of sins.'],
+  ['Isaiah 60:1','Arise, shine; for your light has come! And the glory of the Lord is risen upon you.'],
+  ['John 1:14','And the Word became flesh and dwelt among us, and we beheld His glory.'],
+  ['Ephesians 5:25','Husbands, love your wives, just as Christ also loved the church and gave Himself for her.'],
+  ['Romans 12:18','If it is possible, as much as depends on you, live peaceably with all men.'],
+  ['Psalm 119:72','The law of Your mouth is better to me than thousands of coins of gold and silver.'],
+  ['Matthew 7:12','Therefore, whatever you want men to do to you, do also to them, for this is the Law and the Prophets.'],
+  ['2 Corinthians 9:7','So let each one give as he purposes in his heart, not grudgingly or of necessity; for God loves a cheerful giver.'],
+  ['Colossians 3:15','And let the peace of God rule in your hearts, to which also you were called in one body; and be thankful.'],
+  ['1 John 4:8','He who does not love does not know God, for God is love.'],
+  ['Isaiah 64:8','But now, O Lord, You are our Father; we are the clay, and You our potter; and all we are the work of Your hand.'],
+  ['Psalm 119:24','Your testimonies also are my delight and my counselors.'],
+  ['Hebrews 11:4','By faith Abel offered to God a more excellent sacrifice than Cain, through which he obtained witness that he was righteous.'],
+  ['Romans 8:17','And if children, then heirs—heirs of God and joint heirs with Christ, if indeed we suffer with Him.'],
+  ['Matthew 5:10','Blessed are those who are persecuted for righteousness\' sake, for theirs is the kingdom of heaven.'],
+  ['John 14:16','And I will pray the Father, and He will give you another Helper, that He may abide with you forever.'],
+  ['Philippians 2:10','That at the name of Jesus every knee should bow, of those in heaven, and of those on earth, and of those under the earth.'],
+  ['Psalm 119:37','Turn away my eyes from looking at worthless things, and revive me in Your way.'],
+  ['Proverbs 6:23','For the commandment is a lamp, and the law a light; reproofs of instruction are the way of life.'],
+  ['1 Corinthians 16:13','Watch, stand fast in the faith, be brave, be strong.'],
+  ['Isaiah 43:10','You are My witnesses, says the Lord, and My servant whom I have chosen.'],
+  ['Matthew 16:24','Then Jesus said to His disciples, \'If anyone desires to come after Me, let him deny himself, and take up his cross, and follow Me.\''],
+  ['Romans 8:31','What then shall we say to these things? If God is for us, who can be against us?'],
+  ['Ephesians 6:18','Praying always with all prayer and supplication in the Spirit, being watchful to this end with all perseverance.'],
+  ['Psalm 119:50','This is my comfort in my affliction, for Your word has given me life.'],
+  ['Hebrews 11:11','By faith Sarah herself also received strength to conceive seed, and she bore a child when she was past the age.'],
+  ['John 12:46','I have come as a light into the world, that whoever believes in Me should not abide in darkness.'],
+  ['Galatians 5:16','I say then: Walk in the Spirit, and you shall not fulfill the lust of the flesh.'],
+  ['Psalm 119:58','I entreated Your favor with my whole heart; be merciful to me according to Your word.'],
+  ['Colossians 1:27','To them God willed to make known what are the riches of the glory of this mystery among the Gentiles: which is Christ in you, the hope of glory.'],
+  ['Matthew 5:14','You are the light of the world. A city that is set on a hill cannot be hidden.'],
+  ['1 Peter 1:3','Blessed be the God and Father of our Lord Jesus Christ, who according to His abundant mercy has begotten us again to a living hope.'],
+  ['Romans 8:32','He who did not spare His own Son, but delivered Him up for us all, how shall He not with Him also freely give us all things?'],
+  ['Isaiah 44:6','I am the First and I am the Last; besides Me there is no God.'],
+  ['Psalm 119:67','Before I was afflicted I went astray, but now I keep Your word.'],
+  ['Hebrews 11:24','By faith Moses, when he became of age, refused to be called the son of Pharaoh\'s daughter.'],
+  ['John 14:3','And if I go and prepare a place for you, I will come again and receive you to Myself.'],
+  ['Philippians 3:10','That I may know Him and the power of His resurrection, and the fellowship of His sufferings.'],
+  ['Psalm 119:76','Let, I pray, Your merciful kindness be for my comfort, according to Your word to Your servant.'],
+  ['Matthew 6:24','No one can serve two masters; for either he will hate the one and love the other.'],
+  ['2 Timothy 4:2','Preach the word! Be ready in season and out of season. Convince, rebuke, exhort, with all longsuffering and teaching.'],
+  ['1 John 4:4','You are of God, little children, and have overcome them, because He who is in you is greater than he who is in the world.'],
+  ['Psalm 119:89','Forever, O Lord, Your word is settled in heaven.'],
+  ['Romans 8:39','Nor height nor depth, nor any other created thing, shall be able to separate us from the love of God which is in Christ Jesus our Lord.'],
+  ['Isaiah 45:22','Look to Me, and be saved, all you ends of the earth! For I am God, and there is no other.'],
+  ['Colossians 1:13','He has delivered us from the power of darkness and conveyed us into the kingdom of the Son of His love.'],
+  ['Matthew 11:30','For My yoke is easy and My burden is light.'],
+  ['Psalm 119:92','Unless Your law had been my delight, I would then have perished in my affliction.'],
+  ['Hebrews 11:26','Esteeming the reproach of Christ greater riches than the treasures in Egypt; for he looked to the reward.'],
+  ['John 15:11','These things I have spoken to you, that My joy may remain in you, and that your joy may be full.'],
+  ['Romans 8:18','For I consider that the sufferings of this present time are not worth comparing with the glory that is to be revealed in us.'],
+  ['Ephesians 3:17','That Christ may dwell in your hearts through faith; that you, being rooted and grounded in love.'],
+  ['Psalm 119:97','Oh, how I love Your law! It is my meditation all the day.'],
+  ['1 Corinthians 4:20','For the kingdom of God is not in word but in power.'],
+  ['Isaiah 46:4','Even to your old age, I am He, and even to gray hairs I will carry you!'],
+  ['Matthew 5:13','You are the salt of the earth; but if the salt loses its flavor, how shall it be seasoned?'],
+  ['Galatians 4:4','But when the fullness of the time had come, God sent forth His Son, born of a woman.'],
+  ['Psalm 119:103','How sweet are Your words to my taste, sweeter than honey to my mouth!'],
+  ['Colossians 3:1','If then you were raised with Christ, seek those things which are above, where Christ is, sitting at the right hand of God.'],
+  ['Romans 12:3','For I say, through the grace given to me, to everyone who is among you, not to think of himself more highly than he ought to think.'],
+  ['Hebrews 11:29','By faith they passed through the Red Sea as by dry land.'],
+  ['John 16:24','Until now you have asked nothing in My name. Ask, and you will receive, that your joy may be full.'],
+  ['Philippians 4:4','Rejoice in the Lord always. Again I will say, rejoice!'],
+  ['Psalm 119:114','You are my hiding place and my shield; I hope in Your word.'],
+  ['Matthew 6:7','And when you pray, do not use vain repetitions as the heathen do. For they think that they will be heard for their many words.'],
+  ['1 Peter 5:10','But may the God of all grace, who called us to His eternal glory by Christ Jesus, after you have suffered a while, perfect, establish, strengthen, and settle you.'],
+  ['Isaiah 49:15','Can a woman forget her nursing child, and not have compassion on the son of her womb? Surely they may forget, yet I will not forget you.'],
+  ['Romans 8:24','For we were saved in this hope, but hope that is seen is not hope; for why does one still hope for what he sees?'],
+  ['Psalm 119:133','Direct my steps by Your word, and let no iniquity have dominion over me.'],
+  ['Colossians 2:9','For in Him dwells all the fullness of the Godhead bodily.'],
+  ['Matthew 5:48','Therefore you shall be perfect, just as your Father in heaven is perfect.'],
+  ['Hebrews 13:15','Therefore by Him let us continually offer the sacrifice of praise to God, that is, the fruit of our lips, giving thanks to His name.'],
+  ['John 17:3','And this is eternal life, that they may know You, the only true God, and Jesus Christ whom You have sent.'],
+  ['Galatians 6:7','Do not be deceived, God is not mocked; for whatever a man sows, that he will also reap.'],
+  ['Psalm 119:140','Your word is very pure; therefore Your servant loves it.'],
+  ['Romans 1:17','For in it the righteousness of God is revealed from faith to faith; as it is written, \'The just shall live by faith.\''],
+  ['1 Timothy 2:5','For there is one God and one Mediator between God and men, the Man Christ Jesus.'],
+  ['Ephesians 1:4','Just as He chose us in Him before the foundation of the world, that we should be holy and without blame before Him in love.'],
+  ['Psalm 119:148','My eyes are awake through the night watches, that I may meditate on Your word.'],
+  ['Matthew 5:11','Blessed are you when they revile and persecute you, and say all kinds of evil against you falsely for My sake.'],
+  ['Hebrews 12:11','Now no chastening seems to be joyful for the present, but painful; nevertheless, afterward it yields the peaceable fruit of righteousness.'],
+  ['John 8:36','Therefore if the Son makes you free, you shall be free indeed.'],
+  ['Colossians 3:17','And whatever you do in word or deed, do all in the name of the Lord Jesus, giving thanks to God the Father through Him.'],
+  ['Romans 12:4','For as we have many members in one body, but all the members do not have the same function.'],
+  ['Psalm 119:160','The entirety of Your word is truth, and every one of Your righteous judgments endures forever.'],
+  ['Isaiah 53:6','All we like sheep have gone astray; we have turned, every one, to his own way; and the Lord has laid on Him the iniquity of us all.'],
+  ['1 Corinthians 12:27','Now you are the body of Christ, and members individually.'],
+  ['Matthew 6:14','For if you forgive men their trespasses, your heavenly Father will also forgive you.'],
+  ['Galatians 3:28','There is neither Jew nor Greek, there is neither slave nor free, there is neither male nor female; for you are all one in Christ Jesus.'],
+  ['Psalm 119:162','I rejoice at Your word as one who finds great treasure.'],
+  ['Hebrews 12:14','Pursue peace with all people, and holiness, without which no one will see the Lord.'],
+  ['Romans 8:9','But you are not in the flesh but in the Spirit, if indeed the Spirit of God dwells in you.'],
+  ['John 10:28','And I give them eternal life, and they shall never perish; neither shall anyone snatch them out of My hand.'],
+  ['Philippians 2:13','For it is God who works in you both to will and to do for His good pleasure.'],
+  ['Psalm 119:175','Let my soul live, and it shall praise You; and let Your judgments help me.'],
+  ['Isaiah 55:6','Seek the Lord while He may be found, call upon Him while He is near.'],
+  ['Colossians 4:6','Let your speech always be with grace, seasoned with salt, that you may know how you ought to answer each one.'],
+  ['Matthew 6:21','For where your treasure is, there your heart will be also.'],
+  ['1 Peter 2:2','As newborn babes, desire the pure milk of the word, that you may grow thereby.'],
+  ['Romans 13:8','Owe no one anything except to love one another, for he who loves another has fulfilled the law.'],
+  ['Psalm 1:2','But his delight is in the law of the Lord, and in His law he meditates day and night.'],
+  ['Hebrews 13:16','But do not forget to do good and to share, for with such sacrifices God is well pleased.'],
+  ['John 11:35','Jesus wept.'],
+  ['Ephesians 6:4','And you, fathers, do not provoke your children to wrath, but bring them up in the training and admonition of the Lord.'],
+  ['Galatians 5:25','If we live in the Spirit, let us also walk in the Spirit.'],
+  ['Psalm 2:8','Ask of Me, and I will give You the nations for Your inheritance.'],
+  ['Matthew 6:28','Consider the lilies of the field, how they grow: they neither toil nor spin; and yet I say to you that even Solomon in all his glory was not arrayed like one of these.'],
+  ['Romans 14:8','For if we live, we live to the Lord; and if we die, we die to the Lord.'],
+  ['1 John 4:14','And we have seen and testify that the Father has sent the Son as Savior of the world.'],
+  ['Psalm 119:7','I will praise You with uprightness of heart, when I learn Your righteous judgments.'],
+  ['Hebrews 1:1','God, who at various times and in various ways spoke in time past to the fathers by the prophets, has in these last days spoken to us by His Son.'],
+  ['Matthew 1:23','Behold, the virgin shall be with child, and bear a Son, and they shall call His name Immanuel, which is translated, God with us.'],
+  ['Isaiah 7:14','Therefore the Lord Himself will give you a sign: Behold, the virgin shall conceive and bear a Son, and shall call His name Immanuel.'],
+  ['Luke 2:11','For there is born to you this day in the city of David a Savior, who is Christ the Lord.'],
+  ['John 1:12','But as many as received Him, to them He gave the right to become children of God, to those who believe in His name.'],
+  ['Micah 5:2','But you, Bethlehem Ephrathah, though you are little among the thousands of Judah, yet out of you shall come forth to Me the One to be Ruler in Israel.'],
+  ['Romans 8:3','For what the law could not do in that it was weak through the flesh, God did by sending His own Son in the likeness of sinful flesh.'],
+  ['Luke 2:14','Glory to God in the highest, and on earth peace, goodwill toward men!'],
+  ['Philippians 4:8','Finally, brethren, whatever things are true, whatever things are noble, whatever things are just, whatever things are pure, whatever things are lovely—meditate on these things.'],
+  ['Isaiah 9:6','For unto us a Child is born, unto us a Son is given; and the government will be upon His shoulder. And His name will be called Wonderful, Counselor, Mighty God, Everlasting Father, Prince of Peace.'],
+  ['Matthew 2:2','Saying, \'Where is He who has been born King of the Jews? For we have seen His star in the East and have come to worship Him.\''],
+  ['Luke 2:20','Then the shepherds returned, glorifying and praising God for all the things that they had heard and seen, as it was told them.'],
+  ['Colossians 1:15','He is the image of the invisible God, the firstborn over all creation.'],
+  ['Revelation 22:13','I am the Alpha and the Omega, the Beginning and the End, the First and the Last.'],
+  ['John 3:17','For God did not send His Son into the world to condemn the world, but that the world through Him might be saved.'],
+  ['1 Timothy 1:15','This is a faithful saying and worthy of all acceptance, that Christ Jesus came into the world to save sinners.'],
+  ['Psalm 8:1','O Lord, our Lord, how excellent is Your name in all the earth, who have set Your glory above the heavens!'],
+  ['Luke 2:52','And Jesus increased in wisdom and stature, and in favor with God and men.'],
+  ['Hebrews 1:3','Who being the brightness of His glory and the express image of His person, and upholding all things by the word of His power.'],
+  ['Romans 5:11','And not only that, but we also rejoice in God through our Lord Jesus Christ, through whom we have now received the reconciliation.'],
+  ['Isaiah 40:3','The voice of one crying in the wilderness: Prepare the way of the Lord; make straight in the desert a highway for our God.'],
+  ['John 1:29','The next day John saw Jesus coming toward him, and said, \'Behold! The Lamb of God who takes away the sin of the world!\''],
+  ['Philippians 2:6','Who, being in the form of God, did not consider it robbery to be equal with God.'],
+  ['Luke 1:37','For with God nothing will be impossible.'],
+  ['Psalm 23:6','Surely goodness and mercy shall follow me all the days of my life; and I will dwell in the house of the Lord forever.'],
+  ['Revelation 21:4','And God will wipe away every tear from their eyes; there shall be no more death, nor sorrow, nor crying.'],
+  ['Matthew 28:20','Teaching them to observe all things that I have commanded you; and lo, I am with you always, even to the end of the age.'],
+  ['John 1:5','And the light shines in the darkness, and the darkness did not comprehend it.'],
+  ['Revelation 22:20','He who testifies to these things says, \'Surely I am coming quickly.\' Amen. Even so, come, Lord Jesus!'],
+  ['Psalm 150:6','Let everything that has breath praise the Lord. Praise the Lord!']
+];
+
+
+var YV_BOOKS = {
+  'Genesis':'GEN','Exodus':'EXO','Leviticus':'LEV','Numbers':'NUM','Deuteronomy':'DEU',
+  'Joshua':'JOS','Judges':'JDG','Ruth':'RUT','1 Samuel':'1SA','2 Samuel':'2SA',
+  '1 Kings':'1KI','2 Kings':'2KI','1 Chronicles':'1CH','2 Chronicles':'2CH',
+  'Ezra':'EZR','Nehemiah':'NEH','Esther':'EST','Job':'JOB','Psalms':'PSA','Psalm':'PSA',
+  'Proverbs':'PRO','Ecclesiastes':'ECC','Song of Solomon':'SNG',
+  'Isaiah':'ISA','Jeremiah':'JER','Lamentations':'LAM','Ezekiel':'EZK','Daniel':'DAN',
+  'Hosea':'HOS','Joel':'JOL','Amos':'AMO','Obadiah':'OBA','Jonah':'JON','Micah':'MIC',
+  'Nahum':'NAH','Habakkuk':'HAB','Zephaniah':'ZEP','Haggai':'HAG','Zechariah':'ZEC','Malachi':'MAL',
+  'Matthew':'MAT','Mark':'MRK','Luke':'LUK','John':'JHN','Acts':'ACT',
+  'Romans':'ROM','1 Corinthians':'1CO','2 Corinthians':'2CO','Galatians':'GAL',
+  'Ephesians':'EPH','Philippians':'PHP','Colossians':'COL',
+  '1 Thessalonians':'1TH','2 Thessalonians':'2TH','1 Timothy':'1TI','2 Timothy':'2TI',
+  'Titus':'TIT','Philemon':'PHM','Hebrews':'HEB','James':'JAS',
+  '1 Peter':'1PE','2 Peter':'2PE','1 John':'1JN','2 John':'2JN','3 John':'3JN',
+  'Jude':'JUD','Revelation':'REV'
+};
+
+function getYVLink(ref) {
+  // ref like "John 3:16" or "Psalm 23:1"
+  var parts = ref.match(/^(\d?\s?[A-Za-z]+)\s+(\d+)/);
+  if (!parts) return 'https://www.bible.com/audio-bible/114/JHN.1.NKJV';
+  var book = ref.replace(/\s*\d+:[\d-]+.*$/, '').trim();
+  var chapter = parts[2] || '1';
+  var code = YV_BOOKS[book] || 'JHN';
+  return 'https://www.bible.com/audio-bible/114/' + code + '.' + chapter + '.NKJV';
+}
+
+
+
+function openLifeBible() {
+  var ref = getCurrentRef();
+  var url = 'tecartabible://' + encodeURIComponent(ref);
+  window.location.href = url;
+}
+
+function getCurrentRef() {
+  // Try to find the most relevant reference based on active section
+  var sec = document.querySelector('.section.active');
+  if (!sec) return 'John+3:16';
+  var id = sec.id;
+
+  // Daily section - use today's verse ref
+  if (id === 'sec-devotion') {
+    var ref = document.getElementById('dev-ref');
+    if (ref && ref.textContent) return ref.textContent.trim().replace(/\s+/g, '+');
+  }
+
+  // Sermon / Study / Series - look for scripture field
+  var scriptureField = sec.querySelector('[data-field$="_scripture"],[data-field$="_ch"],[data-field$="_book"]');
+  if (scriptureField && scriptureField.value) {
+    return scriptureField.value.trim().replace(/\s+/g, '+');
+  }
+
+  // Lookup - use the lookup input
+  var lookupRef = document.getElementById('lookup-ref');
+  if (lookupRef && lookupRef.value) {
+    return lookupRef.value.trim().replace(/\s+/g, '+');
+  }
+
+  // Default
+  return 'John+3:16';
+}
+
+function reopenModal() {
+  var today = new Date();
+  var idx = getDayOfYear(today);
+  if(idx < 0 || idx >= DAILY_SCRIPTURES.length) return;
+  var s = DAILY_SCRIPTURES[idx];
+  var months=['January','February','March','April','May','June','July','August','September','October','November','December'];
+  var days=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+  document.getElementById('modal-date').textContent = days[today.getDay()] + ', ' + months[today.getMonth()] + ' ' + today.getDate();
+  document.getElementById('modal-ref').textContent = s[0];
+  document.getElementById('modal-text').textContent = s[1];
+  document.getElementById('verse-modal').classList.remove('hidden');
+}
+
+function showVerseModal() {
+  var today = new Date();
+  var idx = getDayOfYear(today);
+  if(idx < 0 || idx >= DAILY_SCRIPTURES.length) return;
+  var lastShown = localStorage.getItem('verse_modal_date');
+  var todayStr = today.toDateString();
+  if(lastShown === todayStr) return; // already shown today
+  var s = DAILY_SCRIPTURES[idx];
+  var months=['January','February','March','April','May','June','July','August','September','October','November','December'];
+  var days=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+  document.getElementById('modal-date').textContent = days[today.getDay()] + ', ' + months[today.getMonth()] + ' ' + today.getDate();
+  document.getElementById('modal-ref').textContent = s[0];
+  document.getElementById('modal-text').textContent = s[1];
+  document.getElementById('verse-modal').classList.remove('hidden');
+}
+
+function dismissModal(skip) {
+  document.getElementById('verse-modal').classList.add('hidden');
+  var today = new Date();
+  localStorage.setItem('verse_modal_date', today.toDateString());
+  if(!skip) showSection('devotion');
+}
+
+var devIndex = 0;
+var calYear, calMonth;
+
+function getDayOfYear(date) {
+  var start = new Date(date.getFullYear(), 0, 1);
+  var diff = date - start;
+  var oneDay = 1000 * 60 * 60 * 24;
+  return Math.floor(diff / oneDay); // 0-indexed: Jan 1 = 0
+}
+
+function devShow(idx) {
+  if(idx < 0) idx = 0;
+  if(idx >= DAILY_SCRIPTURES.length) idx = DAILY_SCRIPTURES.length - 1;
+  devIndex = idx;
+  var today = new Date();
+  var todayDOY = getDayOfYear(today) - 1;
+  var s = DAILY_SCRIPTURES[idx];
+  var months=['January','February','March','April','May','June','July','August','September','October','November','December'];
+  var days=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+  // approximate date from index
+  var d = new Date(today.getFullYear(), 0, idx + 1);
+  document.getElementById('dev-date').textContent = days[d.getDay()] + ', ' + months[d.getMonth()] + ' ' + d.getDate();
+  document.getElementById('dev-ref').textContent = s[0];
+  document.getElementById('dev-text').textContent = s[1];
+  // restore saved reflection
+  var saved = localStorage.getItem('dev_refl_' + idx);
+  document.getElementById('dev-reflection').value = saved || '';
+  var audioLink = document.getElementById('dev-audio-link');
+  if(audioLink) audioLink.href = getYVLink(s[0]);
+}
+
+function devToday() {
+  var today = new Date();
+  var idx = getDayOfYear(today); // already 0-indexed
+  if(idx >= DAILY_SCRIPTURES.length) idx = DAILY_SCRIPTURES.length - 1;
+  devShow(idx);
+}
+function devPrev() { devShow(devIndex - 1); }
+function devNext() { devShow(devIndex + 1); }
+
+document.getElementById('dev-reflection') && document.getElementById('dev-reflection').addEventListener('input', function() {
+  localStorage.setItem('dev_refl_' + devIndex, this.value);
+});
+
+function buildCalendar(year, month) {
+  calYear = year; calMonth = month;
+  var months=['January','February','March','April','May','June','July','August','September','October','November','December'];
+  document.getElementById('cal-month-label').textContent = months[month] + ' ' + year;
+  var grid = document.getElementById('cal-grid');
+  grid.innerHTML = '';
+  var dows = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+  dows.forEach(function(d){var el=document.createElement('div');el.className='cal-dow';el.textContent=d;grid.appendChild(el);});
+  var firstDay = new Date(year, month, 1).getDay();
+  var daysInMonth = new Date(year, month+1, 0).getDate();
+  var today = new Date();
+  for(var i=0;i<firstDay;i++){var el=document.createElement('div');el.className='cal-day empty';grid.appendChild(el);}
+  for(var day=1;day<=daysInMonth;day++){
+    var el=document.createElement('div');el.className='cal-day';
+    var d=new Date(year,month,day);
+    var doy=getDayOfYear(d)-1;
+    if(today.getFullYear()===year&&today.getMonth()===month&&today.getDate()===day) el.classList.add('today');
+    if(doy >= 0 && doy < DAILY_SCRIPTURES.length) el.classList.add('has-verse');
+    el.textContent=day;
+    (function(doy2,day2){el.onclick=function(){devShow(doy2);document.getElementById('main').scrollTo(0,0);};})(doy,day);
+    grid.appendChild(el);
+  }
+}
+function calPrev(){if(calMonth===0){calMonth=11;calYear--;}else{calMonth--;}buildCalendar(calYear,calMonth);}
+function calNext(){if(calMonth===11){calMonth=0;calYear++;}else{calMonth++;}buildCalendar(calYear,calMonth);}
+
+
+function showSection(id){
+  document.querySelectorAll('.section').forEach(function(s){s.classList.remove('active');});
+  document.querySelectorAll('.nav-btn').forEach(function(b){b.classList.remove('active');});
+  var sec=document.getElementById('sec-'+id);
+  if(sec) sec.classList.add('active');
+  document.querySelectorAll('.nav-btn').forEach(function(b){
+    if(b.getAttribute('onclick')==="showSection('"+id+"')") b.classList.add('active');
+  });
+  activeCanvas=null;
+  document.getElementById('main').scrollTop=0;
+  if(id==='reading') updateRPStats();
+  if(id==='home') updateHomeRP();
+}
+
+function toggleToolbar(){
+  toolbarVisible=!toolbarVisible;
+  document.getElementById('toolbar').classList.toggle('hidden',!toolbarVisible);
+  document.getElementById('main').classList.toggle('toolbar-hidden',!toolbarVisible);
+  document.getElementById('toggle-toolbar-btn').innerHTML=toolbarVisible?'&#x2303;':'&#x2304;';
+}
+function setTool(t){
+  activeTool=t;
+  document.getElementById('tool-pen').classList.toggle('active',t==='pen');
+  document.getElementById('tool-eraser').classList.toggle('active',t==='eraser');
+}
+function setColor(el){
+  activeColor=el.dataset.color;
+  document.querySelectorAll('.color-dot').forEach(function(d){d.classList.remove('sel');});
+  el.classList.add('sel');
+  if(activeTool==='eraser') setTool('pen');
+}
+document.getElementById('stroke-size').addEventListener('input',function(){strokeSize=parseInt(this.value);});
+function clearActiveCanvas(){
+  if(!activeCanvas){var sec=document.querySelector('.section.active');if(sec) activeCanvas=sec.querySelector('canvas');}
+  if(activeCanvas){var ctx=activeCanvas.getContext('2d');ctx.clearRect(0,0,activeCanvas.width,activeCanvas.height);saveCanvasData(activeCanvas);scheduleSave();}
+}
+
+function initCanvas(canvas){
+  var dpr=window.devicePixelRatio||2;
+  var w=canvas.parentElement.offsetWidth||340;
+  var h=parseInt(canvas.dataset.height)||200;
+  canvas.width=w*dpr;canvas.height=h*dpr;
+  canvas.style.width=w+'px';canvas.style.height=h+'px';
+  var ctx=canvas.getContext('2d');ctx.scale(dpr,dpr);
+  var key=canvas.dataset.key;
+  if(key&&canvasData[key]){var img=new Image();img.onload=function(){ctx.drawImage(img,0,0,w,h);};img.src=canvasData[key];}
+  canvas.addEventListener('pointerdown',cpDown);
+  canvas.addEventListener('pointermove',cpMove);
+  canvas.addEventListener('pointerup',cpUp);
+  canvas.addEventListener('pointercancel',cpUp);
+  canvas.addEventListener('touchstart',function(e){e.preventDefault();},{passive:false});
+}
+function getPos(canvas,e){var r=canvas.getBoundingClientRect();return[e.clientX-r.left,e.clientY-r.top];}
+function cpDown(e){e.preventDefault();activeCanvas=e.target;canvasDrawing=true;var p=getPos(activeCanvas,e);lastX=p[0];lastY=p[1];activeCanvas.setPointerCapture(e.pointerId);drawDot(activeCanvas.getContext('2d'),lastX,lastY);}
+function cpMove(e){
+  if(!canvasDrawing||!activeCanvas) return;e.preventDefault();
+  var p=getPos(activeCanvas,e);var x=p[0],y=p[1];var ctx=activeCanvas.getContext('2d');
+  ctx.beginPath();ctx.moveTo(lastX,lastY);ctx.lineTo(x,y);
+  if(activeTool==='eraser'){ctx.globalCompositeOperation='destination-out';ctx.lineWidth=strokeSize*5;ctx.strokeStyle='rgba(0,0,0,1)';}
+  else{ctx.globalCompositeOperation='source-over';ctx.globalAlpha=e.pressure>0?Math.min(1,e.pressure*2+0.3):0.9;ctx.strokeStyle=activeColor;ctx.lineWidth=e.pressure>0?strokeSize*(0.5+e.pressure):strokeSize;}
+  ctx.lineCap='round';ctx.lineJoin='round';ctx.stroke();ctx.globalAlpha=1;ctx.globalCompositeOperation='source-over';lastX=x;lastY=y;
+}
+function cpUp(e){if(!canvasDrawing)return;canvasDrawing=false;if(activeCanvas){saveCanvasData(activeCanvas);scheduleSave();}}
+function drawDot(ctx,x,y){
+  ctx.beginPath();
+  if(activeTool==='eraser'){ctx.globalCompositeOperation='destination-out';ctx.arc(x,y,strokeSize*2.5,0,Math.PI*2);ctx.fillStyle='rgba(0,0,0,1)';}
+  else{ctx.globalCompositeOperation='source-over';ctx.arc(x,y,strokeSize/2,0,Math.PI*2);ctx.fillStyle=activeColor;}
+  ctx.fill();ctx.globalCompositeOperation='source-over';
+}
+function saveCanvasData(canvas){var key=canvas.dataset.key;if(key)canvasData[key]=canvas.toDataURL();}
+function makeCanvas(key,height){
+  return '<div class="canvas-label"><span>&#9999; Handwriting</span><button class="canvas-clear" onclick="clearCanvas(\''+key+'\')">Clear</button></div><div class="canvas-wrap"><canvas data-key="'+key+'" data-height="'+(height||200)+'"></canvas></div>';
+}
+function clearCanvas(key){var c=document.querySelector('canvas[data-key="'+key+'"]');if(c){var ctx=c.getContext('2d');ctx.clearRect(0,0,c.width,c.height);delete canvasData[key];scheduleSave();}}
+
+function scheduleSave(){clearTimeout(saveTimeout);saveTimeout=setTimeout(saveAll,900);}
+function saveAll(){
+  var data={canvasData:canvasData};
+  document.querySelectorAll('[data-field]').forEach(function(el){data[el.dataset.field]=el.value;});
+  data.prayer=collectPrayer();data.memory=collectMemory();data.topics=collectTopics();data.vault=collectVault();
+  data.rpChecked=collectRP();data.rpSettings=collectRPSettings();
+  try{localStorage.setItem('bsj2_data',JSON.stringify(data));showSaveDot();}
+  catch(e){var d2=Object.assign({},data,{canvasData:{}});localStorage.setItem('bsj2_data',JSON.stringify(d2));showSaveDot();}
+}
+function showSaveDot(){var dot=document.getElementById('save-dot');dot.classList.add('show');devToday();
+var _today=new Date();buildCalendar(_today.getFullYear(),_today.getMonth());
+showVerseModal();
+setTimeout(function(){dot.classList.remove('show');},1500);}
+
+function collectPrayer(){return Array.from(document.querySelectorAll('#prayer-entries .prayer-entry')).map(function(el){return{text:(el.querySelector('[data-ptext]')||{}).value||'',date:(el.querySelector('[data-pdate]')||{}).value||'',answered:!!(el.querySelector('.answered-check')||{}).classList&&el.querySelector('.answered-check').classList.contains('checked'),ansDate:(el.querySelector('[data-ans-date]')||{}).value||'',ansHow:(el.querySelector('[data-ans-how]')||{}).value||''};});}
+function collectMemory(){return Array.from(document.querySelectorAll('#memory-cards .memory-card')).map(function(el){return{ref:(el.querySelector('[data-mref]')||{}).value||'',text:(el.querySelector('[data-mtext]')||{}).value||'',status:(el.querySelector('.mem-badge.active-badge')||{dataset:{status:''}}).dataset.status};});}
+function collectTopics(){return Array.from(document.querySelectorAll('#topics-list .topic-btn')).map(function(b){return b.dataset.topic;});}
+function collectVault(){return Array.from(document.querySelectorAll('#vault-body tr')).map(function(tr){return Array.from(tr.querySelectorAll('input')).map(function(c){return c.value;});});}
+function collectRP(){return Array.from(document.querySelectorAll('.rp-book-row')).map(function(r){return r.dataset.book+':'+r.classList.contains('rp-done');});}
+function collectRPSettings(){return{target:(document.getElementById('rp-target-date')||{}).value||'',goal:(document.getElementById('rp-ch-goal')||{}).value||'6',start:(document.getElementById('rp-start-date')||{}).value||''};}
+
+document.addEventListener('input',function(e){if(e.target.tagName==='INPUT'||e.target.tagName==='TEXTAREA')scheduleSave();});
+
+function addJournalEntry(d){
+  jCount++;var id='j'+jCount;d=d||{};
+  var div=document.createElement('div');div.className='card';
+  div.innerHTML='<div class="card-row"><div class="card-field"><label>Date</label><input type="date" data-field="'+id+'_date" value="'+(d.date||'')+'"></div><div class="card-field"><label>Day</label><input type="text" data-field="'+id+'_day" placeholder="Monday..." value="'+(d.day||'')+'"></div></div><div class="scripture-field"><label style="font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#8a8d9a;display:block;margin-bottom:2px;">Scripture today</label><input type="text" data-field="'+id+'_scripture" placeholder="What did you read?" value="'+(d.scripture||'')+'"></div><div class="field-full"><label>Reflection</label><textarea class="lined-area" data-field="'+id+'_reflection" rows="8">'+(d.reflection||'')+'</textarea></div>'+makeCanvas(id+'_c',200);
+  document.getElementById('journal-entries').appendChild(div);
+  setTimeout(function(){var c=div.querySelector('canvas');if(c)initCanvas(c);},60);
+}
+
+function addSermonEntry(d){
+  sCount++;var id='s'+sCount;d=d||{};
+  var div=document.createElement('div');div.className='card';
+  var pts=[1,2,3,4].map(function(n){return'<div class="point-row"><div class="point-num">'+n+'</div><input type="text" data-field="'+id+'_pt'+n+'" placeholder="Point '+n+'..." value="'+(d['pt'+n]||'')+'"></div>';}).join('');
+  div.innerHTML='<div class="card-row"><div class="card-field"><label>Date</label><input type="date" data-field="'+id+'_date" value="'+(d.date||'')+'"></div><div class="card-field"><label>Speaker</label><input type="text" data-field="'+id+'_speaker" placeholder="Pastor..." value="'+(d.speaker||'')+'"></div></div><div class="card-row"><div class="card-field"><label>Series</label><input type="text" data-field="'+id+'_series" placeholder="Series name..." value="'+(d.series||'')+'"></div><div class="card-field"><label>Church</label><input type="text" data-field="'+id+'_church" placeholder="ResLife..." value="'+(d.church||'')+'"></div></div><div class="scripture-field"><label style="font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#8a8d9a;display:block;margin-bottom:2px;">Scripture</label><input type="text" data-field="'+id+'_scripture" placeholder="Main passage..." value="'+(d.scripture||'')+'"></div><div class="field-full"><div style="font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);text-align:center;padding-bottom:6px;">Main Points</div>'+pts+'</div><div class="notes-cols"><div class="note-col"><div style="font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:6px;">Notes</div><textarea data-field="'+id+'_n1" rows="8" style="width:100%;font-size:13px;line-height:1.6;border:none;outline:none;resize:none;background:transparent;font-family:inherit;">'+(d.n1||'')+'</textarea></div><div class="note-col"><div style="font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:6px;">Notes</div><textarea data-field="'+id+'_n2" rows="8" style="width:100%;font-size:13px;line-height:1.6;border:none;outline:none;resize:none;background:transparent;font-family:inherit;">'+(d.n2||'')+'</textarea></div></div><div class="field-full"><label style="text-align:center;display:block;padding-bottom:6px;">Application</label><textarea data-field="'+id+'_app" class="lined-area" rows="4">'+(d.app||'')+'</textarea></div>'+makeCanvas(id+'_c',180);
+  document.getElementById('sermon-entries').appendChild(div);
+  setTimeout(function(){var c=div.querySelector('canvas');if(c)initCanvas(c);},60);
+}
+
+function addSeriesEntry(d){
+  srCount++;var id='sr'+srCount;d=d||{};
+  var div=document.createElement('div');div.className='series-card';
+  var weeksHtml=[1,2,3,4,5,6,7,8].map(function(w){
+    return'<div class="series-week"><div class="series-week-num">W'+w+'</div><div style="flex:1;"><input type="text" data-field="'+id+'_w'+w+'_title" placeholder="Week '+w+' title / passage..." value="'+(d['w'+w+'_title']||'')+'" style="width:100%;font-size:14px;margin-bottom:4px;"><textarea data-field="'+id+'_w'+w+'_notes" rows="2" placeholder="Notes..." style="width:100%;font-size:12px;line-height:1.5;border:none;outline:none;resize:none;background:transparent;font-family:inherit;color:var(--ink-soft);">'+(d['w'+w+'_notes']||'')+'</textarea></div><div class="series-week-done '+(d['w'+w+'_done']?'done':'')+'" onclick="toggleWeekDone(this)">'+(d['w'+w+'_done']?'&#10003;':'')+'</div></div>';
+  }).join('');
+  div.innerHTML='<div class="series-header-bar"><input class="series-title-input" type="text" data-field="'+id+'_title" placeholder="Series title..." value="'+(d.title||'')+'"><div style="display:flex;gap:12px;margin-top:4px;"><span style="font-size:11px;color:rgba(255,255,255,.7);">Pastor: <input type="text" data-field="'+id+'_pastor" placeholder="&mdash;" value="'+(d.pastor||'')+'" style="border:none;background:transparent;color:rgba(255,255,255,.9);font-size:11px;outline:none;font-family:inherit;width:100px;"></span><span style="font-size:11px;color:rgba(255,255,255,.7);">Church: <input type="text" data-field="'+id+'_church" placeholder="&mdash;" value="'+(d.church||'')+'" style="border:none;background:transparent;color:rgba(255,255,255,.9);font-size:11px;outline:none;font-family:inherit;width:100px;"></span></div></div>'+weeksHtml+makeCanvas(id+'_c',160);
+  document.getElementById('series-entries').appendChild(div);
+  setTimeout(function(){var c=div.querySelector('canvas');if(c)initCanvas(c);},60);
+}
+function toggleWeekDone(el){el.classList.toggle('done');el.innerHTML=el.classList.contains('done')?'&#10003;':'';scheduleSave();}
+
+function addStudyEntry(d){
+  stCount++;var id='st'+stCount;d=d||{};
+  var div=document.createElement('div');div.className='card';
+  var soaps=[['soap-s','S','Scripture','Write out the passage',id+'_s',d.s||''],['soap-o','O','Observation','What does it say?',id+'_o',d.o||''],['soap-a','A','Application','What does it mean for me?',id+'_a',d.a||''],['soap-p','P','Prayer','Respond to God',id+'_p',d.p||'']];
+  var soapHtml=soaps.map(function(r){return'<div class="field-full"><div class="soap-step"><div class="soap-letter '+r[0]+'">'+r[1]+'</div><div class="soap-body"><div class="soap-label">'+r[2]+' &mdash; '+r[3]+'</div><textarea data-field="'+r[4]+'" rows="5" style="width:100%;font-size:14px;line-height:1.7;border:none;outline:none;resize:none;background:transparent;font-family:inherit;">'+r[5]+'</textarea></div></div></div>';}).join('');
+  div.innerHTML='<div class="card-row"><div class="card-field"><label>Book</label><input type="text" data-field="'+id+'_book" placeholder="Romans..." value="'+(d.book||'')+'"></div><div class="card-field"><label>Chapter / Passage</label><input type="text" data-field="'+id+'_ch" placeholder="8:1-17..." value="'+(d.ch||'')+'"></div></div><div class="card-row"><div class="card-field"><label>Date</label><input type="date" data-field="'+id+'_date" value="'+(d.date||'')+'"></div><div class="card-field"><label>Key Verse</label><input type="text" data-field="'+id+'_kv" placeholder="v. 1..." value="'+(d.kv||'')+'"></div></div>'+soapHtml+'<div class="xref-chip-row" id="'+id+'_xrefs"></div><div style="display:flex;gap:6px;padding:0 14px 10px;"><input class="xref-input" type="text" id="'+id+'_xref_in" placeholder="Add cross-reference (e.g. John 1:1)..."><button class="xref-add-btn" onclick="addXRef(\''+id+'\')">Add</button></div>'+makeCanvas(id+'_c',180);
+  document.getElementById('study-entries').appendChild(div);
+  if(d.xrefs) d.xrefs.forEach(function(r){addXRefChip(id,r);});
+  setTimeout(function(){var c=div.querySelector('canvas');if(c)initCanvas(c);},60);
+}
+function addXRef(id){var inp=document.getElementById(id+'_xref_in');var val=inp.value.trim();if(!val)return;addXRefChip(id,val);inp.value='';scheduleSave();}
+function addXRefChip(id,ref){var row=document.getElementById(id+'_xrefs');if(!row)return;var chip=document.createElement('div');chip.className='xref-chip';chip.textContent=ref;chip.onclick=function(){window.open('https://www.biblegateway.com/passage/?search='+encodeURIComponent(ref)+'&version=NKJV','_blank');};row.appendChild(chip);}
+
+function addWordEntry(d){
+  wCount++;var id='w'+wCount;d=d||{};
+  var div=document.createElement('div');div.className='ws-card';
+  div.innerHTML='<div class="ws-header"><input class="ws-word" type="text" data-field="'+id+'_word" placeholder="Word..." value="'+(d.word||'')+'"><button class="ws-lang-badge '+(d.lang!=='hebrew'?'active-lang':'ws-lang-off')+'" data-lang="greek" onclick="setWSLang(this)">Greek</button><button class="ws-lang-badge '+(d.lang==='hebrew'?'active-lang':'ws-lang-off')+'" data-lang="hebrew" onclick="setWSLang(this)">Hebrew</button></div><div class="card-row"><div class="card-field"><label>Strong\'s #</label><input type="text" data-field="'+id+'_strongs" placeholder="G1234..." value="'+(d.strongs||'')+'"></div><div class="card-field"><label>Transliteration</label><input type="text" data-field="'+id+'_translit" placeholder="logos..." value="'+(d.translit||'')+'"></div></div><div class="field-full"><label>Definition</label><textarea data-field="'+id+'_def" rows="3" style="width:100%;font-size:14px;line-height:1.6;border:none;outline:none;resize:none;background:transparent;font-family:inherit;">'+(d.def||'')+'</textarea></div><div class="field-full"><label>Passage context</label><input type="text" data-field="'+id+'_passage" placeholder="Romans 1:16..." value="'+(d.passage||'')+'"></div><div class="field-full"><label>Other occurrences in Scripture</label><textarea data-field="'+id+'_usage" rows="3" style="width:100%;font-size:13px;line-height:1.6;border:none;outline:none;resize:none;background:transparent;font-family:inherit;color:var(--ink-soft);">'+(d.usage||'')+'</textarea></div><div class="field-full"><label>Personal notes</label><textarea data-field="'+id+'_notes" rows="3" style="width:100%;font-size:14px;line-height:1.6;border:none;outline:none;resize:none;background:transparent;font-family:inherit;">'+(d.notes||'')+'</textarea></div><div style="padding:8px 14px;border-top:.5px solid var(--line);"><a href="https://www.blueletterbible.org/lang/lexicon/lexicon.cfm?t=NKJV" target="_blank" style="font-size:12px;color:var(--purple);font-weight:600;text-decoration:none;">Open in Blue Letter Bible &#8594;</a></div>';
+  document.getElementById('word-entries').appendChild(div);
+}
+function setWSLang(btn){var h=btn.closest('.ws-header');h.querySelectorAll('.ws-lang-badge').forEach(function(b){b.classList.remove('active-lang');b.classList.add('ws-lang-off');});btn.classList.add('active-lang');btn.classList.remove('ws-lang-off');scheduleSave();}
+
+function setACTS(tab,btn){
+  document.querySelectorAll('.acts-tab-btn').forEach(function(b){b.classList.remove('active');});
+  document.querySelectorAll('.acts-panel').forEach(function(p){p.classList.remove('active');});
+  btn.classList.add('active');document.getElementById('acts-'+tab).classList.add('active');
+}
+
+function addPrayerEntry(d){
+  prCount++;var id='pr'+prCount;d=d||{};
+  var div=document.createElement('div');div.className='prayer-entry';
+  div.innerHTML='<div class="card-row" style="background:var(--white);"><div class="card-field" style="padding:12px 14px;flex:2;border-right:.5px solid var(--line);"><label>Person / Situation</label><textarea data-ptext="'+id+'" rows="3" style="width:100%;font-size:14px;line-height:1.6;border:none;outline:none;resize:none;background:transparent;font-family:inherit;">'+(d.text||'')+'</textarea></div><div class="card-field" style="padding:12px 14px;"><label>Date</label><input type="date" data-pdate="'+id+'" value="'+(d.date||'')+'"></div></div><div class="prayer-answered"><div class="answered-check '+(d.answered?'checked':'')+'" onclick="toggleAnswered(this)">'+(d.answered?'&#10003;':'')+'</div><span style="font-weight:700;color:#8a8d9a;font-size:9px;letter-spacing:.05em;text-transform:uppercase;margin-right:4px;">Answered</span><input type="date" data-ans-date="'+id+'" value="'+(d.ansDate||'')+'" style="font-size:12px;border:none;background:transparent;outline:none;flex:1;"><span style="color:var(--muted);font-size:11px;margin:0 4px;">How:</span><input type="text" data-ans-how="'+id+'" placeholder="How God answered..." value="'+(d.ansHow||'')+'" style="font-size:12px;border:none;background:transparent;outline:none;flex:2;"></div>';
+  document.getElementById('prayer-entries').appendChild(div);
+}
+function toggleAnswered(el){el.classList.toggle('checked');el.innerHTML=el.classList.contains('checked')?'&#10003;':'';scheduleSave();}
+
+function addMemoryCard(d){
+  memCount++;var id='mem'+memCount;d=d||{};
+  var div=document.createElement('div');div.className='memory-card';
+  div.innerHTML='<div class="memory-ref"><input data-mref="'+id+'" type="text" placeholder="Reference..." value="'+(d.ref||'')+'" style="color:var(--gold);font-weight:700;font-size:12px;"></div><textarea data-mtext="'+id+'" rows="3" placeholder="Write the verse here..." style="width:100%;font-size:12px;line-height:1.5;border:none;outline:none;resize:none;background:transparent;font-family:inherit;color:var(--ink-soft);">'+(d.text||'')+'</textarea><div class="memory-status"><div class="mem-badge '+(d.status==='progress'?'active-badge':'')+'" data-status="progress" onclick="setMemStatus(this)">In Progress</div><div class="mem-badge '+(d.status==='learned'?'active-badge':'')+'" data-status="learned" onclick="setMemStatus(this)">Learned &#10003;</div></div>';
+  document.getElementById('memory-cards').appendChild(div);
+}
+function setMemStatus(el){el.closest('.memory-status').querySelectorAll('.mem-badge').forEach(function(b){b.classList.remove('active-badge');});el.classList.add('active-badge');scheduleSave();}
+
+function addQuoteEntry(d){
+  qCount++;d=d||{};
+  var div=document.createElement('div');div.className='quote-card';
+  div.innerHTML='<textarea data-field="q'+qCount+'_text" rows="3" placeholder="Quote or insight that struck you..." style="width:100%;font-size:15px;font-style:italic;line-height:1.6;border:none;outline:none;resize:none;background:transparent;font-family:inherit;color:var(--ink);">'+(d.text||'')+'</textarea><div class="quote-meta"><input type="text" data-field="q'+qCount+'_source" placeholder="Source / speaker..." value="'+(d.source||'')+'" style="flex:1;"><input type="text" data-field="q'+qCount+'_ref" placeholder="Scripture ref..." value="'+(d.ref||'')+'" style="width:120px;"><input type="date" data-field="q'+qCount+'_date" value="'+(d.date||'')+'" style="width:130px;"></div>';
+  document.getElementById('quote-entries').appendChild(div);
+}
+
+function addBookSummary(d){
+  bsCount++;var id='bs'+bsCount;d=d||{};
+  var div=document.createElement('div');div.className='book-sum-card';
+  div.innerHTML='<div class="book-sum-header"><input class="book-sum-name" type="text" data-field="'+id+'_name" placeholder="Book of the Bible..." value="'+(d.name||'')+'"></div><div class="book-sum-meta"><div class="book-sum-meta-field"><label>Author</label><input type="text" data-field="'+id+'_author" placeholder="Paul..." value="'+(d.author||'')+'"></div><div class="book-sum-meta-field"><label>Date written</label><input type="text" data-field="'+id+'_date" placeholder="~AD 57..." value="'+(d.date||'')+'"></div><div class="book-sum-meta-field"><label>Genre</label><input type="text" data-field="'+id+'_genre" placeholder="Epistle..." value="'+(d.genre||'')+'"></div></div><div class="field-full"><label>Theme / Central message</label><textarea data-field="'+id+'_theme" rows="2" style="width:100%;font-size:14px;line-height:1.6;border:none;outline:none;resize:none;background:transparent;font-family:inherit;">'+(d.theme||'')+'</textarea></div><div class="field-full"><label>Key chapters / verses</label><div class="key-ch-grid" id="'+id+'_chips"></div><div style="display:flex;gap:6px;margin-top:6px;"><input class="xref-input" type="text" id="'+id+'_chip_in" placeholder="e.g. ch. 8, Rom 12:1-2..."><button class="xref-add-btn" style="background:var(--gold);" onclick="addKeyChip(\''+id+'\')">Add</button></div></div><div class="field-full"><label>Structure / Outline</label><textarea data-field="'+id+'_outline" rows="4" style="width:100%;font-size:13px;line-height:1.6;border:none;outline:none;resize:none;background:transparent;font-family:inherit;color:var(--ink-soft);">'+(d.outline||'')+'</textarea></div><div class="field-full"><label>My takeaways</label><textarea data-field="'+id+'_takeaway" class="lined-area" rows="6">'+(d.takeaway||'')+'</textarea></div>'+makeCanvas(id+'_c',160);
+  document.getElementById('book-sum-entries').appendChild(div);
+  if(d.chips) d.chips.forEach(function(c){addKeyChipEl(id,c);});
+  setTimeout(function(){var c=div.querySelector('canvas');if(c)initCanvas(c);},60);
+}
+function addKeyChip(id){var inp=document.getElementById(id+'_chip_in');var val=inp.value.trim();if(!val)return;addKeyChipEl(id,val);inp.value='';scheduleSave();}
+function addKeyChipEl(id,text){var row=document.getElementById(id+'_chips');if(!row)return;var chip=document.createElement('div');chip.className='key-ch-chip';chip.textContent=text;row.appendChild(chip);}
+
+var DEFAULT_TOPICS=['Grace','Faith','Prayer','Holy Spirit','Covenant','Leadership','End Times','Suffering','High Priest','Salvation','Sanctification','Resurrection','Atonement','Justification','Healing','Love','Worship','Forgiveness','Hope','The Cross','Prophecy'];
+function buildTopics(list){
+  var c=document.getElementById('topics-list');c.innerHTML='';
+  var g=document.createElement('div');g.className='topics-grid';
+  list.forEach(function(t){var btn=document.createElement('button');btn.className='topic-btn';btn.textContent=t;btn.dataset.topic=t;btn.onclick=function(){openTopic(t);};g.appendChild(btn);});
+  c.appendChild(g);
+}
+function addTopic(){var name=prompt('New topic:');if(!name)return;var g=document.querySelector('#topics-list .topics-grid');if(!g)return;var btn=document.createElement('button');btn.className='topic-btn';btn.textContent=name;btn.dataset.topic=name;btn.onclick=function(){openTopic(name);};g.appendChild(btn);scheduleSave();}
+function openTopic(name){showSection('study');addStudyEntry({book:name,ch:'Topical Study'});setTimeout(function(){document.getElementById('main').scrollTo(0,999999);},100);}
+
+function addVaultRow(d){
+  d=d||['','','','',''];
+  var tr=document.createElement('tr');
+  tr.innerHTML='<td><input type="text" value="'+(d[0]||'')+'" placeholder="6/15/25" style="width:100%;font-size:12px;"></td><td><input type="text" value="'+(d[1]||'')+'" placeholder="Series / Title" style="width:100%;font-size:13px;"></td><td><input type="text" value="'+(d[2]||'')+'" placeholder="Speaker" style="width:100%;font-size:12px;"></td><td><input type="text" value="'+(d[3]||'')+'" placeholder="John 3" style="width:100%;font-size:12px;"></td><td><input type="text" value="'+(d[4]||'')+'" placeholder="&mdash;" style="width:100%;font-size:12px;text-align:center;"></td>';
+  document.getElementById('vault-body').appendChild(tr);
+}
+
+var ALL_BOOKS=[
+  {s:'The Law',books:[['Genesis',50],['Exodus',40],['Leviticus',27],['Numbers',36],['Deuteronomy',34]]},
+  {s:'History',books:[['Joshua',24],['Judges',21],['Ruth',4],['1 Samuel',31],['2 Samuel',24],['1 Kings',22],['2 Kings',25],['1 Chronicles',29],['2 Chronicles',36],['Ezra',10],['Nehemiah',13],['Esther',10]]},
+  {s:'Poetry & Wisdom',books:[['Job',42],['Psalms',150],['Proverbs',31],['Ecclesiastes',12],['Song of Solomon',8]]},
+  {s:'Major Prophets',books:[['Isaiah',66],['Jeremiah',52],['Lamentations',5],['Ezekiel',48],['Daniel',12]]},
+  {s:'Minor Prophets',books:[['Hosea',14],['Joel',3],['Amos',9],['Obadiah',1],['Jonah',4],['Micah',7],['Nahum',3],['Habakkuk',3],['Zephaniah',3],['Haggai',2],['Zechariah',14],['Malachi',4]]},
+  {s:'The Gospels',books:[['Matthew',28],['Mark',16],['Luke',24],['John',21]]},
+  {s:'Acts',books:[['Acts',28]]},
+  {s:'Paul - Major Letters',books:[['Romans',16],['1 Corinthians',16],['2 Corinthians',13],['Galatians',6]]},
+  {s:'Paul - Prison Epistles',books:[['Ephesians',6],['Philippians',4],['Colossians',4],['Philemon',1]]},
+  {s:'Paul - Pastoral Epistles',books:[['1 Timothy',6],['2 Timothy',4],['Titus',3]]},
+  {s:'Paul - Early Letters',books:[['1 Thessalonians',5],['2 Thessalonians',3]]},
+  {s:'General Epistles',books:[['Hebrews',13],['James',5],['1 Peter',5],['2 Peter',3],['1 John',5],['2 John',1],['3 John',1],['Jude',1]]},
+  {s:'Prophecy',books:[['Revelation',22]]}
+];
+
+function buildRPList(){
+  var container=document.getElementById('rp-book-list');container.innerHTML='';
+  ALL_BOOKS.forEach(function(sec){
+    var grid=document.createElement('div');grid.className='rp-book-grid';
+    var head=document.createElement('div');head.className='rp-section-head';head.textContent=sec.s;grid.appendChild(head);
+    sec.books.forEach(function(bk){
+      var name=bk[0],ch=bk[1];
+      var row=document.createElement('div');row.className='rp-book-row';row.dataset.book=name;
+      if(rpCheckedBooks[name]) row.classList.add('rp-done');
+      row.innerHTML='<div class="rp-book-check '+(rpCheckedBooks[name]?'done':'')+'">'+(rpCheckedBooks[name]?'&#10003;':'')+'</div><span class="rp-book-name">'+name+'</span><span class="rp-book-ch">'+ch+' ch</span>';
+      row.onclick=function(){toggleRPBook(row,name);};
+      grid.appendChild(row);
+    });
+    container.appendChild(grid);
+  });
+  updateRPStats();
+}
+
+function toggleRPBook(row,name){
+  var check=row.querySelector('.rp-book-check');
+  var done=row.classList.toggle('rp-done');
+  rpCheckedBooks[name]=done;
+  check.classList.toggle('done',done);check.innerHTML=done?'&#10003;':'';
+  updateRPStats();scheduleSave();
+}
+
+function updateRPStats(){
+  var total=66;var done=Object.keys(rpCheckedBooks).filter(function(k){return rpCheckedBooks[k];}).length;
+  var pct=Math.round((done/total)*100);
+  var ptEl=document.getElementById('rp-pct-text');if(ptEl) ptEl.textContent=pct+'%';
+  var bdEl=document.getElementById('rp-books-done');if(bdEl) bdEl.textContent=done;
+  var blEl=document.getElementById('rp-books-left');if(blEl) blEl.textContent=total-done;
+  var circ=207.3;var offset=circ-(circ*(pct/100));
+  var circle=document.getElementById('rp-ring-circle');if(circle) circle.style.strokeDashoffset=offset;
+  var targetEl=document.getElementById('rp-target-date');
+  if(targetEl&&targetEl.value){
+    var today=new Date();var target=new Date(targetEl.value);
+    var daysLeft=Math.ceil((target-today)/(1000*60*60*24));
+    var dlEl=document.getElementById('rp-days-left');if(dlEl) dlEl.textContent=daysLeft>0?daysLeft:'0';
+  }
+  var goalEl=document.getElementById('rp-ch-goal');
+  var cdEl=document.getElementById('rp-ch-day');if(cdEl&&goalEl) cdEl.textContent=goalEl.value||'6';
+  updateHomeRP();
+}
+
+function updateHomeRP(){
+  var total=66;var done=Object.keys(rpCheckedBooks).filter(function(k){return rpCheckedBooks[k];}).length;
+  var pct=Math.round((done/total)*100);
+  var bar=document.getElementById('home-rp-bar');if(bar) bar.style.width=pct+'%';
+  var pctEl=document.getElementById('home-rp-pct');if(pctEl) pctEl.textContent=pct+'% complete';
+  var targetEl=document.getElementById('rp-target-date');
+  var daysEl=document.getElementById('home-rp-days');
+  if(daysEl&&targetEl&&targetEl.value){var today=new Date();var target=new Date(targetEl.value);var dl=Math.ceil((target-today)/(1000*60*60*24));daysEl.textContent=dl>0?dl+' days left':'Due!';}
+}
+
+var OT=[{cat:'The Law - Torah',sub:'Five books of Moses',books:[['Genesis',50],['Exodus',40],['Leviticus',27],['Numbers',36],['Deuteronomy',34]]},{cat:'History',sub:"Israel's story from conquest to exile",books:[['Joshua',24],['Judges',21],['Ruth',4],['1 Samuel',31],['2 Samuel',24],['1 Kings',22],['2 Kings',25],['1 Chronicles',29],['2 Chronicles',36],['Ezra',10],['Nehemiah',13],['Esther',10]]},{cat:'Poetry & Wisdom',sub:"Israel's heart - lament, praise, wisdom",books:[['Job',42],['Psalms',150],['Proverbs',31],['Ecclesiastes',12],['Song of Solomon',8]]},{cat:'Major Prophets',sub:'Isaiah - Jeremiah - Ezekiel - Daniel',books:[['Isaiah',66],['Jeremiah',52],['Lamentations',5],['Ezekiel',48],['Daniel',12]]},{cat:'Minor Prophets',sub:'The Twelve',books:[['Hosea',14],['Joel',3],['Amos',9],['Obadiah',1],['Jonah',4],['Micah',7],['Nahum',3],['Habakkuk',3],['Zephaniah',3],['Haggai',2],['Zechariah',14],['Malachi',4]]}];
+var NT=[{cat:'The Gospels',sub:'Four witnesses to the life, death & resurrection of Jesus',books:[['Matthew',28],['Mark',16],['Luke',24],['John',21]]},{cat:'Acts',sub:'The birth and expansion of the church',books:[['Acts',28]]},{cat:'Paul - Major Letters',sub:'The theological cornerstones',books:[['Romans',16],['1 Corinthians',16],['2 Corinthians',13],['Galatians',6]]},{cat:'Paul - Prison Epistles',sub:'Written from Roman imprisonment',books:[['Ephesians',6],['Philippians',4],['Colossians',4],['Philemon',1]]},{cat:'Paul - Pastoral Epistles',sub:'Church leadership',books:[['1 Timothy',6],['2 Timothy',4],['Titus',3]]},{cat:'Paul - Early Letters',sub:'Eschatology and the Day of the Lord',books:[['1 Thessalonians',5],['2 Thessalonians',3]]},{cat:'General Epistles',sub:'Faith, suffering, wisdom, love',books:[['Hebrews',13],['James',5],['1 Peter',5],['2 Peter',3],['1 John',5],['2 John',1],['3 John',1],['Jude',1]]},{cat:'Prophecy',sub:'The Revelation of Jesus Christ',books:[['Revelation',22]]}];
+
+function buildBibleSection(cid,data){
+  var c=document.getElementById(cid);c.innerHTML='';
+  data.forEach(function(sec){
+    var cat=document.createElement('div');cat.className='bible-category';
+    cat.innerHTML='<div class="bible-cat-title">'+sec.cat+'</div><div class="bible-cat-sub">'+sec.sub+'</div>';c.appendChild(cat);
+    var grid=document.createElement('div');grid.className='bible-books';
+    sec.books.forEach(function(bk){
+      var div=document.createElement('div');div.className='bible-book';
+      div.innerHTML='<span>'+bk[0]+'</span><span class="bible-book-ch">'+bk[1]+' CH.</span>';
+      (function(bookName,bookCh){div.onclick=function(){showBookInfo(bookName,bookCh);};})(bk[0],bk[1]);
+      grid.appendChild(div);
+    });c.appendChild(grid);
+  });
+}
+
+function openRef(){var ref=document.getElementById('lookup-ref').value.trim();if(!ref)return;window.open('https://www.biblegateway.com/passage/?search='+encodeURIComponent(ref)+'&version=NKJV','_blank');}
+document.getElementById('lookup-ref').addEventListener('keydown',function(e){if(e.key==='Enter')openRef();});
+function exportPDF(){saveAll();window.print();}
+
+function loadData(){try{var r=localStorage.getItem('bsj2_data');if(!r)return false;var d=JSON.parse(r);if(d.canvasData)canvasData=d.canvasData;return d;}catch(e){return false;}}
+
+var _currentBook = 'John';
+
+function showBookInfo(name, chapters) {
+  _currentBook = name;
+  document.getElementById('bm-name').textContent = name;
+  var info = BOOK_INFO[name] || {author:'Unknown',date:'Unknown',theme:''};
+  document.getElementById('bm-meta').textContent = info.author + '  ·  ' + info.date + '  ·  ' + chapters + ' chapters';
+  document.getElementById('bm-theme').textContent = info.theme;
+  document.getElementById('book-modal').classList.remove('hidden');
+}
+
+function bookModalStudy() {
+  document.getElementById('book-modal').classList.add('hidden');
+  showSection('study');
+  addStudyEntry({book:_currentBook});
+  setTimeout(function(){document.getElementById('main').scrollTo(0,999999);},100);
+}
+
+function bookModalLifeBible() {
+  document.getElementById('book-modal').classList.add('hidden');
+  window.location.href = 'tecartabible://' + encodeURIComponent(_currentBook + ' 1');
+}
+
+function bookModalYV() {
+  document.getElementById('book-modal').classList.add('hidden');
+  var code = YV_BOOKS[_currentBook] || 'JHN';
+  window.open('https://www.bible.com/audio-bible/114/' + code + '.1.NKJV', '_blank');
+}
+
+function init(){
+  buildBibleSection('ot-books',OT);
+  buildBibleSection('nt-books',NT);
+  buildTopics(DEFAULT_TOPICS);
+  var data=loadData();
+
+  if(data&&data.rpChecked){data.rpChecked.forEach(function(s){var parts=s.split(':');if(parts[1]==='true')rpCheckedBooks[parts[0]]=true;});}
+  buildRPList();
+  if(data&&data.rpSettings){
+    var s=data.rpSettings;
+    var te=document.getElementById('rp-target-date');if(te&&s.target)te.value=s.target;
+    var ge=document.getElementById('rp-ch-goal');if(ge&&s.goal)ge.value=s.goal;
+    var se=document.getElementById('rp-start-date');if(se&&s.start)se.value=s.start;
+  } else {
+    var te=document.getElementById('rp-target-date');if(te&&!te.value)te.value='2025-07-01';
+  }
+
+  if(data&&data.vault&&data.vault.length)data.vault.forEach(function(r){addVaultRow(r);});
+  else{addVaultRow();addVaultRow();addVaultRow();}
+
+  if(data&&data.memory&&data.memory.length)data.memory.forEach(function(m){addMemoryCard(m);});
+  else{for(var i=0;i<6;i++)addMemoryCard();}
+
+  if(data&&data.prayer&&data.prayer.length)data.prayer.forEach(function(p){addPrayerEntry(p);});
+  else{addPrayerEntry();addPrayerEntry();}
+
+  addJournalEntry();addSermonEntry();addStudyEntry();addSeriesEntry();addQuoteEntry();addBookSummary();addWordEntry();
+
+  if(data){
+    Object.keys(data).forEach(function(k){
+      var el=document.querySelector('[data-field="'+k+'"]');
+      if(el&&typeof data[k]==='string')el.value=data[k];
+    });
+  }
+
+  if(data&&data.topics&&data.topics.length)buildTopics(data.topics);
+
+  setTimeout(function(){
+    document.querySelectorAll('canvas').forEach(function(c){initCanvas(c);});
+    updateRPStats();updateHomeRP();
+  },250);
+}
+
+init();
+</script>
+</body>
+</html>
